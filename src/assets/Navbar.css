@@ -1,0 +1,11 @@
+.navbar {
+  height: 3rem;
+  background-color: rgb(126, 13, 232);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
+}
+.navbar a {
+    color: rgb(250, 236, 236);
+}

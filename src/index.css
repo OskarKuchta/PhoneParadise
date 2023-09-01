@@ -1,7 +1,7 @@
 @import url("./assets/BadURL.css");
 @import url("./assets/Contact.css");
 @import url("./assets/Navbar.css");
-
+@import url("./assets/Footer.css");
 :root {
   --purple: rgb(126, 13, 232);
 }

@@ -5,3 +5,19 @@ footer {
   height: 3rem;
   background-color: black;
 }
+
+.footer-icons {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .cart-count {
+    top: -0.7rem;
+    right: -0.7rem;
+  }
+
+}

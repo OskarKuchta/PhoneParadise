@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { CartIcon } from "../assets/carticon.jsx";
+import { CartIcon, CartCount } from "../assets/icons.jsx";
+
 const Navbar = () => {
   return (
     <nav className="navbar">
@@ -14,9 +15,10 @@ const Navbar = () => {
         <li>
           <Link to="/contact">Contact</Link>
         </li>
-        <li>
+        <li className="cart">
           <Link to="/cart">
             <CartIcon />
+            <CartCount />
           </Link>
         </li>
       </ul>

@@ -51,14 +51,12 @@
   }
   .navbar-name:hover,
   .navbar-name:focus {
-    background-color: aliceblue;
+    background-color: rgb(110, 3, 117);
     outline: none;
-    color: var(--purple);
   }
   .navbar-links a:hover,
   .navbar-links a:focus {
     outline: none;
-    background-color: aliceblue;
-    color: var(--purple);
+    background-color: rgb(110, 3, 117);
   }
 }

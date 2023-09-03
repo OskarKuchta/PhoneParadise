@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart.tsx";
 import Footer from "./components/Footer.tsx";
 import { useState, useEffect } from "react";
+import MainPage from "./pages/MainPage.tsx";
 
 const App = () => {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
@@ -24,7 +25,7 @@ const App = () => {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<div>123</div>} />
+        <Route path="/" element={<MainPage />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<Cart />}></Route>

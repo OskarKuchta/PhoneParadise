@@ -3,7 +3,7 @@ import {
   CartCount,
   HomeIcon,
   ContactIcon,
-} from "../assets/icons.jsx";
+} from "../assets/Icons.jsx";
 
 import { Link } from "react-router-dom";
 

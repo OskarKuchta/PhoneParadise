@@ -1,18 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productsSlice from "./features/Productslice.jsx";
-import { Fetch } from "./features/Productslice.jsx";
+import productsReducer from "./features/Productslice.jsx";
+import { productsFetch } from "./features/Productslice.jsx";
 import { productsApi } from "./features/ProductsApi.js";
 
 const store = configureStore({
   reducer: {
-    products: productsSlice,
+    products: productsReducer,
     [productsApi.reducerPath]: productsApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(productsApi.middleware);
-  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(productsApi.middleware),
 });
 
-store.dispatch(Fetch());
+store.dispatch(productsFetch());
 
+export type RootState = ReturnType<typeof store.getState>;
 export default store;

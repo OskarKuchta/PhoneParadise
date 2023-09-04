@@ -2,6 +2,7 @@
 @import url("./assets/Contact.css");
 @import url("./assets/Navbar.css");
 @import url("./assets/Footer.css");
+@import url("./assets/LoadingError.css");
 :root {
   --purple: rgb(46, 3, 87);
 }
@@ -19,4 +20,8 @@ body {
 a {
   text-decoration: none;
   color: black;
+}
+img {
+  width: 100px;
+  height: 100px;
 }

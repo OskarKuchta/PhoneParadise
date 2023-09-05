@@ -4,6 +4,7 @@
 @import url("./assets/Footer.css");
 @import url("./assets/LoadingError.css");
 @import url("./assets/Main.css");
+
 :root {
   --purple: rgb(46, 3, 87);
 }
@@ -12,6 +13,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
 }
 
 body {

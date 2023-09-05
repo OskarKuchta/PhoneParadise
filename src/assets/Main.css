@@ -1,0 +1,21 @@
+.phone-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin: 2rem;
+}
+.phone-card {
+  background-color: aliceblue;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .phone-container {
+    display: flex;
+    flex-direction: column;
+  }
+}

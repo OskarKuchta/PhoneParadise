@@ -37,18 +37,19 @@ const MainPage = () => {
   return (
     <div>
       <h2>New Arrivals</h2>
-      <br />
-      {data?.map((product: Products) => (
-        <aside key={product.id}>
-          <h2>{product.name}</h2>
-          <img src={product.image} alt={product.name} />
-          <div>
-            <span>{product.desc}</span>
-            <span>${product.price}</span>
-          </div>
-          <button>Add to cart</button>
-        </aside>
-      ))}
+      <div className="phone-container">
+        {data?.map((product: Products) => (
+          <aside className="phone-card" key={product.id}>
+            <h2>{product.name}</h2>
+            <img src={product.image} alt={product.name} />
+            <div>
+              <p>{product.desc}</p>
+              <p>${product.price}</p>
+            </div>
+            <button>Add to cart</button>
+          </aside>
+        ))}
+      </div>
     </div>
   );
 };

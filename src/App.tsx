@@ -10,7 +10,7 @@ import MainPage from "./pages/MainPage.tsx";
 
 const App = () => {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
-  const isPhone = windowWidth < 769;
+  const isPhone: boolean = windowWidth < 769;
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };

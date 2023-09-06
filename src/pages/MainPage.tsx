@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { useGetAllProductsQuery } from "../features/ProductsApi";
-import { RootState } from "../store";
+// import { RootState } from "../store";
 import PhoneCard from "../components/PhoneCard";
 
 const MainPage = () => {
   const { error, isLoading } = useGetAllProductsQuery({});
-  const products = useSelector((state: RootState) => state.products);
+  // const products = useSelector((state: RootState) => state.products);
 
   if (isLoading) {
     return (

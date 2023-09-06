@@ -4,9 +4,9 @@ import axios from "axios";
 const initialState = {
   items: [],
   status: null,
+  isLoading: true,
   error: null,
 };
-
 export const productsFetch = createAsyncThunk(
   "products/productsFetch",
   async () => {
@@ -14,9 +14,10 @@ export const productsFetch = createAsyncThunk(
       const response = await axios.get(
         "https://phoneparadise.netlify.app/.netlify/functions/index/products"
       );
-      return response.data;
+      return { items: response.data, isLoading: false, error: null };
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      return { items: [], isLoading: false, error: error.message };
     }
   }
 );
@@ -28,13 +29,17 @@ const productsSlice = createSlice({
     builder
       .addCase(productsFetch.pending, (state) => {
         state.status = "pending";
+        state.isLoading = true;
+        state.error = null;
       })
       .addCase(productsFetch.fulfilled, (state, action) => {
-        state.items = action.payload;
+        Object.assign(state, action.payload);
         state.status = "success";
       })
-      .addCase(productsFetch.rejected, (state) => {
+      .addCase(productsFetch.rejected, (state, action) => {
         state.status = "rejected";
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });

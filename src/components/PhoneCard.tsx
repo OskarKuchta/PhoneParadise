@@ -1,11 +1,11 @@
-import Products from "../Types/Products.ts";
-import { useGetAllProductsQuery } from "../features/ProductsApi";
-
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+import Products from "src/Types/Products";
 const PhoneCard = () => {
-  const { data } = useGetAllProductsQuery({});
+  const { items } = useSelector((store: RootState) => store.products);
   return (
     <>
-      {data?.map((product: Products) => (
+      {items?.default.map((product: Products) => (
         <aside className="phone-card" key={product.id}>
           <h2>{product.name}</h2>
           <img src={product.image} alt={product.name} />

@@ -1,11 +1,11 @@
-// import { useSelector } from "react-redux";
-import { useGetAllProductsQuery } from "../features/ProductsApi";
-// import { RootState } from "../store";
+import { useSelector } from "react-redux";
+
+import { RootState } from "../store";
 import PhoneCard from "../components/PhoneCard.tsx";
 
 const MainPage = () => {
-  const { error, isLoading } = useGetAllProductsQuery({});
-  // const products = useSelector((state: RootState) => state.products);
+  const { isLoading, error } = useSelector((state:RootState) => state.products);
+  const products = useSelector((state: RootState) => state.products);
 
   if (isLoading) {
     return (
@@ -25,20 +25,20 @@ const MainPage = () => {
     );
   } else if (error) {
     return <section className="without-data">{error.toString()}</section>;
+  } else if (products) {
+    return (
+      <main>
+        <h1>
+          Welcome to Phone Paradise – Your Ultimate Destination for the Phones.
+          Explore a World of Innovation and Style. Shop Now!
+        </h1>
+        <h2>New Arrivals</h2>
+        <div className="phone-container">
+          <PhoneCard />
+        </div>
+      </main>
+    );
   }
-
-  return (
-    <main>
-      <h1>
-        Welcome to Phone Paradise – Your Ultimate Destination for the Phones.
-        Explore a World of Innovation and Style. Shop Now!
-      </h1>
-      <h2>New Arrivals</h2>
-      <div className="phone-container">
-        <PhoneCard />
-      </div>
-    </main>
-  );
 };
 
 export default MainPage;

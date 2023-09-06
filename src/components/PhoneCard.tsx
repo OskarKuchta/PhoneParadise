@@ -1,4 +1,4 @@
-import Products from "../Types/Products";
+import Products from "../Types/Products.ts";
 import { useGetAllProductsQuery } from "../features/ProductsApi";
 
 const PhoneCard = () => {

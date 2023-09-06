@@ -1,7 +1,7 @@
 // import { useSelector } from "react-redux";
 import { useGetAllProductsQuery } from "../features/ProductsApi";
 // import { RootState } from "../store";
-import PhoneCard from "../components/PhoneCard";
+import PhoneCard from "../components/PhoneCard.tsx";
 
 const MainPage = () => {
   const { error, isLoading } = useGetAllProductsQuery({});

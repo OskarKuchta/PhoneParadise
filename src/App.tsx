@@ -1,7 +1,7 @@
-import About from "./pages/About.jsx";
+import About from "./pages/About.tsx";
 import Navbar from "./components/Navbar.tsx";
-import Contact from "./pages/Contact.jsx";
-import BadURL from "./pages/BadURL.jsx";
+import Contact from "./pages/Contact.tsx";
+import BadURL from "./pages/BadURL.tsx";
 import { Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart.tsx";
 import Footer from "./components/Footer.tsx";

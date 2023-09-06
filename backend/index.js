@@ -14,5 +14,5 @@ router.get("/products", (req, res) => {
     res.send(products)
 })
 
-app.use('/.netlify/backend/index', router);
+app.use('/.netlify/functions/index', router);
 export const handler = serverless(app);

@@ -1,17 +1,10 @@
 import { useSelector } from "react-redux";
 import { useGetAllProductsQuery } from "../features/ProductsApi";
 import { RootState } from "../store";
-
-interface Products {
-  id: number;
-  name: string;
-  desc: string;
-  price: number;
-  image: string;
-}
+import PhoneCard from "../components/PhoneCard";
 
 const MainPage = () => {
-  const { data, error, isLoading } = useGetAllProductsQuery({});
+  const { error, isLoading } = useGetAllProductsQuery({});
   const products = useSelector((state: RootState) => state.products);
 
   if (isLoading) {
@@ -35,22 +28,16 @@ const MainPage = () => {
   }
 
   return (
-    <div>
+    <main>
+      <h1>
+        Welcome to Phone Paradise – Your Ultimate Destination for the Phones.
+        Explore a World of Innovation and Style. Shop Now!
+      </h1>
       <h2>New Arrivals</h2>
       <div className="phone-container">
-        {data?.map((product: Products) => (
-          <aside className="phone-card" key={product.id}>
-            <h2>{product.name}</h2>
-            <img src={product.image} alt={product.name} />
-            <div>
-              <p>{product.desc}</p>
-              <p>${product.price}</p>
-            </div>
-            <button>Add to cart</button>
-          </aside>
-        ))}
+        <PhoneCard />
       </div>
-    </div>
+    </main>
   );
 };
 

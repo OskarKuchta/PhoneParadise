@@ -10,12 +10,9 @@ router.use(cors({
 }));
 
 
-app.get("/", (req, res) => {
-    res.send("Welcome in our shop!");
-})
-app.get("/products", (req, res) => {
+router.get("/products", (req, res) => {
     res.send(products)
 })
 
-app.use('/.netlify/functions/index', router);
+app.use('/.netlify/backend/index', router);
 export const handler = serverless(app);

@@ -12,7 +12,7 @@ export const productsFetch = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get(
-        "https://phoneparadise.netlify.app/backend/products"
+        "https://phoneparadise.netlify.app/.netlify/functions/index/products"
       );
       return response.data;
     } catch (error) {

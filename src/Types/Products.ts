@@ -1,4 +1,4 @@
-interface Products {
+export interface Products {
 
     id: number;
     name: string;
@@ -7,5 +7,10 @@ interface Products {
     image: string;
 }
 
+export interface InititalState {
+    items: unknown;
+    status: null | string;
+    isLoading: boolean;
+    error: null | unknown;
+}
 
-export default Products;

@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import Products from "src/Types/Products";
+import { Products } from "src/Types/Products";
 const PhoneCard = () => {
   const { items } = useSelector((store: RootState) => store.products);
+  const itemsArray = (items as { default: Products[] }).default;
   return (
     <>
-      {items?.default.map((product: Products) => (
+      {itemsArray.map((product: Products) => (
         <aside className="phone-card" key={product.id}>
           <h2>{product.name}</h2>
           <img src={product.image} alt={product.name} />

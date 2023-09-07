@@ -9,6 +9,11 @@
   --purple: rgb(46, 3, 87);
 }
 
+html,
+body {
+  min-height: 100%;
+}
+
 * {
   margin: 0;
   padding: 0;

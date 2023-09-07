@@ -1,6 +1,6 @@
 footer {
   width: 100vw;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   height: 3rem;
   background-color: black;

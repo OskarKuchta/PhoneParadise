@@ -9,7 +9,7 @@ const MainPage = () => {
 
   if (isLoading) {
     return (
-      <section className="without-data">
+      <main className="without-data">
         <div className="lds-roller">
           <div></div>
           <div></div>
@@ -21,10 +21,10 @@ const MainPage = () => {
           <div></div>
         </div>
         Loading...
-      </section>
+      </main>
     );
   } else if (error) {
-    return <section className="without-data">{error.toString()}</section>;
+    return <main className="without-data">{error.toString()}</main>;
   } else if (products) {
     return (
       <main>

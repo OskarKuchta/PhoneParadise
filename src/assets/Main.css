@@ -9,14 +9,55 @@ main {
 }
 .phone-card {
   background-color: aliceblue;
-  padding: 1rem;
+  padding: 0.7rem;
+  border-radius: 0.4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   justify-content: center;
+}
+.phone-card * {
+  margin: 0.3rem 0;
+}
+.phone-card img {
+  height: 7rem;
+  aspect-ratio: 16 /9;
+}
+.phone-card button {
+  cursor: pointer;
+  padding: 0.4rem 0.7rem;
+  border: transparent;
+  background-color: rgb(7, 227, 7);
+  border-radius: 3px;
+  color: rgb(237, 246, 245);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  outline-color: rgb(7, 227, 7);
+}
+
+.phone-card button:hover,
+.phone-card button:focus {
+  transform: scale(1.1);
+  background-color: rgb(0, 183, 0);
+}
+
+@media (min-width: 1200px) {
+  .phone-container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media (max-width: 950px) {
+  .phone-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
+  .phone-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 550px) {
   .phone-container {
     display: flex;
     flex-direction: column;

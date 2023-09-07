@@ -9,9 +9,8 @@
   --purple: rgb(46, 3, 87);
 }
 
-html,
-body {
-  min-height: 100%;
+html {
+  scroll-behavior: smooth;
 }
 
 * {

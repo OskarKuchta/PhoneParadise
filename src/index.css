@@ -4,7 +4,7 @@
 @import url("./assets/Footer.css");
 @import url("./assets/LoadingError.css");
 @import url("./assets/Main.css");
-
+@import url("./assets/About.css");
 :root {
   --purple: rgb(46, 3, 87);
 }

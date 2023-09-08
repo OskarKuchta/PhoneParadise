@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux";
-
 import { RootState } from "../store";
 import PhoneCard from "../components/PhoneCard.tsx";
+import Footertext from "../components/Footertext.tsx";
 
 const MainPage = () => {
-  const { isLoading, error } = useSelector((state:RootState) => state.products);
+  const { isLoading, error } = useSelector(
+    (state: RootState) => state.products
+  );
   const products = useSelector((state: RootState) => state.products);
 
   if (isLoading) {
@@ -33,9 +35,10 @@ const MainPage = () => {
           Explore a World of Innovation and Style. Shop Now!
         </h1>
         <h2>New Arrivals</h2>
-        <div className="phone-container">
+        <section className="phone-container">
           <PhoneCard />
-        </div>
+        </section>
+        <Footertext />
       </main>
     );
   }

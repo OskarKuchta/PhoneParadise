@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import { Products } from "src/Types/Products";
+import { Products } from "../Types/Products";
 const PhoneCard = () => {
   const { items } = useSelector((store: RootState) => store.products);
   const itemsArray = (items as { default: Products[] }).default;

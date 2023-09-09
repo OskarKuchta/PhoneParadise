@@ -1,3 +1,6 @@
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { RootState } from "../store";
+
 export const CartIcon = () => {
   return (
     <svg
@@ -13,6 +16,7 @@ export const CartIcon = () => {
   );
 };
 export const CartCount = () => {
+  const { amount } = useSelector((state: RootState) => state.cart);
   return (
     <svg
       className="cart-count"
@@ -39,7 +43,7 @@ export const CartCount = () => {
         fontSize="30"
         fill="white"
       >
-        1
+        {amount}
       </text>
     </svg>
   );

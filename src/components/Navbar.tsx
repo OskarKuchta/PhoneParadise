@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { CartCount, CartIcon } from "../assets/icons";
-
 const Navbar = () => {
   return (
     <nav className="navbar">

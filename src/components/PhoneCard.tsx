@@ -5,7 +5,7 @@ import { addItem } from "../features/CartSlice";
 
 const PhoneCard = () => {
   const dispatch = useDispatch();
-  const addToCart = (product) => {
+  const addToCart = (product: Products) => {
     dispatch(addItem(product));
     console.log(product);
   };

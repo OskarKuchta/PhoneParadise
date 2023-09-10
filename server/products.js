@@ -5,6 +5,7 @@ const products = [
         desc: `6.1" screen`,
         price: 999,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/1-min.jpg",
+        quantity: 0,
     },
     {
         id: 2,
@@ -12,6 +13,7 @@ const products = [
         desc: `5.4" screen`,
         price: 699,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/2-min.jpg",
+        quantity: 0,
     },
     {
         id: 3,
@@ -19,6 +21,7 @@ const products = [
         desc: `6.5" screen`,
         price: 399,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/3-min.jpg",
+        quantity: 0,
     },
     {
         id: 4,
@@ -26,6 +29,7 @@ const products = [
         desc: `6.0" screen`,
         price: 299,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/4-min.jpg",
+        quantity: 0,
     },
     {
         id: 5,
@@ -33,6 +37,7 @@ const products = [
         desc: `6.7" screen`,
         price: 589,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/5-min.jpg",
+        quantity: 0,
     },
     {
         id: 6,
@@ -40,6 +45,7 @@ const products = [
         desc: `6.7" screen`,
         price: 379,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/6-min.jpg",
+        quantity: 0,
     },
     {
         id: 7,
@@ -47,6 +53,7 @@ const products = [
         desc: `6.81" screen`,
         price: 799,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/7-min.jpg",
+        quantity: 0,
     },
     {
         id: 8,
@@ -54,6 +61,7 @@ const products = [
         desc: `6.5" screen`,
         price: 495,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/8-min.jpg",
+        quantity: 0,
     },
     {
         id: 9,
@@ -61,6 +69,7 @@ const products = [
         desc: `6.1" screen`,
         price: 399,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/9-min.jpg",
+        quantity: 0,
     },
     {
         id: 10,
@@ -68,6 +77,7 @@ const products = [
         desc: `6.44" screen`,
         price: 399,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/10-min.jpg",
+        quantity: 0,
     },
     {
         id: 11,
@@ -75,6 +85,7 @@ const products = [
         desc: `6.67" screen`,
         price: 249,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/11-min.jpg",
+        quantity: 0,
     },
     {
         id: 12,
@@ -82,6 +93,7 @@ const products = [
         desc: `5.81" screen`,
         price: 349,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/12-min.jpg",
+        quantity: 0,
     },
     {
         id: 13,
@@ -89,6 +101,7 @@ const products = [
         desc: `6.1" screen`,
         price: 949,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/13-min.jpg",
+        quantity: 0,
     },
 ];
 

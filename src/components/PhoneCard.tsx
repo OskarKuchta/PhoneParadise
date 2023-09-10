@@ -7,7 +7,6 @@ const PhoneCard = () => {
   const dispatch = useDispatch();
   const addToCart = (product: Products) => {
     dispatch(addItem(product));
-    console.log(product);
   };
   const { items } = useSelector((store: RootState) => store.products);
   const itemsArray = (items as { default: Products[] }).default;

@@ -1,0 +1,48 @@
+.empty-cart {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 4rem 2rem;
+}
+.empty-cart h2 {
+  letter-spacing: .2rem;
+  margin-bottom: 2rem;
+}
+.empty-cart h3 {
+  margin-bottom: 2rem;
+}
+.empty-cart button {
+  color: white;
+  background-color: transparent;
+  border: none;
+}
+.empty-cart a {
+  background-color: var(--purple);
+  padding: 1rem 3rem;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color .3s, scale .5s;
+}
+.empty-cart a::after {
+  content: "\2192";
+  position: absolute;
+  top: .7rem;
+  right: 1rem;
+  opacity: 0;
+  transition: opacity .5s;
+}
+.empty-cart a:hover,
+.empty-cart a:focus {
+  background-color: #0056b3;
+  scale: 110%;
+}
+.empty-cart a:hover::after,
+.empty-cart a:focus::after {
+  opacity: 1;
+}

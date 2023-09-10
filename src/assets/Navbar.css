@@ -9,7 +9,7 @@
 .navbar a {
   color: rgb(250, 236, 236);
   padding: 0 1.2rem;
-  transition: background 0.5s ease-in-out;
+  transition: background .5s ease-in-out;
   height: 4rem;
   display: flex;
   align-items: center;
@@ -27,8 +27,8 @@
 }
 .cart-count {
   position: absolute;
-  top: 0.7rem;
-  right: 0.7rem;
+  top: .7rem;
+  right: .7rem;
 }
 .cart-icon:hover,
 .cart-icon:focus {

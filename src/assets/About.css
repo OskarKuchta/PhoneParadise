@@ -21,7 +21,7 @@
   color: var(--purple);
 }
 .about-right {
-  font-size: 0.8rem;
+  font-size: .8rem;
   position: relative;
   margin: 5rem;
 }
@@ -30,7 +30,7 @@
   bottom: 3rem;
   left: 2.5rem;
   color: var(--purple);
-  letter-spacing: 0.1rem;
+  letter-spacing: .1rem;
 }
 .about img {
   height: 15rem;

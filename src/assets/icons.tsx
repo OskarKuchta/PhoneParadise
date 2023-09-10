@@ -40,7 +40,7 @@ export const CartCount = () => {
         y="50%"
         textAnchor="middle"
         alignmentBaseline="middle"
-        fontSize="30"
+        fontSize="24"
         fill="white"
       >
         {amount}

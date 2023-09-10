@@ -17,7 +17,8 @@ const Cart = () => {
     );
   }
   return (
-    <section>
+    <section className="cart">
+      <h2>Your cart:</h2>
       {[...new Set(cartItems.map((product) => product.id))].map((productId) => {
         const product = cartItems.find((item) => item.id === productId);
         return (

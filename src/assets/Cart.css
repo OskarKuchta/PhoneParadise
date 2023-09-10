@@ -7,7 +7,7 @@
   margin: 4rem 2rem;
 }
 .empty-cart h2 {
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
   margin-bottom: 2rem;
 }
 .empty-cart h3 {
@@ -16,10 +16,12 @@
 .empty-cart button {
   color: white;
   background-color: transparent;
+
   border: none;
 }
 .empty-cart a {
   background-color: var(--purple);
+  outline-color: transparent;
   padding: 1rem 3rem;
   font-size: 16px;
   border: none;
@@ -27,15 +29,16 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: background-color .3s, scale .5s;
+  transition: background-color 0.3s, scale 0.5s;
 }
 .empty-cart a::after {
   content: "\2192";
+  color: white;
   position: absolute;
-  top: .7rem;
+  top: 0.7rem;
   right: 1rem;
   opacity: 0;
-  transition: opacity .5s;
+  transition: opacity 0.5s;
 }
 .empty-cart a:hover,
 .empty-cart a:focus {
@@ -46,3 +49,5 @@
 .empty-cart a:focus::after {
   opacity: 1;
 }
+
+

@@ -22,12 +22,12 @@
   display: flex;
   align-items: center;
 }
-.cart {
+.cart-nav {
   position: relative;
 }
 .cart-count {
   position: absolute;
-  top: .7rem;
+  top: .6rem;
   right: .7rem;
 }
 .cart-icon:hover,

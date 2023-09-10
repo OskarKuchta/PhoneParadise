@@ -1,7 +1,3 @@
-main {
-  margin: 2rem;
-}
-
 .phone-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -9,8 +5,8 @@ main {
 }
 .phone-card {
   background-color: aliceblue;
-  padding: .7rem;
-  border-radius: .4rem;
+  padding: 0.7rem;
+  border-radius: 0.4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +14,7 @@ main {
   justify-content: center;
 }
 .phone-card * {
-  margin: .3rem 0;
+  margin: 0.3rem 0;
 }
 .phone-card img {
   height: 7rem;
@@ -26,7 +22,7 @@ main {
 }
 .phone-card button {
   cursor: pointer;
-  padding: .4rem .7rem;
+  padding: 0.4rem 0.7rem;
   border: transparent;
   background-color: rgb(7, 227, 7);
   border-radius: 3px;
@@ -53,11 +49,9 @@ main {
 }
 
 @media (max-width: 768px) {
-  main {
-    margin-bottom: 5rem;
-  }
   .phone-container {
     grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 7rem;
   }
 }
 @media (max-width: 550px) {

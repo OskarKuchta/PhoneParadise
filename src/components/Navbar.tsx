@@ -14,7 +14,7 @@ const Navbar = () => {
         <li>
           <Link to="/contact">Contact</Link>
         </li>
-        <li className="cart">
+        <li className="cart-nav">
           <Link to="/cart">
             <CartIcon />
             <CartCount />

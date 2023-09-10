@@ -16,7 +16,7 @@ const Footer = () => {
             <HomeIcon />
           </Link>
         </li>
-        <li className="cart">
+        <li className="cart-nav">
           <Link to="/cart">
             <CartIcon />
             <CartCount />

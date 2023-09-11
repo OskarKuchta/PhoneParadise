@@ -21,7 +21,6 @@
   aspect-ratio: 16 /9;
 }
 .phone-card button {
-  cursor: pointer;
   padding: 0.4rem 0.7rem;
   border: transparent;
   background-color: rgb(7, 227, 7);

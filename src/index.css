@@ -29,6 +29,10 @@ a {
   text-decoration: none;
   color: black;
 }
+a,
+button {
+  cursor: pointer;
+}
 img {
   width: 130px;
   height: 100px;

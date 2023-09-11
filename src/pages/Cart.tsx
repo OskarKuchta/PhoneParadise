@@ -4,17 +4,23 @@ import { Link } from "react-router-dom";
 import {
   increaseProductAmount,
   decreaseProductAmount,
+  removeProduct,
 } from "../features/CartSlice";
 import { ChevronDown, ChevronUp } from "../assets/icons";
 
 const Cart = () => {
-  const { cartItems, amount } = useSelector((state: RootState) => state.cart);
+  const { cartItems, amount, total } = useSelector(
+    (state: RootState) => state.cart
+  );
   const dispatch = useDispatch();
   const increase = (productId: number) => {
     dispatch(increaseProductAmount({ productId }));
   };
   const decrease = (productId: number) => {
     dispatch(decreaseProductAmount({ productId }));
+  };
+  const remove = (productId: number) => {
+    dispatch(removeProduct({ productId }));
   };
   if (amount < 1) {
     return (
@@ -39,20 +45,26 @@ const Cart = () => {
               <img src={product.image} alt={product.name} />
             </div>
             <div className="product-quantity">
-              <p>Quantity: {Number(product.quantity)}</p>
-              <div className="quantity-icons">
-                <button onClick={() => increase(product.id)}>
-                  <ChevronUp />
-                </button>
-                <button onClick={() => decrease(product.id)}>
-                  <ChevronDown />
-                </button>
+              <div className="quantity-top">
+                <p>Quantity: {Number(product.quantity)}</p>
+                <div className="quantity-icons">
+                  <button onClick={() => increase(product.id)}>
+                    <ChevronUp />
+                  </button>
+                  <button onClick={() => decrease(product.id)}>
+                    <ChevronDown />
+                  </button>
+                </div>
+              </div>
+              <div className="quantity-bottom">
+                <button onClick={() => remove(product.id)}>Remove</button>
               </div>
             </div>
             <p>Cost: ${product.price * product.quantity}</p>
           </aside>
         );
       })}
+      <p>total: ${total}</p>
     </section>
   );
 };

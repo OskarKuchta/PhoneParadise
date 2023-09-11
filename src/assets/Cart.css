@@ -66,7 +66,9 @@
   align-items: center;
   margin-bottom: 2rem;
 }
-
+.product-name {
+  margin-bottom: 0.5rem;
+}
 .product-quantity {
   display: flex;
   justify-content: center;
@@ -84,7 +86,6 @@
 .product-quantity button {
   border: none;
   background-color: transparent;
-
 }
 .product-top {
   display: flex;
@@ -100,6 +101,60 @@
 }
 .quantity-icons svg {
   cursor: pointer;
+}
+
+.quantity-bottom button,
+.cart-remove {
+  padding: 0.4rem 1.6rem;
+  border: 2px solid rgb(255, 15, 15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  outline-color: transparent;
+  transition: background-color 1s, color 0.5s;
+}
+
+.quantity-bottom button:hover,
+.quantity-bottom button:focus,
+.cart-remove:hover,
+.cart-remove:focus {
+  background-color: red;
+  color: rgb(241, 238, 238);
+}
+.cart-bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.cart-bottom button {
+  padding: 0.7rem 3rem;
+}
+.cart-payments {
+  border-radius: 4px;
+  outline-color: transparent;
+  border: 2px solid var(--purple);
+  transition: background-color 1s, color 0.5s;
+  position: relative;
+}
+.cart-payments::after {
+  content: "\2192";
+  color: white;
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.cart-payments:hover,
+.cart-payments:focus {
+  background-color: var(--purple);
+  color: rgb(241, 238, 238);
+}
+
+.cart-payments:hover::after,
+.cart-payments:focus::after {
+  opacity: 1;
 }
 @media (max-width: 768px) {
   .cart {

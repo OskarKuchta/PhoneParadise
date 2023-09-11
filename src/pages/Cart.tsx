@@ -1,71 +1,28 @@
+import EmptyCart from "../components/EmptyCart";
+import CartProducts from "../components/CartProducts";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { Link } from "react-router-dom";
-import {
-  increaseProductAmount,
-  decreaseProductAmount,
-  removeProduct,
-} from "../features/CartSlice";
-import { ChevronDown, ChevronUp } from "../assets/icons";
-
+import { removeAllProducts } from "../features/CartSlice";
 const Cart = () => {
-  const { cartItems, amount, total } = useSelector(
-    (state: RootState) => state.cart
-  );
   const dispatch = useDispatch();
-  const increase = (productId: number) => {
-    dispatch(increaseProductAmount({ productId }));
-  };
-  const decrease = (productId: number) => {
-    dispatch(decreaseProductAmount({ productId }));
-  };
-  const remove = (productId: number) => {
-    dispatch(removeProduct({ productId }));
+  const { amount, total } = useSelector((store: RootState) => store.cart);
+  const removeAll = () => {
+    dispatch(removeAllProducts());
   };
   if (amount < 1) {
-    return (
-      <div className="empty-cart">
-        <h2>Currently, there are no items in the cart...</h2>
-        <h3>Add some item and back to cart.</h3>
-        <Link to="/">
-          <button tabIndex={0}>Back to shopping</button>
-        </Link>
-      </div>
-    );
+    return <EmptyCart />;
   }
   return (
-    <section className="cart">
-      <h2 className="cart-header">Your cart:</h2>
-      {[...new Set(cartItems.map((product) => product.id))].map((productId) => {
-        const product = cartItems.find((item) => item.id === productId);
-        return (
-          <aside className="cart-product" key={product.id}>
-            <div className="product-top">
-              <h2>{product.name}</h2>
-              <img src={product.image} alt={product.name} />
-            </div>
-            <div className="product-quantity">
-              <div className="quantity-top">
-                <p>Quantity: {Number(product.quantity)}</p>
-                <div className="quantity-icons">
-                  <button onClick={() => increase(product.id)}>
-                    <ChevronUp />
-                  </button>
-                  <button onClick={() => decrease(product.id)}>
-                    <ChevronDown />
-                  </button>
-                </div>
-              </div>
-              <div className="quantity-bottom">
-                <button onClick={() => remove(product.id)}>Remove</button>
-              </div>
-            </div>
-            <p>Cost: ${product.price * product.quantity}</p>
-          </aside>
-        );
-      })}
-      <p>total: ${total}</p>
-    </section>
+    <>
+      <CartProducts />
+      <section className="cart-bottom">
+        <h2>Total: ${total}</h2>
+        <button className="cart-payments">Go to payments</button>
+        <button onClick={removeAll} className="cart-remove">
+          Remove cart
+        </button>
+      </section>
+    </>
   );
 };
 

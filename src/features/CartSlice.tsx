@@ -58,6 +58,10 @@ const cartSlice = createSlice({
         0
       );
     },
+    removeAllProducts: (state) => {
+      state.cartItems = [];
+      state.amount = 0;
+    },
   },
 });
 
@@ -66,6 +70,7 @@ export const {
   increaseProductAmount,
   decreaseProductAmount,
   removeProduct,
-  getTotal
+  getTotal,
+  removeAllProducts,
 } = cartSlice.actions;
 export default cartSlice.reducer;

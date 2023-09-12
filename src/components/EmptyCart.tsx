@@ -5,7 +5,7 @@ const EmptyCart = () => {
     <section className="empty-cart">
       <h2>Currently, there are no items in the cart...</h2>
       <h3>Add some item and back to cart.</h3>
-      <Link to="/">
+      <Link to="/" aria-label="Back to main page">
         <button tabIndex={0}>Back to shopping</button>
       </Link>
     </section>

@@ -31,7 +31,7 @@ const About = () => {
             <li>
               <i className="fa fa-check-circle"></i>
               Our{" "}
-              <Link to="/contact" className="about-link">
+              <Link to="/contact" aria-label="Contact with us" className="about-link">
                 customer support
               </Link>{" "}
               is available 24/7 – you can always count on us.

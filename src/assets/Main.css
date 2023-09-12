@@ -23,17 +23,16 @@
 .phone-card button {
   padding: 0.4rem 0.7rem;
   border: transparent;
-  background-color: rgb(7, 227, 7);
+  background-color: var(--purple);
   border-radius: 3px;
   color: rgb(237, 246, 245);
-  transition: transform 0.2s ease, background-color 0.2s ease;
-  outline-color: rgb(7, 227, 7);
+  transition: transform 0.5s ease;
+  outline-color: var(--purple);
 }
 
 .phone-card button:hover,
 .phone-card button:focus {
   transform: scale(1.1);
-  background-color: rgb(0, 183, 0);
 }
 
 @media (min-width: 1200px) {

@@ -7,17 +7,17 @@ const Footer = () => {
     <footer>
       <ul className="footer-icons">
         <li>
-          <Link to="/contact">
+          <Link to="/contact" aria-label="Contact with us">
             <ContactIcon />
           </Link>
         </li>
         <li>
-          <Link to="/">
+          <Link to="/" aria-label="Back to main page">
             <HomeIcon />
           </Link>
         </li>
         <li className="cart-nav">
-          <Link to="/cart">
+          <Link to="/cart" aria-label="Go to cart">
             <CartIcon />
             <CartCount />
           </Link>

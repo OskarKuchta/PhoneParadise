@@ -22,7 +22,7 @@ const BadURL = () => {
         Your url adress is incorrect, back to main site or you will be
         redirected for {count} seconds
       </p>
-      <Link to="/">Back to main site</Link>
+      <Link to="/" aria-label="Back to main page">Back to main site</Link>
     </section>
   );
 };

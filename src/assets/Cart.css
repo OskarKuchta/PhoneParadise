@@ -178,6 +178,18 @@
   .product-quantity {
     margin-bottom: 1rem;
   }
+  .cart-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .cart-bottom * {
+    margin-bottom: 2rem;
+  }
+  .cart-payments::after {
+    top: 0.3rem;
+  }
 }
 @media (min-width: 768px) {
   .empty-cart a::after {

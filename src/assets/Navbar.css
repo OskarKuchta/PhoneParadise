@@ -7,7 +7,7 @@
   align-items: center;
 }
 .navbar a {
-  color: rgb(250, 236, 236);
+  color: var(--white);
   padding: 0 1.2rem;
   transition: background .5s ease-in-out;
   height: 4rem;
@@ -38,8 +38,8 @@
 @media (max-width: 768px) {
   .cart-icon,
   .cart-count {
-    fill: rgb(250, 236, 236);
-    stroke: rgb(250, 236, 236);
+    fill: var(--white);
+    stroke: var(--white);
   }
   .navbar-links {
     display: none;

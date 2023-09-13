@@ -139,7 +139,7 @@
 }
 .cart-payments::after {
   content: "\2192";
-  color: white;
+  color: var(--white);
   position: absolute;
   top: 0.5rem;
   right: 1rem;
@@ -149,7 +149,7 @@
 .cart-payments:hover,
 .cart-payments:focus {
   background-color: var(--purple);
-  color: rgb(241, 238, 238);
+  color: var(--white);
 }
 
 .cart-payments:hover::after,

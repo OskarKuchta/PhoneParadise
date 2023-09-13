@@ -10,6 +10,7 @@ import MainPage from "./pages/MainPage.tsx";
 import { getTotal } from "./features/CartSlice.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store";
+import Payments from "./pages/Payments";
 
 const App = () => {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
@@ -36,7 +37,8 @@ const App = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="cart" element={<Cart />}></Route>
+        <Route path="cart" element={<Cart />} />
+        <Route path="cart/payments" element={<Payments />} />
         <Route path="*" element={<BadURL />} />
       </Routes>
       {isPhone && <Footer />}

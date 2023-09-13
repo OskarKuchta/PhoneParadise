@@ -6,8 +6,10 @@
 @import url("./assets/Main.css");
 @import url("./assets/About.css");
 @import url("./assets/Cart.css");
+@import url("./assets/Payments.css");
 :root {
   --purple: rgb(46, 3, 87);
+  --white: rgb(241, 238, 238);
 }
 
 html {
@@ -35,7 +37,7 @@ button {
 }
 
 img {
-  width: 130px;
+  width: 150px;
   height: 100px;
 }
 

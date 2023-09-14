@@ -26,7 +26,7 @@ const CartProducts = () => {
         const product = cartItems.find((item) => item.id === productId);
         return (
           <aside className="cart-product" key={product.id}>
-            <div className="product-top">
+            <div className="product-main">
               <h2 className="product-name">{product.name}</h2>
               <img src={product.image} alt={product.name} />
             </div>

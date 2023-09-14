@@ -15,15 +15,15 @@ const Navbar = () => {
 
       <ul className="navbar-links">
         <li>
-          <Link to="/about">Why us?</Link>
+          <Link to="about">Why us?</Link>
         </li>
         <li>
-          <Link to="/contact" aria-label="Contact with us">
+          <Link to="contact" aria-label="Contact with us">
             Contact
           </Link>
         </li>
         <li className="cart-nav">
-          <Link to="/cart" aria-label="Go to cart">
+          <Link to="cart" aria-label="Go to cart">
             <CartIcon />
             <CartCount />
           </Link>

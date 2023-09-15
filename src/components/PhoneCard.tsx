@@ -3,16 +3,33 @@ import { RootState } from "../store";
 import { Products } from "../Types/Products";
 import { addItem } from "../features/CartSlice";
 
-const PhoneCard = () => {
+const PhoneCard = ({ value }) => {
   const dispatch = useDispatch();
   const addToCart = (product: Products) => {
     dispatch(addItem(product));
   };
   const { items } = useSelector((store: RootState) => store.products);
   const itemsArray = (items as { default: Products[] }).default;
+  const itemsAscending = itemsArray
+    .map((item) => item.price)
+    .sort((a, b) => a - b);
+  const itemsDescending = itemsArray
+    .map((item) => item.price)
+    .sort((a, b) => b - a);
+  const sortedItemsArray = itemsArray.slice().sort((a, b) => {
+    if (value === "Price ascending") {
+      const priceA = a.price;
+      const priceB = b.price;
+      return itemsAscending.indexOf(priceA) - itemsAscending.indexOf(priceB);
+    } else if (value === "Price descending") {
+      const priceA = a.price;
+      const priceB = b.price;
+      return itemsDescending.indexOf(priceA) - itemsDescending.indexOf(priceB);
+    }
+  });
   return (
     <>
-      {itemsArray.map((product) => (
+      {sortedItemsArray.map((product) => (
         <aside className="phone-card" key={product.id}>
           <h2>{product.name}</h2>
           <img src={product.image} alt={product.name} />

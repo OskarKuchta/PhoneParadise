@@ -6,7 +6,7 @@ import {
   removeProduct,
 } from "../features/CartSlice";
 import { ChevronDown, ChevronUp } from "../assets/icons";
-import Modal from "./Modal";
+
 const CartProducts = () => {
   const { cartItems } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
@@ -23,6 +23,7 @@ const CartProducts = () => {
     <section className="cart">
       <h2 className="cart-header">Your cart:</h2>
       {[...new Set(cartItems.map((product) => product.id))].map((productId) => {
+
         const product = cartItems.find((item) => item.id === productId);
         return (
           <aside className="cart-product" key={product.id}>
@@ -50,7 +51,6 @@ const CartProducts = () => {
           </aside>
         );
       })}
-    {/* <Modal /> */}
     </section>
   );
 };

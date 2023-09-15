@@ -7,9 +7,11 @@
 @import url("./assets/About.css");
 @import url("./assets/Cart.css");
 @import url("./assets/Payments.css");
+@import url("./assets/Modal.css");
 :root {
   --purple: rgb(46, 3, 87);
   --white: rgb(241, 238, 238);
+  --red: rgb(255, 15, 15);
 }
 
 html {

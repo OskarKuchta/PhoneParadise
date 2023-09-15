@@ -114,7 +114,7 @@
 .quantity-bottom button,
 .cart-remove {
   padding: 0.4rem 1.6rem;
-  border: 2px solid rgb(255, 15, 15);
+  border: 2px solid var(--red);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   outline-color: transparent;

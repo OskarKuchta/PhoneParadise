@@ -1,10 +1,4 @@
-import {
-  CartIcon,
-  CartCount,
-  HomeIcon,
-  ContactIcon,
-  InfoIcon,
-} from "../assets/icons";
+import { CartIcon, CartCount, HomeIcon, InfoIcon } from "../assets/icons";
 
 import { Link } from "react-router-dom";
 
@@ -13,13 +7,8 @@ const Footer = () => {
     <footer>
       <ul className="footer-icons">
         <li>
-          <Link to="about">
+          <Link to="about" aria-label="About company">
             <InfoIcon />
-          </Link>
-        </li>
-        <li>
-          <Link to="contact" aria-label="Contact with us">
-            <ContactIcon />
           </Link>
         </li>
         <li>

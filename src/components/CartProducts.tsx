@@ -6,7 +6,7 @@ import {
   removeProduct,
 } from "../features/CartSlice";
 import { ChevronDown, ChevronUp } from "../assets/icons";
-
+import Modal from "./Modal";
 const CartProducts = () => {
   const { cartItems } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
@@ -50,6 +50,7 @@ const CartProducts = () => {
           </aside>
         );
       })}
+    {/* <Modal /> */}
     </section>
   );
 };

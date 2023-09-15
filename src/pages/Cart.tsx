@@ -3,10 +3,15 @@ import CartProducts from "../components/CartProducts";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { removeAllProducts } from "../features/CartSlice";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+
 const Cart = () => {
   const dispatch = useDispatch();
   const { amount, total } = useSelector((store: RootState) => store.cart);
+  const navigate = useNavigate();
+  const navigateToPayments = () => {
+    navigate("payments");
+  };
   const removeAll = () => {
     dispatch(removeAllProducts());
   };
@@ -18,9 +23,9 @@ const Cart = () => {
       <CartProducts />
       <section className="cart-bottom">
         <h2>Total: ${total}</h2>
-        <Link to="payments">
-          <button className="cart-payments">Go to payments</button>
-        </Link>
+        <button className="cart-payments" onClick={navigateToPayments}>
+          Go to payments
+        </button>
         <button onClick={removeAll} className="cart-remove">
           Remove cart
         </button>

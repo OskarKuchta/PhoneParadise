@@ -2,34 +2,43 @@ import EmptyCart from "../components/EmptyCart";
 import CartProducts from "../components/CartProducts";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { removeAllProducts } from "../features/CartSlice";
 import { useNavigate } from "react-router";
+import { open } from "../features/ModalSlice";
+import Modal from "../components/Modal";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const openModal = () => {
+    dispatch(open());
+  };
   const { amount, total } = useSelector((store: RootState) => store.cart);
+  const { isOpen } = useSelector((store: RootState) => store.modal);
   const navigate = useNavigate();
   const navigateToPayments = () => {
     navigate("payments");
   };
-  const removeAll = () => {
-    dispatch(removeAllProducts());
-  };
+
   if (amount < 1) {
     return <EmptyCart />;
   }
   return (
     <>
-      <CartProducts />
-      <section className="cart-bottom">
-        <h2>Total: ${total}</h2>
-        <button className="cart-payments" onClick={navigateToPayments}>
-          Go to payments
-        </button>
-        <button onClick={removeAll} className="cart-remove">
-          Remove cart
-        </button>
-      </section>
+      {isOpen ? (
+        <Modal />
+      ) : (
+        <>
+          <CartProducts />
+          <section className="cart-bottom">
+            <h2>Total: ${total}</h2>
+            <button className="cart-payments" onClick={navigateToPayments}>
+              Go to payments
+            </button>
+            <button onClick={openModal} className="cart-remove">
+              Remove cart
+            </button>
+          </section>
+        </>
+      )}
     </>
   );
 };

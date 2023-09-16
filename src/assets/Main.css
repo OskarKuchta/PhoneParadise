@@ -35,6 +35,13 @@
   transform: scale(1.1);
 }
 
+.sort-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (min-width: 1200px) {
   .phone-container {
     grid-template-columns: repeat(5, 1fr);

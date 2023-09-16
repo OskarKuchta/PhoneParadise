@@ -1,22 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { Products } from "../Types/Products";
+import { Products } from "../Types/Types";
 import { addItem } from "../features/CartSlice";
 
-const PhoneCard = ({ value }) => {
+const PhoneCard = ({ value, range }) => {
   const dispatch = useDispatch();
   const addToCart = (product: Products) => {
     dispatch(addItem(product));
   };
   const { items } = useSelector((store: RootState) => store.products);
-  const itemsArray = (items as { default: Products[] }).default;
-  const itemsAscending = itemsArray
+  const itemsArray = (items as { default: Products[] }).default.filter((item) => item.price >= range[0] && item.price <= range[1]);
+  const itemsAscending: number[] = itemsArray
     .map((item) => item.price)
     .sort((a, b) => a - b);
-  const itemsDescending = itemsArray
+  const itemsDescending: number[] = itemsArray
     .map((item) => item.price)
     .sort((a, b) => b - a);
-  const sortedItemsArray = itemsArray.slice().sort((a, b) => {
+  const sortedItemsArray: Products[] = itemsArray.slice().sort((a, b) => {
     if (value === "Price ascending") {
       const priceA = a.price;
       const priceB = b.price;

@@ -47,6 +47,7 @@ const MainPage = () => {
             <option>Price ascending</option>
             <option>Price descending</option>
             <option>Date release</option>
+            <option>Screen size</option>
           </select>
           <div className="slider">
             <Slider

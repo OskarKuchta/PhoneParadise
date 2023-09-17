@@ -18,10 +18,11 @@ const PhoneCard = ({ value, range }) => {
   const itemsDescending: number[] = itemsArray
     .map((item) => item.price)
     .sort((a, b) => b - a);
-  // const releaseDate = itemsArray
-  //   .map((item) => new Date(item.date))
-  //   .map((item) => item.getTime())
-  //   .sort((a, b) => a - b);
+  // const screenSize = itemsArray
+  //   .map((item) => item.desc)
+  //   .map((item) => parseFloat(item.match(/\d+\.\d+/)[0]))
+  //   .sort((a, b) => b - a);
+  // console.log(screenSize);
 
   const sortedItemsArray: Products[] = itemsArray.slice().sort((a, b) => {
     if (value === "Price ascending") {
@@ -35,7 +36,14 @@ const PhoneCard = ({ value, range }) => {
     } else if (value === "Date release") {
       const dateA = new Date(a.date).getTime();
       const dateB = new Date(b.date).getTime();
-      return dateA - dateB;
+      return dateB - dateA;
+    } else if (value === "Screen size") {
+      itemsArray
+        .map((item) => ({
+          ...item,
+          screenSize: parseFloat(item.desc.match(/\d+\.\d+/)[0]),
+        }))
+        .sort((a, b) => b.screenSize - a.screenSize);
     }
   });
   const hasProducts: boolean = sortedItemsArray.length > 0;

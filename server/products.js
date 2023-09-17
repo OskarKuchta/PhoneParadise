@@ -33,7 +33,7 @@ const products = [
         price: 299,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/4-min.jpg",
         quantity: 0,
-        date: new Date(2020, 7, 30),
+        date: new Date(2020, 7, 29),
     },
     {
         id: 5,
@@ -114,7 +114,7 @@ const products = [
         price: 949,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/13-min.jpg",
         quantity: 0,
-        date: new Date(),
+        date: new Date(2022, 4, 7),
     },
     {
         id: 14,
@@ -141,7 +141,7 @@ const products = [
         price: 899,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/16-min.jpg",
         quantity: 0,
-        date: new Date(),
+        date: new Date(2022, 7, 3),
     },
     {
         id: 17,

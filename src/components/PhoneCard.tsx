@@ -18,6 +18,10 @@ const PhoneCard = ({ value, range }) => {
   const itemsDescending: number[] = itemsArray
     .map((item) => item.price)
     .sort((a, b) => b - a);
+  // const releaseDate = itemsArray
+  //   .map((item) => new Date(item.date))
+  //   .map((item) => item.getTime())
+  //   .sort((a, b) => a - b);
 
   const sortedItemsArray: Products[] = itemsArray.slice().sort((a, b) => {
     if (value === "Price ascending") {
@@ -29,9 +33,9 @@ const PhoneCard = ({ value, range }) => {
       const priceB = b.price;
       return itemsDescending.indexOf(priceA) - itemsDescending.indexOf(priceB);
     } else if (value === "Date release") {
-      const dateA = a.date instanceof Date ? a.date.getTime() : 0;
-      const dateB = b.date instanceof Date ? b.date.getTime() : 0;
-      return dateB - dateA;
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateA - dateB;
     }
   });
   const hasProducts: boolean = sortedItemsArray.length > 0;

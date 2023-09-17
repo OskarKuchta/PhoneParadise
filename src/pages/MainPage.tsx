@@ -46,6 +46,7 @@ const MainPage = () => {
             <option>Default</option>
             <option>Price ascending</option>
             <option>Price descending</option>
+            <option>Date release</option>
           </select>
           <div className="slider">
             <Slider
@@ -55,16 +56,13 @@ const MainPage = () => {
               step={1}
               value={range}
               onChange={handleRangeChange}
-              dotStyle={{ backgroundColor: "purple", borderColor: "purple" }}
               trackStyle={{ background: "purple" }}
             />
-            <p>Price up: {range[0]}</p>
-            <p>Price to: {range[1]}</p>
+            <p>Price up: {range[0]}$</p>
+            <p>Price to: {range[1]}$</p>
           </div>
         </div>
-        <section className="phone-container">
-          <PhoneCard value={value} range={range} />
-        </section>
+        <PhoneCard value={value} range={range} />
         <Footertext />
       </main>
     );

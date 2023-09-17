@@ -6,6 +6,7 @@ const products = [
         price: 999,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/1-min.jpg",
         quantity: 0,
+        date: new Date(2020, 9, 13),
     },
     {
         id: 2,
@@ -14,6 +15,7 @@ const products = [
         price: 699,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/2-min.jpg",
         quantity: 0,
+        date: new Date(2020, 9, 13)
     },
     {
         id: 3,
@@ -22,6 +24,7 @@ const products = [
         price: 399,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/3-min.jpg",
         quantity: 0,
+        date: new Date(2020, 3, 5),
     },
     {
         id: 4,
@@ -30,6 +33,7 @@ const products = [
         price: 299,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/4-min.jpg",
         quantity: 0,
+        date: new Date(2020, 7, 30),
     },
     {
         id: 5,
@@ -38,6 +42,7 @@ const products = [
         price: 589,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/5-min.jpg",
         quantity: 0,
+        date: new Date(2020, 3, 5),
     },
     {
         id: 6,
@@ -46,6 +51,7 @@ const products = [
         price: 379,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/6-min.jpg",
         quantity: 0,
+        date: new Date(2021, 2, 21),
     },
     {
         id: 7,
@@ -54,6 +60,7 @@ const products = [
         price: 799,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/7-min.jpg",
         quantity: 0,
+        date: new Date(2020, 11, 28),
     },
     {
         id: 8,
@@ -62,6 +69,7 @@ const products = [
         price: 495,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/8-min.jpg",
         quantity: 0,
+        date: new Date(2021, 3, 14),
     },
     {
         id: 9,
@@ -70,6 +78,7 @@ const products = [
         price: 399,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/9-min.jpg",
         quantity: 0,
+        date: new Date(2019, 1, 24),
     },
     {
         id: 10,
@@ -78,6 +87,7 @@ const products = [
         price: 399,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/10-min.jpg",
         quantity: 0,
+        date: new Date(2023, 6, 5),
     },
     {
         id: 11,
@@ -86,6 +96,7 @@ const products = [
         price: 249,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/11-min.jpg",
         quantity: 0,
+        date: new Date(2021, 2, 22),
     },
     {
         id: 12,
@@ -94,6 +105,7 @@ const products = [
         price: 349,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/12-min.jpg",
         quantity: 0,
+        date: new Date(2020, 3, 3),
     },
     {
         id: 13,
@@ -102,6 +114,7 @@ const products = [
         price: 949,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/13-min.jpg",
         quantity: 0,
+        date: new Date(),
     },
     {
         id: 14,
@@ -110,6 +123,7 @@ const products = [
         price: 899,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/14-min.jpg",
         quantity: 0,
+        date: new Date(2020, 8, 17),
     },
     {
         id: 15,
@@ -118,6 +132,7 @@ const products = [
         price: 1199,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/15-min.jpg",
         quantity: 0,
+        date: new Date(2022, 8, 7),
     },
     {
         id: 16,
@@ -126,6 +141,7 @@ const products = [
         price: 899,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/16-min.jpg",
         quantity: 0,
+        date: new Date(),
     },
     {
         id: 17,
@@ -134,6 +150,7 @@ const products = [
         price: 349,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/17-min.jpg",
         quantity: 0,
+        date: new Date(2022, 7, 3),
     },
     {
         id: 18,
@@ -142,6 +159,7 @@ const products = [
         price: 799,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/18-min.jpg",
         quantity: 0,
+        date: new Date(2022, 4, 11),
     },
     {
         id: 19,
@@ -150,6 +168,7 @@ const products = [
         price: 599,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/19-min.jpg",
         quantity: 0,
+        date: new Date(2021, 3, 14),
     },
     {
         id: 20,
@@ -158,6 +177,7 @@ const products = [
         price: 699,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/20-min.jpg",
         quantity: 0,
+        date: new Date(2020, 1, 26),
     },
     {
         id: 21,
@@ -166,6 +186,7 @@ const products = [
         price: 699,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/21-min.jpg",
         quantity: 0,
+        date: new Date(2021, 2, 23),
     },
     {
         id: 22,
@@ -174,6 +195,7 @@ const products = [
         price: 899,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/22-min.jpg",
         quantity: 0,
+        date: new Date(2022, 6, 4),
     },
     {
         id: 23,
@@ -182,6 +204,7 @@ const products = [
         price: 799,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/23-min.jpg",
         quantity: 0,
+        date: new Date(2022, 11, 28),
     },
 ];
 

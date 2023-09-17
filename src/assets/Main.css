@@ -41,6 +41,28 @@
   justify-content: center;
   align-items: center;
 }
+.phone-card-empty {
+  color: var(--purple);
+  margin-top: 3rem;
+  width: 100%;
+  text-align: center;
+}
+.slider {
+  margin-top: 0.4rem;
+}
+.rc-slider-handle {
+  border: 2px solid var(--purple);
+}
+
+.rc-slider-handle:hover,
+.rc-slider-handle:focus,
+.rc-slider-handle:active {
+  border: 2px solid var(--purple);
+}
+
+.rc-slider-handle-dragging {
+  background-color: var(--purple);
+}
 
 @media (min-width: 1200px) {
   .phone-container {

@@ -9,13 +9,16 @@ const PhoneCard = ({ value, range }) => {
     dispatch(addItem(product));
   };
   const { items } = useSelector((store: RootState) => store.products);
-  const itemsArray = (items as { default: Products[] }).default.filter((item) => item.price >= range[0] && item.price <= range[1]);
+  const itemsArray = (items as { default: Products[] }).default.filter(
+    (item) => item.price >= range[0] && item.price <= range[1]
+  );
   const itemsAscending: number[] = itemsArray
     .map((item) => item.price)
     .sort((a, b) => a - b);
   const itemsDescending: number[] = itemsArray
     .map((item) => item.price)
     .sort((a, b) => b - a);
+
   const sortedItemsArray: Products[] = itemsArray.slice().sort((a, b) => {
     if (value === "Price ascending") {
       const priceA = a.price;
@@ -25,21 +28,35 @@ const PhoneCard = ({ value, range }) => {
       const priceA = a.price;
       const priceB = b.price;
       return itemsDescending.indexOf(priceA) - itemsDescending.indexOf(priceB);
+    } else if (value === "Date release") {
+      const dateA = a.date instanceof Date ? a.date.getTime() : 0;
+      const dateB = b.date instanceof Date ? b.date.getTime() : 0;
+      return dateB - dateA;
     }
   });
+  const hasProducts: boolean = sortedItemsArray.length > 0;
   return (
     <>
-      {sortedItemsArray.map((product) => (
-        <aside className="phone-card" key={product.id}>
-          <h2>{product.name}</h2>
-          <img src={product.image} alt={product.name} />
-          <div>
-            <p>{product.desc}</p>
-            <p>${product.price}</p>
-          </div>
-          <button onClick={() => addToCart(product)}>Add to cart</button>
-        </aside>
-      ))}
+      {hasProducts ? (
+        <section className="phone-container">
+          {sortedItemsArray.map((product) => (
+            <aside className="phone-card" key={product.id}>
+              <h2>{product.name}</h2>
+              <img src={product.image} alt={product.name} />
+              <div>
+                <p>{product.desc}</p>
+                <p>${product.price}</p>
+              </div>
+              <button onClick={() => addToCart(product)}>Add to cart</button>
+            </aside>
+          ))}
+        </section>
+      ) : (
+        // Tylko h3, jeśli nie masz produktów
+        <h3 className="phone-card-empty">
+          There are no products for the given filters. Take different filters.
+        </h3>
+      )}
     </>
   );
 };

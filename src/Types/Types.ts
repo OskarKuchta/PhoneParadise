@@ -5,6 +5,7 @@ export type Products = {
     desc: string;
     price: number;
     image: string;
+    date: Date;
 }
 
 export type InititalState = {

@@ -10,7 +10,7 @@ const PhoneCard = ({ value, range }) => {
   };
   const { items } = useSelector((store: RootState) => store.products);
   const itemsArray = (items as { default: Products[] }).default.filter(
-    (item) => item.price >= range[0] && item.price <= range[1]
+    (item) => item.price >= range[0] && item.price <= range[1] || item.price >= range[1] && item.price <= range[0]
   );
   const itemsAscending: number[] = itemsArray
     .map((item) => item.price)
@@ -56,7 +56,6 @@ const PhoneCard = ({ value, range }) => {
           ))}
         </section>
       ) : (
-        // Tylko h3, jeśli nie masz produktów
         <h3 className="phone-card-empty">
           There are no products for the given filters. Take different filters.
         </h3>

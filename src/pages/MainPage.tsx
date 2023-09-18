@@ -2,18 +2,31 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import PhoneCard from "../components/PhoneCard.tsx";
 import Footertext from "../components/Footertext.tsx";
-import { useState } from "react";
+import React, { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+
 const MainPage = () => {
   const { isLoading, error } = useSelector(
     (state: RootState) => state.products
   );
 
-  const [value, setValue] = useState("Default");
-  const [range, setRange] = useState([1, 1200]);
+  const [value, setValue] = useState<string>("Default");
+  const [range, setRange] = useState<[number, number]>([1, 1200]);
   const handleRangeChange = (newRange: [number, number]) => {
     setRange(newRange);
+  };
+  const firstValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = parseInt(event.target.value, 10);
+    if (newValue >= 1 && newValue <= 1200) {
+      setRange([newValue, range[1]]);
+    }
+  };
+  const secondValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = parseInt(event.target.value, 10);
+    if (newValue >= 1 && newValue <= 1200) {
+      setRange([range[0], newValue]);
+    }
   };
   if (isLoading) {
     return (
@@ -59,8 +72,28 @@ const MainPage = () => {
               onChange={handleRangeChange}
               trackStyle={{ background: "purple" }}
             />
-            <p>Price up: {range[0]}$</p>
-            <p>Price to: {range[1]}$</p>
+            <p>
+              Price up:{" "}
+              <input
+                type="number"
+                value={range[0]}
+                min={1}
+                max={1200}
+                onChange={firstValue}
+              />
+              $
+            </p>
+            <p>
+              Price to:{" "}
+              <input
+                type="number"
+                value={range[1]}
+                min={1}
+                max={1200}
+                onChange={secondValue}
+              />
+              $
+            </p>
           </div>
         </div>
         <PhoneCard value={value} range={range} />

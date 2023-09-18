@@ -1,3 +1,13 @@
+h1 {
+  color: var(--purple);
+  text-align: center;
+  font-family: "Trocchi", serif;
+  font-size: 45px;
+  font-weight: normal;
+  line-height: 48px;
+  margin-bottom: 2rem;
+}
+
 .phone-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -43,7 +53,7 @@
 }
 .phone-card-empty {
   color: var(--purple);
-  margin-top: 3rem;
+  margin: 3rem 0 23rem 0;
   width: 100%;
   text-align: center;
 }
@@ -63,7 +73,9 @@
 .rc-slider-handle-dragging {
   background-color: var(--purple);
 }
-
+.phone-container {
+  margin-top: 1rem;
+}
 @media (min-width: 1200px) {
   .phone-container {
     grid-template-columns: repeat(5, 1fr);

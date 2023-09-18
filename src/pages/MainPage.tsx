@@ -18,12 +18,18 @@ const MainPage = () => {
   };
   const firstValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(event.target.value, 10);
+    if (isNaN(newValue) || newValue < 1) {
+      setRange([1, range[1]]);
+    }
     if (newValue >= 1 && newValue <= 1200) {
       setRange([newValue, range[1]]);
     }
   };
   const secondValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(event.target.value, 10);
+    if (isNaN(newValue) || newValue < 1) {
+      setRange([1, range[1]]);
+    }
     if (newValue >= 1 && newValue <= 1200) {
       setRange([range[0], newValue]);
     }
@@ -55,7 +61,7 @@ const MainPage = () => {
         </h1>
         <div className="sort-container">
           <span>Sort by:</span>
-          <select onChange={(e) => setValue(e.target.value)}>
+          <select onChange={(e) => setValue(e.target.value)} style={{outlineColor: "rgb(46, 3, 87)"}}>
             <option>Default</option>
             <option>Price ascending</option>
             <option>Price descending</option>
@@ -75,6 +81,7 @@ const MainPage = () => {
             <p>
               Price up:{" "}
               <input
+                className="filter-input"
                 type="number"
                 value={range[0]}
                 min={1}
@@ -86,6 +93,7 @@ const MainPage = () => {
             <p>
               Price to:{" "}
               <input
+                className="filter-input"
                 type="number"
                 value={range[1]}
                 min={1}

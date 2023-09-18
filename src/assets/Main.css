@@ -69,7 +69,9 @@ h1 {
 .rc-slider-handle:active {
   border: 2px solid var(--purple);
 }
-
+.filter-input {
+  outline-color: var(--purple);
+}
 .rc-slider-handle-dragging {
   background-color: var(--purple);
 }
@@ -82,18 +84,30 @@ h1 {
   }
 }
 @media (max-width: 950px) {
+  h1 {
+    font-size: 35px;
+    line-height: 36px;
+  }
   .phone-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
+  h1 {
+    font-size: 25px;
+    line-height: 24px;
+    font-weight: 600;
+  }
   .phone-container {
     grid-template-columns: repeat(2, 1fr);
     margin-bottom: 7rem;
   }
 }
 @media (max-width: 550px) {
+  h1 {
+    font-size: 20px;
+  }
   .phone-container {
     display: flex;
     flex-direction: column;

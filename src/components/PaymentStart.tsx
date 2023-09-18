@@ -22,7 +22,12 @@ const PaymentStart = () => {
       <div className="payments-start-bottom">
         <h3>
           You will be redirected to your bank's website shortly. To proceed,
-          click the button below or wait a few seconds.
+          click the button below or wait a few seconds{" "}
+          <span className="dots">
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+          </span>
         </h3>
         <button className="payments-start-button">To payment</button>
       </div>

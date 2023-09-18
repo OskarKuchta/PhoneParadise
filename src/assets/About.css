@@ -5,6 +5,9 @@
   justify-content: center;
   align-items: center;
 }
+.about-header {
+  color: var(--purple);
+}
 .about ul {
   list-style-type: none;
 }
@@ -21,7 +24,7 @@
   color: var(--purple);
 }
 .about-right {
-  font-size: .8rem;
+  font-size: 0.8rem;
   position: relative;
   margin: 5rem;
 }
@@ -30,7 +33,7 @@
   bottom: 3rem;
   left: 2.5rem;
   color: var(--purple);
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
 }
 .about img {
   height: 15rem;
@@ -49,5 +52,10 @@
   }
   .about-left {
     flex: 70%;
+  }
+}
+@media (max-width: 768px) {
+  .about-header {
+    text-align: center;
   }
 }

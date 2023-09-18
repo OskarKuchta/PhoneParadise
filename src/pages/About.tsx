@@ -7,7 +7,7 @@ const About = () => {
     <>
       <section className="about">
         <div className="about-left">
-          <h2>Why Choose Phone Paradise?</h2>
+          <h2 className="about-header">Why Choose Phone Paradise?</h2>
           <p>
             Phone Paradise is where your dreams of the perfect phone come to
             life. For years, our company has been delivering the best

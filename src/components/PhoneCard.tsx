@@ -1,10 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import { RootState } from "../store";
 import { Products } from "../Types/Types";
 import { addItem } from "../features/CartSlice";
 
-const PhoneCard = ({ value, range }) => {
+const PhoneCard = ({
+  value,
+  range,
+  paginationCount,
+  currentPage,
+  setCurrentPage,
+}) => {
   const dispatch = useDispatch();
   const addToCart = (product: Products) => {
     dispatch(addItem(product));
@@ -42,8 +47,7 @@ const PhoneCard = ({ value, range }) => {
     }
   });
   const hasProducts: boolean = sortedItemsArray.length > 0;
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 10;
+  const productsPerPage = paginationCount;
   const startIndex = (currentPage - 1) * productsPerPage;
   const endIndex = startIndex + productsPerPage;
   const currentProducts = sortedItemsArray.slice(startIndex, endIndex);
@@ -64,7 +68,7 @@ const PhoneCard = ({ value, range }) => {
               </aside>
             ))}
           </section>
-          <div className="pagination">
+          <aside className="pagination">
             <button
               onClick={() => setCurrentPage(currentPage - 1)}
               disabled={currentPage === 1}
@@ -72,7 +76,9 @@ const PhoneCard = ({ value, range }) => {
               &#60;
             </button>
             {Array.from(
-              { length: Math.ceil(sortedItemsArray.length / productsPerPage) },
+              {
+                length: Math.ceil(sortedItemsArray.length / productsPerPage),
+              },
               (_, index) => (
                 <button
                   key={index}
@@ -89,7 +95,7 @@ const PhoneCard = ({ value, range }) => {
             >
               &#62;
             </button>
-          </div>
+          </aside>
         </>
       ) : (
         <h3 className="phone-card-empty">

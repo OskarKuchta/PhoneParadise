@@ -7,7 +7,6 @@ h1 {
   line-height: 48px;
   margin-bottom: 2rem;
 }
-
 .phone-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -39,29 +38,9 @@ h1 {
   transition: transform 0.5s ease;
   outline-color: var(--purple);
 }
-
 .phone-card button:hover,
 .phone-card button:focus {
   transform: scale(1.1);
-}
-
-.slider {
-  margin-top: 0.4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.slider-filter {
-  width: 10rem;
-}
-.sort-container {
-  display: flex;
-  justify-content: center;
-}
-.sort-select {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 .phone-card-empty {
   color: var(--purple);
@@ -73,7 +52,25 @@ h1 {
   width: 10rem;
   margin: 0.5rem 0 2.5rem 0;
 }
-
+.sort-container {
+  display: flex;
+  justify-content: center;
+}
+.sort-select,
+.choose-pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.slider {
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.slider-filter {
+  width: 10rem;
+}
 .slider label:nth-child(2) {
   margin-top: 0.5rem;
 }
@@ -83,7 +80,6 @@ h1 {
 .rc-slider-handle {
   border: 2px solid var(--purple);
 }
-
 .rc-slider-handle:hover,
 .rc-slider-handle:focus,
 .rc-slider-handle:active {
@@ -95,6 +91,7 @@ h1 {
 .rc-slider-handle-dragging {
   background-color: var(--purple);
 }
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -151,5 +148,8 @@ h1 {
 @media (min-width: 768px) {
   .sort-select {
     margin-right: 3rem;
+  }
+  .choose-pagination {
+    margin-left: 2rem;
   }
 }

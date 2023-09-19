@@ -10,9 +10,10 @@ const MainPage = () => {
   const { isLoading, error } = useSelector(
     (state: RootState) => state.products
   );
-
+  const [currentPage, setCurrentPage] = useState(1);
   const [value, setValue] = useState<string>("Default");
   const [range, setRange] = useState<[number, number]>([1, 1200]);
+  const [paginationCount, setPaginationCount] = useState<number>(10);
   const handleRangeChange = (newRange: [number, number]) => {
     setRange(newRange);
   };
@@ -33,6 +34,14 @@ const MainPage = () => {
     if (newValue >= 1 && newValue <= 1200) {
       setRange([range[0], newValue]);
     }
+  };
+  const changePagination = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = Number(e.target.value);
+    if (selectedValue === 50) {
+      setPaginationCount(selectedValue);
+      setCurrentPage(1);
+    }
+    setPaginationCount(selectedValue);
   };
   if (isLoading) {
     return (
@@ -59,8 +68,8 @@ const MainPage = () => {
           Welcome to Phone Paradise – Your Ultimate Destination for the Phones.
           Explore a World of Innovation and Style. Shop Now!
         </h1>
-        <div className="sort-container">
-          <div className="sort-select">
+        <section className="sort-container">
+          <aside className="sort-select">
             <label htmlFor="sortOrder">Sort by:</label>
 
             <select
@@ -74,8 +83,8 @@ const MainPage = () => {
               <option>Date release</option>
               <option>Screen size</option>
             </select>
-          </div>
-          <div className="slider">
+          </aside>
+          <aside className="slider">
             <Slider
               className="slider-filter"
               range
@@ -111,9 +120,27 @@ const MainPage = () => {
               />
               $
             </label>
-          </div>
-        </div>
-        <PhoneCard value={value} range={range} />
+          </aside>
+          <aside className="choose-pagination">
+            <label htmlFor="page-pagination">Products on page:</label>
+            <select
+              id="page-pagination"
+              onChange={changePagination}
+              style={{ outlineColor: "rgb(46, 3, 87)" }}
+            >
+              <option>10</option>
+              <option>20</option>
+              <option>50</option>
+            </select>
+          </aside>
+        </section>
+        <PhoneCard
+          value={value}
+          range={range}
+          paginationCount={paginationCount}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
         <Footertext />
       </main>
     );

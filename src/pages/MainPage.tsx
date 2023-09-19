@@ -61,8 +61,10 @@ const MainPage = () => {
         </h1>
         <div className="sort-container">
           <div className="sort-select">
-            <span>Sort by:</span>
+            <label htmlFor="sortOrder">Sort by:</label>
+
             <select
+              id="sortOrder"
               onChange={(e) => setValue(e.target.value)}
               style={{ outlineColor: "rgb(46, 3, 87)" }}
             >
@@ -83,8 +85,9 @@ const MainPage = () => {
               value={range}
               onChange={handleRangeChange}
               trackStyle={{ background: "purple" }}
+              aria-label="Price range slider"
             />
-            <p className="first-price-filter">
+            <label className="first-price-filter">
               Price up:{" "}
               <input
                 className="filter-input"
@@ -95,8 +98,8 @@ const MainPage = () => {
                 onChange={firstValue}
               />
               $
-            </p>
-            <p>
+            </label>
+            <label>
               Price to:{" "}
               <input
                 className="filter-input"
@@ -107,7 +110,7 @@ const MainPage = () => {
                 onChange={secondValue}
               />
               $
-            </p>
+            </label>
           </div>
         </div>
         <PhoneCard value={value} range={range} />

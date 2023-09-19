@@ -47,7 +47,9 @@ h1 {
 
 .slider {
   margin-top: 0.4rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .slider-filter {
   width: 10rem;
@@ -72,10 +74,10 @@ h1 {
   margin: 0.5rem 0 2.5rem 0;
 }
 
-.slider p:nth-child(2) {
+.slider label:nth-child(2) {
   margin-top: 0.5rem;
 }
-.slider p:nth-child(3) {
+.slider label:nth-child(3) {
   margin-bottom: 2rem;
 }
 .rc-slider-handle {
@@ -93,7 +95,17 @@ h1 {
 .rc-slider-handle-dragging {
   background-color: var(--purple);
 }
-
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.pagination button {
+  margin: 0 0.5rem;
+  padding: 0.2rem;
+  border: transparent;
+  background-color: transparent;
+}
 @media (min-width: 1200px) {
   .phone-container {
     grid-template-columns: repeat(5, 1fr);
@@ -122,6 +134,9 @@ h1 {
   .sort-container {
     flex-direction: column;
     align-items: center;
+  }
+  .pagination {
+    margin-bottom: 5rem;
   }
 }
 @media (max-width: 550px) {

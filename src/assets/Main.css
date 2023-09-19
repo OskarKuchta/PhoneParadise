@@ -45,10 +45,20 @@ h1 {
   transform: scale(1.1);
 }
 
+.slider {
+  margin-top: 0.4rem;
+  text-align: center;
+}
+.slider-filter {
+  width: 10rem;
+}
 .sort-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+}
+.sort-select {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 .phone-card-empty {
@@ -57,8 +67,16 @@ h1 {
   width: 100%;
   text-align: center;
 }
-.slider {
-  margin-top: 0.4rem;
+.sort-container select {
+  width: 10rem;
+  margin: 0.5rem 0 2.5rem 0;
+}
+
+.slider p:nth-child(2) {
+  margin-top: 0.5rem;
+}
+.slider p:nth-child(3) {
+  margin-bottom: 2rem;
 }
 .rc-slider-handle {
   border: 2px solid var(--purple);
@@ -75,9 +93,7 @@ h1 {
 .rc-slider-handle-dragging {
   background-color: var(--purple);
 }
-.phone-container {
-  margin-top: 1rem;
-}
+
 @media (min-width: 1200px) {
   .phone-container {
     grid-template-columns: repeat(5, 1fr);
@@ -103,6 +119,10 @@ h1 {
     grid-template-columns: repeat(2, 1fr);
     margin-bottom: 7rem;
   }
+  .sort-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 @media (max-width: 550px) {
   h1 {
@@ -111,5 +131,10 @@ h1 {
   .phone-container {
     display: flex;
     flex-direction: column;
+  }
+}
+@media (min-width: 768px) {
+  .sort-select {
+    margin-right: 3rem;
   }
 }

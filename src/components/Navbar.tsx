@@ -5,7 +5,7 @@ import { TypeAnimation } from "react-type-animation";
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <Link to="/" aria-label="Back to main page" className="navbar-name">
+      <Link to="/" aria-label="Company logo" className="navbar-name">
         <TypeAnimation
           sequence={["Phone Paradise"]}
           cursor={false}

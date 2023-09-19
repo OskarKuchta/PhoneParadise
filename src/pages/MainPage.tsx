@@ -60,16 +60,22 @@ const MainPage = () => {
           Explore a World of Innovation and Style. Shop Now!
         </h1>
         <div className="sort-container">
-          <span>Sort by:</span>
-          <select onChange={(e) => setValue(e.target.value)} style={{outlineColor: "rgb(46, 3, 87)"}}>
-            <option>Default</option>
-            <option>Price ascending</option>
-            <option>Price descending</option>
-            <option>Date release</option>
-            <option>Screen size</option>
-          </select>
+          <div className="sort-select">
+            <span>Sort by:</span>
+            <select
+              onChange={(e) => setValue(e.target.value)}
+              style={{ outlineColor: "rgb(46, 3, 87)" }}
+            >
+              <option>Default</option>
+              <option>Price ascending</option>
+              <option>Price descending</option>
+              <option>Date release</option>
+              <option>Screen size</option>
+            </select>
+          </div>
           <div className="slider">
             <Slider
+              className="slider-filter"
               range
               min={1}
               max={1200}
@@ -78,7 +84,7 @@ const MainPage = () => {
               onChange={handleRangeChange}
               trackStyle={{ background: "purple" }}
             />
-            <p>
+            <p className="first-price-filter">
               Price up:{" "}
               <input
                 className="filter-input"

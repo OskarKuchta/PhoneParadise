@@ -25,10 +25,7 @@ h1 {
 .phone-card * {
   margin: 0.3rem 0;
 }
-.phone-card img {
-  height: 7rem;
-  aspect-ratio: 16 /9;
-}
+
 .phone-card button {
   padding: 0.4rem 0.7rem;
   border: transparent;

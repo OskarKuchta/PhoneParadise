@@ -103,6 +103,12 @@ h1 {
   border: transparent;
   background-color: transparent;
 }
+.pagination button.active {
+  padding: 0.4rem 0.7rem;
+  border-radius: 50%;
+  background-color: var(--purple);
+  color: #fff;
+}
 @media (min-width: 1200px) {
   .phone-container {
     grid-template-columns: repeat(5, 1fr);

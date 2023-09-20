@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import PhoneCard from "../components/PhoneCard.tsx";
 import Footertext from "../components/Footertext.tsx";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
@@ -14,6 +14,9 @@ const MainPage = () => {
   const [value, setValue] = useState<string>("Default");
   const [range, setRange] = useState<[number, number]>([1, 1200]);
   const [paginationCount, setPaginationCount] = useState<number>(10);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
   const handleRangeChange = (newRange: [number, number]) => {
     setRange(newRange);
   };
@@ -37,11 +40,8 @@ const MainPage = () => {
   };
   const changePagination = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = Number(e.target.value);
-    if (selectedValue === 50) {
-      setPaginationCount(selectedValue);
-      setCurrentPage(1);
-    }
     setPaginationCount(selectedValue);
+    setCurrentPage(1);
   };
   if (isLoading) {
     return (
@@ -94,7 +94,8 @@ const MainPage = () => {
               value={range}
               onChange={handleRangeChange}
               trackStyle={{ background: "purple" }}
-              aria-label="Price range slider"
+              ariaLabelForHandle="Price range slider"
+              ariaLabelledByForHandle="Price range slider"
             />
             <label className="first-price-filter">
               Price up:{" "}

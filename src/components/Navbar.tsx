@@ -9,7 +9,7 @@ const Navbar = () => {
         <TypeAnimation
           sequence={["Phone Paradise"]}
           cursor={false}
-          speed={20}
+          speed={5}
         ></TypeAnimation>
       </Link>
 

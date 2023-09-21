@@ -39,6 +39,7 @@ const App = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<Cart />} />
         <Route path="cart/payments" element={<Payments />} />
+        
         <Route path="*" element={<BadURL />} />
       </Routes>
       {isPhone && <Footer />}

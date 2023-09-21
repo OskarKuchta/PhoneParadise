@@ -1,22 +1,28 @@
 import PaymentTop from "./PaymentTop";
-import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import { NavigateFunction } from "react-router";
+import PaymentConfirm from "./PaymentConfirm";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
+import { openPayment } from "../features/PaymentSlice";
 const PaymentStart = () => {
+  const dispatch = useDispatch();
+  const { isOpen } = useSelector((store: RootState) => store.payment);
   const [count, setCount] = useState<number>(10);
-  const navigate: NavigateFunction = useNavigate();
   useEffect(() => {
     const intervalId: React.ReactNode = setInterval(() => {
       setCount((prevCount) => prevCount - 1);
     }, 1000);
     if (count === 0) {
-      navigate("/");
+      dispatch(openPayment());
     }
     return () => {
       clearInterval(intervalId);
     };
-  }, [count, navigate]);
-  return (
+  }, [count]);
+
+  return isOpen ? (
+    <PaymentConfirm />
+  ) : (
     <section className="payment-start">
       <PaymentTop />
       <div className="payments-start-bottom">
@@ -29,7 +35,12 @@ const PaymentStart = () => {
             <span>.</span>
           </span>
         </h3>
-        <button className="payments-start-button">To payment</button>
+        <button
+          className="payments-start-button"
+          onClick={() => dispatch(openPayment())}
+        >
+          To payment
+        </button>
       </div>
     </section>
   );

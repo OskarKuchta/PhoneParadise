@@ -1,8 +1,9 @@
 import Footertext from "../components/Footertext";
 import icon from "../assets/logo.png";
 import { Link } from "react-router-dom";
+import { FC } from 'react';
 
-const About = () => {
+const About: FC = () => {
   return (
     <>
       <section className="about">

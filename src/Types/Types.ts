@@ -8,7 +8,7 @@ export type Products = {
     date: Date;
 }
 
-export type InititalState = {
+export type InititalFetch = {
     items: unknown;
     status: null | string;
     isLoading: boolean;
@@ -27,4 +27,12 @@ export type InitialCart = {
     cartItems: CartItems[];
     amount: number;
     total: number;
+}
+
+export type PhoneCard = {
+    value: string;
+    range: number;
+    paginationCount: number;
+    currentPage: number;
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }

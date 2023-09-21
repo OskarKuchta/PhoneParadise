@@ -4,23 +4,12 @@ import {
   acceptedPayment,
   declinedPayment,
 } from "../features/PaymentSlice";
-import { useNavigate } from "react-router";
-
-const PaymentConfirm = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  // const acceptPayment = () => {
-  //   dispatch(closePayment());
-  //   dispatch(acceptedPayment());
-  //   naviagte("/payment-submit");
-  //   dispatch(resetPaymentState());
-  // };
-  // const declinePayment = () => {
-  //   dispatch(closePayment());
-  //   dispatch(declinedPayment());
-  //   naviagte("/payment-submit");
-  //   dispatch(resetPaymentState());
-  // };
+import { NavigateFunction, useNavigate } from "react-router";
+import { FC } from "react";
+import { AnyAction, Dispatch } from "redux";
+const PaymentConfirm: FC = () => {
+  const dispatch:Dispatch<AnyAction> = useDispatch();
+  const navigate: NavigateFunction = useNavigate();
   const submitPayment = (accepted: boolean) => {
     dispatch(closePayment());
     if (accepted === true) {

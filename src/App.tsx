@@ -14,6 +14,7 @@ import Payments from "./pages/Payments";
 import PaymentsEnd from "./pages/PaymentsEnd.tsx";
 import { resetPaymentState } from "./features/PaymentSlice.tsx";
 
+
 const App = () => {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
   const dispatch = useDispatch();

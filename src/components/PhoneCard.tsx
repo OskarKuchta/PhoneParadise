@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { Products } from "../Types/Types";
+import { PhoneCard, Products } from "../Types/Types";
 import { addItem } from "../features/CartSlice";
-
-const PhoneCard = ({
+import { FC } from "react";
+const PhoneCard: FC<PhoneCard> = ({
   value,
   range,
   paginationCount,
@@ -29,28 +29,28 @@ const PhoneCard = ({
 
   const sortedItemsArray: Products[] = itemsArray.slice().sort((a, b) => {
     if (value === "Price ascending") {
-      const priceA = a.price;
-      const priceB = b.price;
+      const priceA: number = a.price;
+      const priceB: number = b.price;
       return itemsAscending.indexOf(priceA) - itemsAscending.indexOf(priceB);
     } else if (value === "Price descending") {
-      const priceA = a.price;
-      const priceB = b.price;
+      const priceA: number = a.price;
+      const priceB: number = b.price;
       return itemsDescending.indexOf(priceA) - itemsDescending.indexOf(priceB);
     } else if (value === "Date release") {
-      const dateA = new Date(a.date).getTime();
-      const dateB = new Date(b.date).getTime();
+      const dateA: number = new Date(a.date).getTime();
+      const dateB: number = new Date(b.date).getTime();
       return dateB - dateA;
     } else if (value === "Screen size") {
-      const sizeA = parseFloat(a.desc.match(/\d+\.\d+/)[0]);
-      const sizeB = parseFloat(b.desc.match(/\d+\.\d+/)[0]);
+      const sizeA: number = parseFloat(a.desc.match(/\d+\.\d+/)[0]);
+      const sizeB: number = parseFloat(b.desc.match(/\d+\.\d+/)[0]);
       return sizeB - sizeA;
     }
   });
   const hasProducts: boolean = sortedItemsArray.length > 0;
-  const productsPerPage = paginationCount;
-  const startIndex = (currentPage - 1) * productsPerPage;
-  const endIndex = startIndex + productsPerPage;
-  const currentProducts = sortedItemsArray.slice(startIndex, endIndex);
+  const productsPerPage: number = paginationCount;
+  const startIndex: number = (currentPage - 1) * productsPerPage;
+  const endIndex: number = startIndex + productsPerPage;
+  const currentProducts: Products[] = sortedItemsArray.slice(startIndex, endIndex);
   return (
     <>
       {hasProducts ? (

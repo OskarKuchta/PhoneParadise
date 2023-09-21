@@ -1,5 +1,6 @@
 import logo from "../assets/logo.png";
-const PaymentTop = () => {
+import { FC } from "react";
+const PaymentTop: FC = () => {
   return (
     <div className="payment-top">
       <img src={logo} />

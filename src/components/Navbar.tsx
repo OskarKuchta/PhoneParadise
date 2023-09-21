@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { CartCount, CartIcon } from "../assets/icons";
 import { TypeAnimation } from "react-type-animation";
-
-const Navbar = () => {
+import { FC } from "react";
+const Navbar: FC = () => {
   return (
     <nav className="navbar">
       <Link to="/" aria-label="Phone Paradise" className="navbar-name">

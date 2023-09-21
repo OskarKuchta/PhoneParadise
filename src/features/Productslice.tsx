@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { InititalState } from "../Types/Types";
+import { InititalFetch } from "../Types/Types";
 
-const initialState: InititalState = {
+const initialState: InititalFetch = {
   items: [],
   status: null,
   isLoading: true,

@@ -1,8 +1,8 @@
 import { CartIcon, CartCount, HomeIcon, InfoIcon } from "../assets/icons";
-
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
-const Footer = () => {
+const Footer: FC = () => {
   return (
     <footer>
       <ul className="footer-icons">

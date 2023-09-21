@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-
-const EmptyCart = () => {
+import { FC } from "react";
+const EmptyCart: FC = () => {
   return (
     <section className="empty-cart">
       <h2>Currently, there are no items in the cart...</h2>

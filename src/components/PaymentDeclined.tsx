@@ -1,4 +1,6 @@
-const PaymentDeclined = () => {
+import { FC } from "react";
+
+const PaymentDeclined: FC = () => {
   return <div>Declined</div>;
 };
 

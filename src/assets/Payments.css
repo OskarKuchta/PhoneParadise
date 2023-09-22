@@ -33,7 +33,8 @@
 }
 
 .payment-declined,
-.payment-accepted {
+.payment-accepted,
+.payment-aborted {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,11 +46,12 @@
 }
 
 .payment-accepted h3 {
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 .payment-declined button,
-.payment-accepted button {
+.payment-accepted button,
+.payment-aborted button {
   margin-top: 3rem;
   padding: 0.5rem 2rem;
   outline-color: var(--purple);
@@ -63,7 +65,10 @@
 .payment-declined button:active,
 .payment-accepted button:hover,
 .payment-accepted button:focus,
-.payment-accepted button:active {
+.payment-accepted button:active,
+.payment-aborted button:hover,
+.payment-aborted button:focus,
+.payment-aborted button:active {
   background-color: var(--purple);
   color: var(--white);
 }

@@ -9,6 +9,7 @@
 @import url("./assets/Payments.css");
 @import url("./assets/Modal.css");
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+@import url("@smastrom/react-rating/style.css");
 :root {
   --purple: rgb(46, 3, 87);
   --white: rgb(241, 238, 238);
@@ -50,8 +51,13 @@ main,
   margin: 2rem;
 }
 
-@media(min-width: 1600px) {
+.rr--has-stroke .rr--on .rr--svg,
+.rr--has-stroke .rr--off .rr--svg {
+  stroke: var(--purple);
+}
+
+@media (min-width: 1600px) {
   html {
-    font-size: 20px;
+    font-size: 22px;
   }
 }

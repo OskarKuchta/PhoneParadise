@@ -3,12 +3,12 @@ import {
   closePayment,
   acceptedPayment,
   declinedPayment,
-} from "../features/PaymentSlice";
+} from "../../features/PaymentSlice";
 import { NavigateFunction, useNavigate } from "react-router";
 import { FC } from "react";
 import { AnyAction, Dispatch } from "redux";
 const PaymentConfirm: FC = () => {
-  const dispatch:Dispatch<AnyAction> = useDispatch();
+  const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate: NavigateFunction = useNavigate();
   const submitPayment = (accepted: boolean) => {
     dispatch(closePayment());

@@ -29,9 +29,20 @@ export type InitialCart = {
     total: number;
 }
 
+export type InitialModal = {
+    isOpen: boolean;
+}
+
+
+export type InitialPayment = {
+    isOpen: boolean;
+    accepted: boolean;
+    declined: boolean;
+}
+
 export type PhoneCard = {
     value: string;
-    range: number;
+    range: [number, number];
     paginationCount: number;
     currentPage: number;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>

@@ -1,4 +1,4 @@
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 import { FC } from "react";
 const PaymentTop: FC = () => {
   return (

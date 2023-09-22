@@ -1,4 +1,4 @@
-import Footertext from "../components/Footertext";
+import Footertext from "../components/Footer/Footertext";
 
 const Contact = () => {
   return (

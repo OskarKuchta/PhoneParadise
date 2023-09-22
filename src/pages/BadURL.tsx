@@ -5,7 +5,7 @@ const BadURL = () => {
   const [count, setCount] = useState<number>(15);
   const navigate: NavigateFunction = useNavigate();
   useEffect(() => {
-    const intervalId: React.ReactNode = setInterval(() => {
+    const intervalId: ReturnType<typeof setInterval> = setInterval(() => {
       setCount((prevCount) => prevCount - 1);
     }, 1000);
     if (count === 0) {
@@ -22,7 +22,9 @@ const BadURL = () => {
         Your url adress is incorrect, back to main site or you will be
         redirected for {count} seconds
       </p>
-      <Link to="/" aria-label="Back to main page">Back to main site</Link>
+      <Link to="/" aria-label="Back to main page">
+        Back to main site
+      </Link>
     </section>
   );
 };

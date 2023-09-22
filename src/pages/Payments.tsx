@@ -1,6 +1,7 @@
-import PaymentStart from "../components/PaymentStart";
+import { FC } from "react";
+import PaymentStart from "../components/Payment/PaymentStart";
 
-const Payments = () => {
+const Payments: FC = () => {
   return (
     <section>
       <PaymentStart />

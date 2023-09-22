@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import PaymentAccepted from "../components/PaymentAccepted";
-import PaymentDeclined from "../components/PaymentDeclined";
+import PaymentAccepted from "../components/Payment/PaymentAccepted";
+import PaymentDeclined from "../components/Payment/PaymentDeclined";
 
 const PaymentsEnd = () => {
   const { accepted, declined } = useSelector(

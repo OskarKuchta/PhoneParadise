@@ -1,8 +1,8 @@
-import EmptyCart from "../components/EmptyCart";
-import CartProducts from "../components/CartProducts";
+import EmptyCart from "../components/Cart/EmptyCart";
+import CartProducts from "../components/Cart/CartProducts";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { useNavigate } from "react-router";
+import { NavigateFunction, useNavigate } from "react-router";
 import { open } from "../features/ModalSlice";
 import Modal from "../components/Modal";
 
@@ -13,7 +13,7 @@ const Cart = () => {
   };
   const { amount, total } = useSelector((store: RootState) => store.cart);
   const { isOpen } = useSelector((store: RootState) => store.modal);
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const navigateToPayments = () => {
     navigate("payments");
   };

@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store";
+import { RootState } from "../../store";
 import {
   increaseProductAmount,
   decreaseProductAmount,
   removeProduct,
-} from "../features/CartSlice";
-import { ChevronDown, ChevronUp } from "../assets/icons";
+} from "../../features/CartSlice";
+import { ChevronDown, ChevronUp } from "../../assets/icons";
 import { AnyAction, Dispatch } from "redux";
 import { FC } from "react";
 

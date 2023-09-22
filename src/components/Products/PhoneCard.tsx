@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store";
-import { PhoneCard, Products } from "../Types/Types";
-import { addItem } from "../features/CartSlice";
+import { RootState } from "../../store";
+import { PhoneCard, Products } from "../../Types";
+import { addItem } from "../../features/CartSlice";
 import { FC } from "react";
 const PhoneCard: FC<PhoneCard> = ({
   value,
@@ -50,7 +50,10 @@ const PhoneCard: FC<PhoneCard> = ({
   const productsPerPage: number = paginationCount;
   const startIndex: number = (currentPage - 1) * productsPerPage;
   const endIndex: number = startIndex + productsPerPage;
-  const currentProducts: Products[] = sortedItemsArray.slice(startIndex, endIndex);
+  const currentProducts: Products[] = sortedItemsArray.slice(
+    startIndex,
+    endIndex
+  );
   return (
     <>
       {hasProducts ? (

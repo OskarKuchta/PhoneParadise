@@ -1,4 +1,4 @@
-import { CartIcon, CartCount, HomeIcon, InfoIcon } from "../assets/icons";
+import { CartIcon, CartCount, HomeIcon, InfoIcon } from "../../assets/icons";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 

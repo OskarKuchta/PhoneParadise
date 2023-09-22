@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import PhoneCard from "../components/PhoneCard.tsx";
-import Footertext from "../components/Footertext.tsx";
+import PhoneCard from "../components/Products/PhoneCard.tsx";
+import Footertext from "../components/Footer/Footertext.tsx";
 import React, { useState, useEffect } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -15,13 +15,13 @@ const MainPage = () => {
   const [range, setRange] = useState<[number, number]>([1, 1200]);
   const [paginationCount, setPaginationCount] = useState<number>(10);
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 200);
   }, [currentPage]);
   const handleRangeChange = (newRange: [number, number]) => {
     setRange(newRange);
   };
   const firstValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(event.target.value, 10);
+    const newValue: number = parseInt(event.target.value, 10);
     if (isNaN(newValue) || newValue < 1) {
       setRange([1, range[1]]);
     }
@@ -30,7 +30,7 @@ const MainPage = () => {
     }
   };
   const secondValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(event.target.value, 10);
+    const newValue: number = parseInt(event.target.value, 10);
     if (isNaN(newValue) || newValue < 1) {
       setRange([1, range[1]]);
     }
@@ -39,7 +39,7 @@ const MainPage = () => {
     }
   };
   const changePagination = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = Number(e.target.value);
+    const selectedValue: number = Number(e.target.value);
     setPaginationCount(selectedValue);
     setCurrentPage(1);
   };

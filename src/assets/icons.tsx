@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "../store";
+import { FC } from "react";
 
-export const CartIcon = () => {
+export const CartIcon: FC = () => {
   return (
     <svg
       className="cart-icon"
@@ -15,7 +16,7 @@ export const CartIcon = () => {
     </svg>
   );
 };
-export const CartCount = () => {
+export const CartCount: FC = () => {
   const { amount } = useSelector((state: RootState) => state.cart);
   return (
     <svg
@@ -48,7 +49,7 @@ export const CartCount = () => {
     </svg>
   );
 };
-export const HomeIcon = () => {
+export const HomeIcon: FC = () => {
   return (
     <svg
       className="home-icon"
@@ -62,7 +63,7 @@ export const HomeIcon = () => {
     </svg>
   );
 };
-export const ContactIcon = () => {
+export const ContactIcon: FC = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +77,7 @@ export const ContactIcon = () => {
   );
 };
 
-export const ChevronDown = () => {
+export const ChevronDown: FC = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +92,7 @@ export const ChevronDown = () => {
   );
 };
 
-export const ChevronUp = () => {
+export const ChevronUp: FC = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +107,7 @@ export const ChevronUp = () => {
   );
 };
 
-export const InfoIcon = () => {
+export const InfoIcon: FC = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,7 @@
-import Footertext from "../components/Footertext";
+import Footertext from "../components/Footer/Footertext";
 import icon from "../assets/logo.png";
 import { Link } from "react-router-dom";
-import { FC } from 'react';
+import { FC } from "react";
 
 const About: FC = () => {
   return (

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { InitialPayment } from "../Types";
 
-
-const initialState = {
+const initialState: InitialPayment = {
   isOpen: false,
   accepted: false,
   declined: false,
@@ -30,5 +30,11 @@ const PaymentSlice = createSlice({
   },
 });
 
-export const { closePayment, openPayment, acceptedPayment, declinedPayment, resetPaymentState } = PaymentSlice.actions;
+export const {
+  closePayment,
+  openPayment,
+  acceptedPayment,
+  declinedPayment,
+  resetPaymentState,
+} = PaymentSlice.actions;
 export default PaymentSlice.reducer;

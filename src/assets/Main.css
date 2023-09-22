@@ -53,6 +53,13 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
+.slider-from,
+.slider-to {
+  display: flex;
+  margin: 0.2rem 0;
+}
+
 .sort-select,
 .choose-pagination {
   display: flex;
@@ -60,10 +67,10 @@ h1 {
   align-items: center;
 }
 .slider {
-  margin-top: 0.4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2rem;
 }
 .slider-filter {
   width: 10rem;

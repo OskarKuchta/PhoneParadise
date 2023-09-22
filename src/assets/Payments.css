@@ -32,6 +32,41 @@
   transition: background 0.3s, color 0.5s, scale 0.5s;
 }
 
+.payment-declined,
+.payment-accepted {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  height: 60vh;
+  width: 80vw;
+  margin: 0 10%;
+}
+
+.payment-accepted h3 {
+  margin-top: 2rem;
+}
+
+.payment-declined button,
+.payment-accepted button {
+  margin-top: 3rem;
+  padding: 0.5rem 2rem;
+  outline-color: var(--purple);
+  border-radius: 4px;
+  border: 2px solid var(--purple);
+  transition: background-color 1s, color 0.5s;
+}
+
+.payment-declined button:hover,
+.payment-declined button:focus,
+.payment-declined button:active,
+.payment-accepted button:hover,
+.payment-accepted button:focus,
+.payment-accepted button:active {
+  background-color: var(--purple);
+  color: var(--white);
+}
 .dots span {
   width: 1px;
   height: 1px;
@@ -51,7 +86,6 @@
 .dots span:nth-child(3) {
   animation-delay: 0.66s;
 }
-
 
 .payments-start-button:focus,
 .payments-start-button:hover {

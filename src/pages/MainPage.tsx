@@ -97,9 +97,12 @@ const MainPage = () => {
               ariaLabelForHandle="Price range slider"
               ariaLabelledByForHandle="Price range slider"
             />
-            <label className="first-price-filter">
-              Price up:{" "}
+            <div className="slider-from">
+              <label className="first-price-filter" htmlFor="first-range">
+                Price up:{" "}
+              </label>
               <input
+                id="first-range"
                 className="filter-input"
                 type="number"
                 value={range[0]}
@@ -107,11 +110,12 @@ const MainPage = () => {
                 max={1200}
                 onChange={firstValue}
               />
-              $
-            </label>
-            <label>
-              Price to:{" "}
+              <span>$</span>
+            </div>
+            <div className="slider-to">
+              <label htmlFor="second-range">Price to: </label>
               <input
+                id="second-range"
                 className="filter-input"
                 type="number"
                 value={range[1]}
@@ -119,8 +123,8 @@ const MainPage = () => {
                 max={1200}
                 onChange={secondValue}
               />
-              $
-            </label>
+              <span>$</span>
+            </div>
           </aside>
           <aside className="choose-pagination">
             <label htmlFor="page-pagination">Products on page:</label>

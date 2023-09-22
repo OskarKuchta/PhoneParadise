@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { InititalFetch } from "../Types";
+import { InititalFetch } from "../Types/Types";
 
 const initialState: InititalFetch = {
   items: [],

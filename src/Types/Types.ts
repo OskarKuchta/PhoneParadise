@@ -15,7 +15,7 @@ export type InititalFetch = {
     error: null | unknown;
 }
 
-type CartItems = {
+export type CartItems = {
     id: number;
     name: string;
     image: string;

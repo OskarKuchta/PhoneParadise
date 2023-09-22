@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { PhoneCard, Products } from "../../Types";
+import { PhoneCard, Products } from "../../Types/Types";
 import { addItem } from "../../features/CartSlice";
 import { FC } from "react";
 const PhoneCard: FC<PhoneCard> = ({

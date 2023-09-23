@@ -4,7 +4,6 @@ import { Rating } from "@smastrom/react-rating";
 const PaymentAccepted: FC = () => {
   const [rating, setRating] = useState(0);
   const getRating = () => {
-    console.log(rating);
   };
   return (
     <section className="payment-accepted">

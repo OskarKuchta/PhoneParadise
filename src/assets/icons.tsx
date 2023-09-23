@@ -36,14 +36,7 @@ export const CartCount: FC = () => {
         strokeWidth="2"
       />
 
-      <text
-        x="50%"
-        y="50%"
-        textAnchor="middle"
-        alignmentBaseline="middle"
-        fontSize="24"
-        fill="white"
-      >
+      <text x="50%" y="65%" textAnchor="middle" fontSize="24" fill="white">
         {amount}
       </text>
     </svg>

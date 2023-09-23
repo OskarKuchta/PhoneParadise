@@ -54,12 +54,6 @@ h1 {
   justify-content: center;
 }
 
-.slider-from,
-.slider-to {
-  display: flex;
-  margin: 0.2rem 0;
-}
-
 .sort-select,
 .choose-pagination {
   display: flex;
@@ -72,15 +66,21 @@ h1 {
   align-items: center;
   margin-bottom: 2rem;
 }
+
+.slider-from,
+.slider-to {
+  display: flex;
+  margin: 0.2rem 0;
+}
+.slider-from input,
+.slider-to input {
+  width: 5rem;
+}
 .slider-filter {
   width: 10rem;
+  margin-bottom: 0.4rem;
 }
-.slider label:nth-child(2) {
-  margin-top: 0.5rem;
-}
-.slider label:nth-child(3) {
-  margin-bottom: 2rem;
-}
+
 .rc-slider-handle {
   border: 2px solid var(--purple);
 }

@@ -1,10 +1,10 @@
 import { FC, useState } from "react";
 import { Rating } from "@smastrom/react-rating";
+import Footertext from "../Footer/Footertext";
 
 const PaymentAccepted: FC = () => {
   const [rating, setRating] = useState(0);
-  const getRating = () => {
-  };
+  const getRating = () => {};
   return (
     <section className="payment-accepted">
       <h2>
@@ -14,6 +14,7 @@ const PaymentAccepted: FC = () => {
       <h3>We'll be glad if you can leave a rating for shopping experience.</h3>
       <Rating style={{ maxWidth: 250 }} value={rating} onChange={setRating} />
       <button onClick={getRating}>Send rating</button>
+      <Footertext />
     </section>
   );
 };

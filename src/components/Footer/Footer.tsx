@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Footer: FC = () => {
   return (
-    <footer>
+    <footer className="footer-mobile">
       <ul className="footer-icons">
         <li>
           <Link to="about" aria-label="About company">

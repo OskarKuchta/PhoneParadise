@@ -99,6 +99,10 @@
   outline-color: var(--purple);
   scale: 105%;
 }
+.rating-thanks {
+  margin-top: 1rem;
+  text-align: center;
+}
 
 @keyframes dot-animation {
   0%,

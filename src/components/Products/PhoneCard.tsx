@@ -73,7 +73,10 @@ const PhoneCard: FC<PhoneCard> = ({
           </section>
           <aside className="pagination">
             <button
-              onClick={() => setCurrentPage(currentPage - 1)}
+              onClick={() => {
+                window.scrollTo(0, 200);
+                setCurrentPage((currentPage) => currentPage - 1);
+              }}
               disabled={currentPage === 1}
             >
               &#60;
@@ -85,7 +88,10 @@ const PhoneCard: FC<PhoneCard> = ({
               (_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentPage(index + 1)}
+                  onClick={() => {
+                    window.scrollTo(0, 200);
+                    setCurrentPage((index) => index + 1);
+                  }}
                   className={currentPage === index + 1 ? "active" : ""}
                 >
                   {index + 1}
@@ -93,7 +99,10 @@ const PhoneCard: FC<PhoneCard> = ({
               )
             )}
             <button
-              onClick={() => setCurrentPage(currentPage + 1)}
+              onClick={() => {
+                window.scrollTo(0, 200);
+                setCurrentPage((currentPage) => currentPage + 1);
+              }}
               disabled={endIndex >= sortedItemsArray.length}
             >
               &#62;

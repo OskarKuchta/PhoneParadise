@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import PhoneCard from "../components/Products/PhoneCard.tsx";
 import Footertext from "../components/Footer/Footertext.tsx";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
@@ -10,13 +10,10 @@ const MainPage = () => {
   const { isLoading, error } = useSelector(
     (state: RootState) => state.products
   );
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [value, setValue] = useState<string>("Default");
   const [range, setRange] = useState<[number, number]>([1, 1200]);
   const [paginationCount, setPaginationCount] = useState<number>(10);
-  useEffect(() => {
-    window.scrollTo(0, 200);
-  }, [currentPage]);
   const handleRangeChange = (newRange: [number, number]) => {
     setRange(newRange);
   };

@@ -10,6 +10,7 @@ const PaymentAccepted: FC = () => {
   const getRating = () => {
     if (rating !== 0) {
       setShowText(true);
+      setRating(0);
     }
   };
 

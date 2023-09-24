@@ -3,8 +3,8 @@ import Footertext from "../components/Footer/Footertext";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
-  const emailAddress = "oskarkuchta5@gmail.com";
-  const subject = "Ocena i uwagi na temat projektu";
+  const emailAddress: string = "oskarkuchta5@gmail.com";
+  const subject: string = "Ocena i uwagi na temat projektu";
   return (
     <section className="contact">
       <h2>Contact us via:</h2>

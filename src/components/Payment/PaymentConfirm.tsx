@@ -7,6 +7,7 @@ import {
 import { NavigateFunction, useNavigate } from "react-router";
 import { FC } from "react";
 import { AnyAction, Dispatch } from "redux";
+import { removeAllProducts } from "../../features/CartSlice";
 const PaymentConfirm: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate: NavigateFunction = useNavigate();
@@ -14,6 +15,7 @@ const PaymentConfirm: FC = () => {
     dispatch(closePayment());
     if (accepted === true) {
       dispatch(acceptedPayment());
+      dispatch(removeAllProducts());
     } else {
       dispatch(declinedPayment());
     }

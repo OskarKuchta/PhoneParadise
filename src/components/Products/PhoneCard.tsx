@@ -90,7 +90,7 @@ const PhoneCard: FC<PhoneCard> = ({
                   key={index}
                   onClick={() => {
                     window.scrollTo(0, 200);
-                    setCurrentPage((index) => index + 1);
+                    setCurrentPage(index + 1);
                   }}
                   className={currentPage === index + 1 ? "active" : ""}
                 >

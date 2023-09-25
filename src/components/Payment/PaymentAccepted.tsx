@@ -34,7 +34,7 @@ const PaymentAccepted: FC = () => {
         );
         const sum = rate.reduce((a: number, b: number) => a + b, 0);
         const average = Number((sum / rate.length).toFixed(2));
-        setAverage(average)
+        setAverage(average);
       } catch (error) {
         console.error("Problem with show average");
       }
@@ -65,10 +65,10 @@ const PaymentAccepted: FC = () => {
       <Rating style={{ maxWidth: 250 }} value={rating} onChange={setRating} />
       <button onClick={getRating}>Send rating</button>
       {showText ? (
-        <p className="rating-thanks">
+        <aside className="rating-thanks">
           <i>Thank you for rating, have a good day.</i>
           <p>Average rating: {average} / 5</p>
-        </p>
+        </aside>
       ) : null}
       <Footertext />
     </section>

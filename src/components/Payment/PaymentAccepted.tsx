@@ -2,15 +2,23 @@ import { FC, useState, useEffect } from "react";
 import { Rating } from "@smastrom/react-rating";
 import Footertext from "../Footer/Footertext";
 import { NavigateFunction, useNavigate } from "react-router";
+import axios from "axios";
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();
   const [counter, setCounter] = useState<number>(10);
   const [rating, setRating] = useState<number>(0);
   const [showText, setShowText] = useState<boolean>(false);
-  const getRating = () => {
+  const getRating = async () => {
     if (rating !== 0) {
-      setShowText(true);
-      setRating(0);
+      try {
+        const rate = rating;
+        await axios.post("/.netlify/functions/index/vote", { rate });
+        setShowText(true);
+        setRating(0);
+        console.log("Vote sent successfully");
+      } catch (error) {
+        console.error("Error sending vote:", error);
+      }
     }
   };
 

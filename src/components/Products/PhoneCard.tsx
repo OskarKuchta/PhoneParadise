@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { PhoneCard, Products } from "../../Types/Types";
 import { addItem } from "../../features/CartSlice";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 const PhoneCard: FC<PhoneCard> = ({
   value,
   range,
@@ -10,6 +10,14 @@ const PhoneCard: FC<PhoneCard> = ({
   currentPage,
   setCurrentPage,
 }) => {
+  const [initialRender, setInitialRender] = useState<boolean>(true);
+  useEffect(() => {
+    if (initialRender) {
+      setInitialRender(false);
+      return;
+    }
+    window.scrollTo(0, 200);
+  }, [currentPage]);
   const dispatch = useDispatch();
   const addToCart = (product: Products) => {
     dispatch(addItem(product));
@@ -46,6 +54,7 @@ const PhoneCard: FC<PhoneCard> = ({
       return sizeB - sizeA;
     }
   });
+
   const hasProducts: boolean = sortedItemsArray.length > 0;
   const productsPerPage: number = paginationCount;
   const startIndex: number = (currentPage - 1) * productsPerPage;
@@ -74,7 +83,6 @@ const PhoneCard: FC<PhoneCard> = ({
           <aside className="pagination">
             <button
               onClick={() => {
-                window.scrollTo(0, 200);
                 setCurrentPage((currentPage) => currentPage - 1);
               }}
               disabled={currentPage === 1}
@@ -89,7 +97,6 @@ const PhoneCard: FC<PhoneCard> = ({
                 <button
                   key={index}
                   onClick={() => {
-                    window.scrollTo(0, 200);
                     setCurrentPage(index + 1);
                   }}
                   className={currentPage === index + 1 ? "active" : ""}
@@ -100,7 +107,6 @@ const PhoneCard: FC<PhoneCard> = ({
             )}
             <button
               onClick={() => {
-                window.scrollTo(0, 200);
                 setCurrentPage((currentPage) => currentPage + 1);
               }}
               disabled={endIndex >= sortedItemsArray.length}

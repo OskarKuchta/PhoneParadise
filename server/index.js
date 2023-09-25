@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import serverless from "serverless-http";
-import products from "./products";
-import ratings from "./rating";
+import products from "../data/products";
+import ratings from "../data/rating";
 const app = express();
 const router = express.Router();
 

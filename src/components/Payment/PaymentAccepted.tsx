@@ -6,7 +6,7 @@ import axios from "axios";
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();
   const [average, setAverage] = useState<number>(0);
-  const [counter, setCounter] = useState<number>(5);
+  const [counter, setCounter] = useState<number>(10);
   const [rating, setRating] = useState<number>(0);
   const [showText, setShowText] = useState<boolean>(false);
   const getRating = async () => {
@@ -43,14 +43,14 @@ const PaymentAccepted: FC = () => {
   }, []);
   useEffect(() => {
     if (showText) {
-      const intervalId = setInterval(() => {
+      const intervalId: ReturnType<typeof setInterval> = setInterval(() => {
         setCounter((counter) => counter - 1);
       }, 1000);
       if (counter == 0) {
         navigate("/");
         return () => {
           clearInterval(intervalId);
-          setCounter(5);
+          setCounter(10);
         };
       }
     }
@@ -67,7 +67,8 @@ const PaymentAccepted: FC = () => {
       {showText ? (
         <aside className="rating-thanks">
           <i>Thank you for rating, have a good day.</i>
-          <p>Average rating: {average} / 5</p>
+          <br />
+          <i>Average rating: {average} / 5</i>
         </aside>
       ) : null}
       <Footertext />

@@ -5,7 +5,8 @@ import { NavigateFunction, useNavigate } from "react-router";
 import axios from "axios";
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();
-  const [counter, setCounter] = useState<number>(10);
+  const [average, setAverage] = useState<number>(0);
+  const [counter, setCounter] = useState<number>(5);
   const [rating, setRating] = useState<number>(0);
   const [showText, setShowText] = useState<boolean>(false);
   const getRating = async () => {
@@ -21,7 +22,25 @@ const PaymentAccepted: FC = () => {
       }
     }
   };
-
+  useEffect(() => {
+    const showAverage = async () => {
+      try {
+        const res = await axios.get(
+          "https://phoneparadise.netlify.app/.netlify/functions/index/vote"
+        );
+        const response = res.data;
+        const rate = response.default.map(
+          (item: { date: Date; rate: number }) => (item.rate ? item.rate : 5)
+        );
+        const sum = rate.reduce((a: number, b: number) => a + b, 0);
+        const average = Number((sum / rate.length).toFixed(2));
+        setAverage(average)
+      } catch (error) {
+        console.error("Problem with show average");
+      }
+    };
+    showAverage();
+  }, []);
   useEffect(() => {
     if (showText) {
       const intervalId = setInterval(() => {
@@ -31,7 +50,7 @@ const PaymentAccepted: FC = () => {
         navigate("/");
         return () => {
           clearInterval(intervalId);
-          setCounter(10);
+          setCounter(5);
         };
       }
     }
@@ -48,6 +67,7 @@ const PaymentAccepted: FC = () => {
       {showText ? (
         <p className="rating-thanks">
           <i>Thank you for rating, have a good day.</i>
+          <p>Average rating: {average} / 5</p>
         </p>
       ) : null}
       <Footertext />

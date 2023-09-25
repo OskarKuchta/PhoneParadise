@@ -31,8 +31,6 @@
   right: 0.7rem;
 }
 
-
-
 .cart-icon:hover,
 .cart-icon:focus {
   outline: none;
@@ -61,5 +59,11 @@
   .navbar-links a:focus {
     outline: none;
     background-color: rgb(110, 3, 117);
+  }
+}
+@media (min-width: 1600px) {
+  .cart-count {
+    top: 1rem;
+    right: 0.8rem;
   }
 }

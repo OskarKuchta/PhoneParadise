@@ -17,7 +17,7 @@ router.get("/vote", (req, res) => {
 })
 router.post("/vote", (req, res) => {
     const { rate } = req.body;
-    ratings.push({
+    ratings.default.push({
         date: new Date(),
         rate: rate,
     });

@@ -145,6 +145,12 @@ h1 {
   .pagination {
     margin-bottom: 5rem;
   }
+  .slider-filter {
+    margin-bottom: 2rem;
+  }
+  .slider-from {
+    margin-bottom: 0.7rem;
+  }
 }
 @media (max-width: 550px) {
   h1 {

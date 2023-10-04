@@ -8,7 +8,7 @@ import { MongoClient } from "mongodb";
 const app = express();
 const router = express.Router();
 const uri = "mongodb+srv://Oskar98:kuchta123@cluster0.bsb9bp8.mongodb.net/";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri, { useNewUrlParser: true });
 const databaseName = 'ratings';
 const collectionName = 'ratings';
 

@@ -1,12 +1,13 @@
 .bad-url {
   height: 100vh;
   display: flex;
+  margin: 0 10%;
   margin-top: 30vh;
   align-items: center;
   flex-direction: column;
 }
 .bad-url * {
-  margin: .7rem 0;
+  margin: 0.7rem 0;
 }
 .bad-url h2 {
   font-size: 2rem;
@@ -18,7 +19,7 @@
 .bad-url a {
   transition: transform 1s ease-in-out;
   border: 1px solid var(--purple);
-  padding: .3rem 2.5rem;
+  padding: 0.3rem 2.5rem;
   color: var(--purple);
 }
 
@@ -28,4 +29,10 @@
   border: 1px solid blue;
   color: blue;
   outline-color: blue;
+}
+
+@media (max-width: 768px) {
+  .bad-url {
+    margin-top: 10vh;
+  }
 }

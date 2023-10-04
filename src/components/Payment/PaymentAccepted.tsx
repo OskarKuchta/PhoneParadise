@@ -9,11 +9,15 @@ const PaymentAccepted: FC = () => {
   const [counter, setCounter] = useState<number>(10);
   const [rating, setRating] = useState<number>(0);
   const [showText, setShowText] = useState<boolean>(false);
+  const [rateLength, setRateLength] = useState<number>(0);
   const getRating = async () => {
     if (rating !== 0) {
       try {
         const rate = rating;
-        await axios.post("/.netlify/functions/index/vote", { rate });
+        await axios.post(
+          "https://phoneparadise.netlify.app/.netlify/functions/index/vote",
+          { rate }
+        );
         setShowText(true);
         setRating(0);
         console.log("Vote sent successfully");
@@ -34,6 +38,7 @@ const PaymentAccepted: FC = () => {
         );
         const sum = rate.reduce((a: number, b: number) => a + b, 0);
         const average = Number((sum / rate.length).toFixed(2));
+        setRateLength(rate.length);
         setAverage(average);
       } catch (error) {
         console.error("Problem with show average");
@@ -68,9 +73,11 @@ const PaymentAccepted: FC = () => {
         <aside className="rating-thanks">
           <i>Thank you for rating, have a good day.</i>
           <br />
-          <i>Average rating: {average} / 5</i>
         </aside>
       ) : null}
+      <i>
+        Average rating: {average} / 5 ({rateLength})
+      </i>
       <Footertext />
     </section>
   );

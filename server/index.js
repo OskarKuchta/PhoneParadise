@@ -2,14 +2,16 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import serverless from "serverless-http";
-import products from "../data/products";
+import products from "../data/products.js";
 import { MongoClient } from "mongodb";
+
+
+const url = "mongodb+srv://Oskar98:kuchta123@cluster0.bsb9bp8.mongodb.net/"
 
 const app = express();
 const router = express.Router();
-const uri = "mongodb+srv://Oskar98:kuchta123@cluster0.bsb9bp8.mongodb.net/";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-const databaseName = 'ratings';
+const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+const databaseName = 'rating';
 const collectionName = 'ratings';
 
 const database = client.db(databaseName);
@@ -19,6 +21,7 @@ async function connectToDatabase() {
     try {
         await client.connect();
         console.log('Connected to the database');
+        client.close()
     } catch (error) {
         console.error('Error connecting to the database', error);
     }

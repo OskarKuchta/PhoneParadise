@@ -21,7 +21,6 @@ async function connectToDatabase() {
     try {
         await client.connect();
         console.log('Connected to the database');
-        client.close()
     } catch (error) {
         console.error('Error connecting to the database', error);
     }

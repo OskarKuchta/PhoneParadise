@@ -62,7 +62,7 @@ router.get("/vote", async (req, res) => {
         res.send(result);
     } catch (error) {
         console.error('Error fetching data', error);
-        res.status(500).json({ success: false });
+        res.status(500).json("Porblem przy pobraniu bazy");
     }
 });
 router.get("/products", (req, res) => {

@@ -25,6 +25,7 @@ async function connectToDatabase() {
     } catch (error) {
         console.error('Error connecting to the database', error);
     }
+
 }
 
 connectToDatabase();
@@ -39,7 +40,6 @@ const ratingSchema = new mongoose.Schema({
 });
 
 const Rating = mongoose.model('Rating', ratingSchema);
-connectToDatabase();
 
 
 router.post("/vote", async (req, res) => {

@@ -59,6 +59,9 @@
   border: 2px solid var(--purple);
   transition: background-color 1s, color 0.5s;
 }
+.payment-accepted button {
+  margin-top: 1rem;
+}
 
 .payment-declined button:hover,
 .payment-declined button:focus,

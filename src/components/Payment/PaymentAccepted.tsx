@@ -3,6 +3,27 @@ import { Rating } from "@smastrom/react-rating";
 import Footertext from "../Footer/Footertext";
 import { NavigateFunction, useNavigate } from "react-router";
 import axios from "axios";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDxloi2QFu7gcImAbsCz_wqjcQYhAfiPaA",
+  authDomain: "phone-paradise.firebaseapp.com",
+  projectId: "phone-paradise",
+  storageBucket: "phone-paradise.appspot.com",
+  messagingSenderId: "342601028672",
+  appId: "1:342601028672:web:908920a6f3fb7a7e237ba5",
+  measurementId: "G-0WW23REF0B",
+};
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();
   const [average, setAverage] = useState<number>(0);
@@ -17,6 +38,17 @@ const PaymentAccepted: FC = () => {
         await axios.post(
           "https://phoneparadise.netlify.app/.netlify/functions/index/vote",
           { rate }
+        );
+        const ratingsCollection = collection(db, "ratings");
+        await addDoc(ratingsCollection, {
+          rate,
+          timestamp: serverTimestamp(),
+        });
+        console.log(
+          addDoc(ratingsCollection, {
+            rate,
+            timestamp: serverTimestamp(),
+          })
         );
         setShowText(true);
         setRating(0);
@@ -75,7 +107,7 @@ const PaymentAccepted: FC = () => {
           <br />
         </aside>
       ) : null}
-      <i>
+      <i style={{ marginTop: "2rem" }}>
         Average rating: {average} / 5 ({rateLength})
       </i>
       <Footertext />

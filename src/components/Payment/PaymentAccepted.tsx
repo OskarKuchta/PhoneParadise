@@ -3,30 +3,27 @@ import { Rating } from "@smastrom/react-rating";
 import Footertext from "../Footer/Footertext";
 import { NavigateFunction, useNavigate } from "react-router";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import {
-  getFirestore,
   collection,
   addDoc,
   serverTimestamp,
   query,
   onSnapshot,
+  getFirestore,
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCLZr80Hx_wzZzWSuJ8n5fYxQdCwFTcfKI",
-  authDomain: "phone-paradise-76d3a.firebaseapp.com",
-  projectId: "phone-paradise-76d3a",
-  storageBucket: "phone-paradise-76d3a.appspot.com",
-  messagingSenderId: "115318917346",
-  appId: "1:115318917346:web:e9234b142a33af2ed0b6bb",
-  measurementId: "G-02GG8VGCJM",
+  apiKey: "AIzaSyDxloi2QFu7gcImAbsCz_wqjcQYhAfiPaA",
+  authDomain: "phone-paradise.firebaseapp.com",
+  projectId: "phone-paradise",
+  storageBucket: "phone-paradise.appspot.com",
+  messagingSenderId: "342601028672",
+  appId: "1:342601028672:web:4ca8b36533ed7fe6237ba5",
+  measurementId: "G-9LX4PNP9DC",
 };
-
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-console.log(analytics);
 const db = getFirestore(app);
+
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();
   const [average, setAverage] = useState<number>(0);
@@ -35,7 +32,6 @@ const PaymentAccepted: FC = () => {
   const [showText, setShowText] = useState<boolean>(false);
   const [rateLength, setRateLength] = useState<number>(0);
   const ratingsCollection = collection(db, "ratings");
-
   const getRating = async () => {
     if (rating !== 0) {
       try {
@@ -57,7 +53,7 @@ const PaymentAccepted: FC = () => {
     const ratingsQuery = query(ratingsCollection);
 
     const fetchData = async () => {
-      const unsubscribe = onSnapshot(ratingsQuery, (snapshot) => {
+      const rate = onSnapshot(ratingsQuery, (snapshot) => {
         const ratingsData = [];
         snapshot.forEach((doc) => {
           ratingsData.push({ id: doc.id, ...doc.data() });
@@ -74,11 +70,11 @@ const PaymentAccepted: FC = () => {
         setAverage(averageRating);
         setRateLength(ratingsData.length);
       });
-      return () => unsubscribe();
+      return () => rate();
     };
 
     fetchData();
-  }, [ratingsCollection]);
+  }, []);
   useEffect(() => {
     if (showText) {
       const intervalId: ReturnType<typeof setInterval> = setInterval(() => {

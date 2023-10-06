@@ -23,6 +23,7 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+console.log(analytics);
 const db = getFirestore(app);
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();

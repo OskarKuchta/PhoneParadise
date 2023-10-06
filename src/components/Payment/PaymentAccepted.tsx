@@ -2,14 +2,16 @@ import { FC, useState, useEffect } from "react";
 import { Rating } from "@smastrom/react-rating";
 import Footertext from "../Footer/Footertext";
 import { NavigateFunction, useNavigate } from "react-router";
-import axios from "axios";
+
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+
 import {
   getFirestore,
   collection,
   addDoc,
   serverTimestamp,
+  query,
+  onSnapshot,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -22,8 +24,7 @@ const firebaseConfig = {
   measurementId: "G-0WW23REF0B",
 };
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-console.log(analytics);
+
 const db = getFirestore(app);
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();
@@ -32,25 +33,16 @@ const PaymentAccepted: FC = () => {
   const [rating, setRating] = useState<number>(0);
   const [showText, setShowText] = useState<boolean>(false);
   const [rateLength, setRateLength] = useState<number>(0);
+  const ratingsCollection = collection(db, "ratings");
+
   const getRating = async () => {
     if (rating !== 0) {
       try {
         const rate = rating;
-        await axios.post(
-          "https://phoneparadise.netlify.app/.netlify/functions/index/vote",
-          { rate }
-        );
-        const ratingsCollection = collection(db, "ratings");
         await addDoc(ratingsCollection, {
           rate,
           timestamp: serverTimestamp(),
         });
-        console.log(
-          addDoc(ratingsCollection, {
-            rate,
-            timestamp: serverTimestamp(),
-          })
-        );
         setShowText(true);
         setRating(0);
         console.log("Vote sent successfully");
@@ -59,32 +51,39 @@ const PaymentAccepted: FC = () => {
       }
     }
   };
+
   useEffect(() => {
-    const showAverage = async () => {
-      try {
-        const res = await axios.get(
-          "https://phoneparadise.netlify.app/.netlify/functions/index/vote"
+    const ratingsQuery = query(ratingsCollection);
+
+    const fetchData = async () => {
+      const unsubscribe = onSnapshot(ratingsQuery, (snapshot) => {
+        const ratingsData = [];
+        snapshot.forEach((doc) => {
+          ratingsData.push({ id: doc.id, ...doc.data() });
+        });
+        const sum = ratingsData.reduce(
+          (total, rating) => total + rating.rate,
+          0
         );
-        const response = res.data;
-        const rate = response.default.map(
-          (item: { date: Date; rate: number }) => (item.rate ? item.rate : 5)
-        );
-        const sum = rate.reduce((a: number, b: number) => a + b, 0);
-        const average = Number((sum / rate.length).toFixed(2));
-        setRateLength(rate.length);
-        setAverage(average);
-      } catch (error) {
-        console.error("Problem with show average");
-      }
+        const averageRating =
+          ratingsData.length > 0
+            ? Number((sum / ratingsData.length).toFixed(2))
+            : 0;
+        console.log(sum, averageRating);
+        setAverage(averageRating);
+        setRateLength(ratingsData.length);
+      });
+      return () => unsubscribe();
     };
-    showAverage();
-  }, []);
+
+    fetchData();
+  }, [ratingsCollection]);
   useEffect(() => {
     if (showText) {
       const intervalId: ReturnType<typeof setInterval> = setInterval(() => {
         setCounter((counter) => counter - 1);
       }, 1000);
-      if (counter == 0) {
+      if (counter === 0) {
         navigate("/");
         return () => {
           clearInterval(intervalId);
@@ -109,7 +108,15 @@ const PaymentAccepted: FC = () => {
         </aside>
       ) : null}
       <i style={{ marginTop: "2rem" }}>
-        Average rating: {average} / 5 ({rateLength})
+        Average rating: {average} / 5{" "}
+        <span
+          style={{
+            fontSize: "12px",
+            marginLeft: "0.5rem",
+          }}
+        >
+          ({rateLength})
+        </span>
       </i>
       <Footertext />
     </section>

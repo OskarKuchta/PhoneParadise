@@ -2,9 +2,8 @@ import { FC, useState, useEffect } from "react";
 import { Rating } from "@smastrom/react-rating";
 import Footertext from "../Footer/Footertext";
 import { NavigateFunction, useNavigate } from "react-router";
-
 import { initializeApp } from "firebase/app";
-
+import { getAnalytics } from "firebase/analytics";
 import {
   getFirestore,
   collection,
@@ -15,16 +14,18 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDxloi2QFu7gcImAbsCz_wqjcQYhAfiPaA",
-  authDomain: "phone-paradise.firebaseapp.com",
-  projectId: "phone-paradise",
-  storageBucket: "phone-paradise.appspot.com",
-  messagingSenderId: "342601028672",
-  appId: "1:342601028672:web:908920a6f3fb7a7e237ba5",
-  measurementId: "G-0WW23REF0B",
+  apiKey: "AIzaSyCLZr80Hx_wzZzWSuJ8n5fYxQdCwFTcfKI",
+  authDomain: "phone-paradise-76d3a.firebaseapp.com",
+  projectId: "phone-paradise-76d3a",
+  storageBucket: "phone-paradise-76d3a.appspot.com",
+  messagingSenderId: "115318917346",
+  appId: "1:115318917346:web:e9234b142a33af2ed0b6bb",
+  measurementId: "G-02GG8VGCJM",
 };
-const app = initializeApp(firebaseConfig);
 
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+console.log(analytics);
 const db = getFirestore(app);
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();

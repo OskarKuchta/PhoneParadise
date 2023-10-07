@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from "react";
 import { Rating } from "@smastrom/react-rating";
 import Footertext from "../Footer/Footertext";
 import { NavigateFunction, useNavigate } from "react-router";
-import { initializeApp } from "firebase/app";
+import { FirebaseApp, initializeApp } from "firebase/app";
 import {
   collection,
   addDoc,
@@ -10,9 +10,16 @@ import {
   query,
   onSnapshot,
   getFirestore,
+  Firestore,
+  CollectionReference,
+  DocumentData,
+  Query,
+  QueryDocumentSnapshot,
 } from "firebase/firestore";
+import { FirebaseConfig, RatingData } from "../../Types/Types";
+import { Unsubscribe } from "redux";
 
-const firebaseConfig = {
+const firebaseConfig: FirebaseConfig = {
   apiKey: "AIzaSyDxloi2QFu7gcImAbsCz_wqjcQYhAfiPaA",
   authDomain: "phone-paradise.firebaseapp.com",
   projectId: "phone-paradise",
@@ -21,8 +28,8 @@ const firebaseConfig = {
   appId: "1:342601028672:web:4ca8b36533ed7fe6237ba5",
   measurementId: "G-9LX4PNP9DC",
 };
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const app: FirebaseApp = initializeApp(firebaseConfig);
+const db: Firestore = getFirestore(app);
 
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();
@@ -31,7 +38,8 @@ const PaymentAccepted: FC = () => {
   const [rating, setRating] = useState<number>(0);
   const [showText, setShowText] = useState<boolean>(false);
   const [rateLength, setRateLength] = useState<number>(0);
-  const ratingsCollection = collection(db, "ratings");
+  const ratingsCollection: CollectionReference<DocumentData, DocumentData> =
+    collection(db, "ratings");
   const getRating = async () => {
     if (rating !== 0) {
       try {
@@ -50,23 +58,25 @@ const PaymentAccepted: FC = () => {
   };
 
   useEffect(() => {
-    const ratingsQuery = query(ratingsCollection);
+    const ratingsQuery: Query<DocumentData, DocumentData> =
+      query(ratingsCollection);
 
     const fetchData = async () => {
-      const rate = onSnapshot(ratingsQuery, (snapshot) => {
-        const ratingsData = [];
-        snapshot.forEach((doc) => {
-          ratingsData.push({ id: doc.id, ...doc.data() });
-        });
-        const sum = ratingsData.reduce(
+      const rate: Unsubscribe = onSnapshot(ratingsQuery, (snapshot) => {
+        const ratingsData: RatingData[] = [];
+        snapshot.forEach(
+          (doc: QueryDocumentSnapshot<DocumentData, DocumentData>) => {
+            ratingsData.push({ id: doc.id, ...doc.data() });
+          }
+        );
+        const sum: number = ratingsData.reduce(
           (total, rating) => total + rating.rate,
           0
         );
-        const averageRating =
+        const averageRating: number =
           ratingsData.length > 0
             ? Number((sum / ratingsData.length).toFixed(2))
             : 0;
-        console.log(sum, averageRating);
         setAverage(averageRating);
         setRateLength(ratingsData.length);
       });
@@ -96,7 +106,11 @@ const PaymentAccepted: FC = () => {
         send on your e-mail.
       </h2>
       <h3>We'll be glad if you can leave a rating for shopping experience.</h3>
-      <Rating style={{ maxWidth: 250 }} value={rating} onChange={setRating} />
+      <Rating
+        style={{ maxWidth: 250 }}
+        value={rating}
+        onChange={showText ? undefined : setRating}
+      />
       <button onClick={getRating}>Send rating</button>
       {showText ? (
         <aside className="rating-thanks">

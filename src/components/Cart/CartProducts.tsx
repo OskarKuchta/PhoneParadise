@@ -30,7 +30,7 @@ const CartProducts: FC = () => {
           <aside className="cart-product" key={product.id}>
             <div className="product-main">
               <h2 className="product-name">{product.name}</h2>
-              <img src={product.image} alt={product.name} />
+              <img src={product.image} alt={product.name} loading="lazy"/>
             </div>
             <div className="product-quantity">
               <div className="quantity-top">

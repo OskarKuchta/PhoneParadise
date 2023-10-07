@@ -47,3 +47,21 @@ export type PhoneCard = {
     currentPage: number;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }
+
+export type FirebaseConfig = {
+    apiKey: "AIzaSyDxloi2QFu7gcImAbsCz_wqjcQYhAfiPaA"
+    authDomain: "phone-paradise.firebaseapp.com",
+    projectId: "phone-paradise",
+    storageBucket: "phone-paradise.appspot.com",
+    messagingSenderId: "342601028672",
+    appId: "1:342601028672:web:4ca8b36533ed7fe6237ba5",
+    measurementId: "G-9LX4PNP9DC",
+}
+
+export type RatingBody = {
+    rate?: number;
+    timestamp?: Date;
+}
+export type RatingData = RatingBody & {
+    id: string;
+}

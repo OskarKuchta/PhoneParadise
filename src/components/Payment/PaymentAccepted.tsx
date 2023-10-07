@@ -50,13 +50,27 @@ const PaymentAccepted: FC = () => {
         });
         setShowText(true);
         setRating(0);
-        console.log("Vote sent successfully");
       } catch (error) {
         console.error("Error sending vote:", error);
       }
     }
   };
-
+  useEffect(() => {
+    if (showText) {
+      const intervalId = setInterval(() => {
+        setCounter((prev) => {
+          const newCounter = prev - 1;
+          if (newCounter === 0) {
+            clearInterval(intervalId);
+            navigate("/");
+            return 10;
+          }
+          return newCounter;
+        });
+      }, 1000);
+      return () => clearInterval(intervalId);
+    }
+  }, [showText, navigate]);
   useEffect(() => {
     const ratingsQuery: Query<DocumentData, DocumentData> =
       query(ratingsCollection);
@@ -84,21 +98,8 @@ const PaymentAccepted: FC = () => {
     };
 
     fetchData();
-  }, []);
-  useEffect(() => {
-    if (showText) {
-      const intervalId: ReturnType<typeof setInterval> = setInterval(() => {
-        setCounter((counter) => counter - 1);
-      }, 1000);
-      if (counter === 0) {
-        navigate("/");
-        return () => {
-          clearInterval(intervalId);
-          setCounter(10);
-        };
-      }
-    }
-  }, [showText, counter]);
+  }, [ratingsCollection]);
+
   return (
     <section className="payment-accepted">
       <h2>
@@ -111,10 +112,20 @@ const PaymentAccepted: FC = () => {
         value={rating}
         onChange={showText ? undefined : setRating}
       />
-      <button onClick={getRating}>Send rating</button>
+      <div>
+        <button onClick={getRating} disabled={showText ? true : false}>
+          Send rating
+        </button>
+        <button style={{ marginLeft: "0.5rem" }} onClick={() => navigate("/")}>
+          Back to main page
+        </button>
+      </div>
       {showText ? (
         <aside className="rating-thanks">
-          <i>Thank you for rating, have a good day.</i>
+          <i>
+            Thank you for rating, have a good day. You will redirected to main
+            page for {counter} seconds
+          </i>
           <br />
         </aside>
       ) : null}

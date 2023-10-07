@@ -56,6 +56,10 @@ main,
   stroke: var(--purple);
 }
 
+button:disabled {
+  cursor:not-allowed;
+}
+
 @media (min-width: 1600px) {
   html {
     font-size: 22px;

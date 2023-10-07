@@ -34,8 +34,10 @@ Online store has been meticulously crafted using the latest technologies, includ
 #4 Cart with products
 <img src="./public/result4.jfif" />
 <br /> <br />
-#5 Rate after shopping
+#5 Contact section
 <img src="./public/result5.jfif" />
+#6 Rate after shopping
+<img src="./public/result6.jfif" />
 
 ## Available scripts
 

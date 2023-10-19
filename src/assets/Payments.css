@@ -44,7 +44,11 @@
   width: 80vw;
   margin: 0 10%;
 }
-
+.payment-accepted {
+  height: 100vh;
+  justify-content: start;
+  margin-top: 3rem;
+}
 .payment-accepted h3 {
   margin: 2rem 0;
 }

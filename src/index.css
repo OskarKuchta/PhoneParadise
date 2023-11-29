@@ -1,4 +1,3 @@
-@import url("./assets/BadURL.css");
 @import url("./assets/Contact.css");
 @import url("./assets/Navbar.css");
 @import url("./assets/Footer.css");
@@ -10,6 +9,11 @@
 @import url("./assets/Modal.css");
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 @import url("@smastrom/react-rating/style.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --purple: rgb(46, 3, 87);
   --white: rgb(241, 238, 238);
@@ -57,7 +61,7 @@ main,
 }
 
 button:disabled {
-  cursor:not-allowed;
+  cursor: not-allowed;
 }
 
 @media (min-width: 1600px) {

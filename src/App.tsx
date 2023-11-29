@@ -13,6 +13,7 @@ import { RootState } from "./store";
 import Payments from "./pages/Payments";
 import PaymentsEnd from "./pages/PaymentsEnd.tsx";
 import { resetPaymentState } from "./features/PaymentSlice.tsx";
+import Login from "./pages/Login.tsx";
 
 const App = () => {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
@@ -47,6 +48,7 @@ const App = () => {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="login" element={<Login />} />
         <Route path="cart/payments" element={<Payments />} />
         <Route path="payment-submit" element={<PaymentsEnd />} />
         <Route path="*" element={<BadURL />} />

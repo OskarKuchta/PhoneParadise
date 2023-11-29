@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, NavigateFunction } from "react-router-dom";
 
 const BadURL = () => {
-  const [count, setCount] = useState<number>(1115);
+  const [count, setCount] = useState<number>(15);
   const navigate: NavigateFunction = useNavigate();
   useEffect(() => {
     const intervalId: ReturnType<typeof setInterval> = setInterval(() => {

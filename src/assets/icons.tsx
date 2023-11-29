@@ -5,7 +5,7 @@ import { FC } from "react";
 export const CartIcon: FC = () => {
   return (
     <svg
-      className="cart-icon"
+      className=""
       xmlns="http://www.w3.org/2000/svg"
       width="25"
       height="20"
@@ -20,7 +20,7 @@ export const CartCount: FC = () => {
   const { amount } = useSelector((state: RootState) => state.cart);
   return (
     <svg
-      className="cart-count"
+      className="absolute top-[0.3rem] right-[1.3rem] md:top-[0.7rem] md:right-[0.7rem] xl:top-[1rem] xl:right-[0.8rem]"
       xmlns="http://www.w3.org/2000/svg"
       width="20"
       height="20"

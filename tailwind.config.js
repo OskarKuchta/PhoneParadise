@@ -6,9 +6,13 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        xl: "1600px"
+      },
       colors: {
         purple: "rgb(46, 3, 87)",
-        white: "rgb(241, 238, 238)",
+        hoverPurple: "rgb(110, 3, 117)",
+        lightGray: "rgb(241, 238, 238)",
         red: "rgb(255, 15, 15)",
       }
     },

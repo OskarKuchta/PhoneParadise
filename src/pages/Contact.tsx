@@ -1,5 +1,5 @@
 import { FacebookIcon, MailIcon, PhoneContact } from "../assets/icons";
-import Footertext from "../components/Footer/Footertext";
+import Footertext from "../components/Footer/DesktopFooter";
 import { Link } from "react-router-dom";
 
 const Contact = () => {

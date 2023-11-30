@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { PhoneCard, Products } from "../../Types/Types";
+import { PhoneCard, Products } from "../../Types";
 import { addItem } from "../../features/CartSlice";
 import { FC, useEffect, useState } from "react";
+import { usePhoneContext } from "../../context/PhoneProvider";
 const PhoneCard: FC<PhoneCard> = ({
   value,
   range,
@@ -11,12 +12,13 @@ const PhoneCard: FC<PhoneCard> = ({
   setCurrentPage,
 }) => {
   const [initialRender, setInitialRender] = useState<boolean>(true);
+  const { isPhone } = usePhoneContext();
   useEffect(() => {
     if (initialRender) {
       setInitialRender(false);
       return;
     }
-    window.scrollTo(0, 200);
+    window.scrollTo(0, isPhone ? 400 : 220);
   }, [currentPage]);
   const dispatch = useDispatch();
   const addToCart = (product: Products) => {

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { InitialModal } from "../Types/Types";
+import { InitialModal } from "../Types";
 
 const initialState: InitialModal = {
   isOpen: false,

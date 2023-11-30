@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { Rating } from "@smastrom/react-rating";
-import Footertext from "../Footer/Footertext";
+import Footertext from "../Footer/DesktopFooter";
 import { NavigateFunction, useNavigate } from "react-router";
 import { FirebaseApp, initializeApp } from "firebase/app";
 import {
@@ -16,7 +16,7 @@ import {
   Query,
   QueryDocumentSnapshot,
 } from "firebase/firestore";
-import { FirebaseConfig, RatingData } from "../../Types/Types";
+import { FirebaseConfig, RatingData } from "../../Types";
 import { Unsubscribe } from "redux";
 
 const firebaseConfig: FirebaseConfig = {

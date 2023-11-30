@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import PhoneCard from "../components/Products/PhoneCard.tsx";
-import Footertext from "../components/Footer/Footertext.tsx";
+import Footertext from "../components/Footer/DesktopFooter.tsx";
 import React, { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";

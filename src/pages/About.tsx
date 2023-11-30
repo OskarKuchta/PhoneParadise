@@ -1,4 +1,4 @@
-import Footertext from "../components/Footer/Footertext";
+import Footertext from "../components/Footer/DesktopFooter";
 import icon from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { FC } from "react";

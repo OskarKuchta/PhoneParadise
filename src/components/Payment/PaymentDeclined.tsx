@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { NavigateFunction, useNavigate } from "react-router";
-import Footertext from "../Footer/Footertext";
+import Footertext from "../Footer/DesktopFooter";
 const PaymentDeclined: FC = () => {
   const navigate: NavigateFunction = useNavigate();
   const backToCart = () => {

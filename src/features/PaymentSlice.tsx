@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { InitialPayment } from "../Types/Types";
+import { InitialPayment } from "../Types";
 
 const initialState: InitialPayment = {
   isOpen: false,

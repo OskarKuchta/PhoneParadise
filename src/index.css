@@ -63,6 +63,21 @@ button:disabled {
   cursor: not-allowed;
 }
 
+*::selection {
+  background-color: rgb(240, 195, 241);
+  color: var(--purple);
+}
+::-webkit-scrollbar {
+  width: 11px;
+}
+::-webkit-scrollbar-track {
+  background-color: whitesmoke;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--purple);
+}
+
 @media (min-width: 1600px) {
   html {
     font-size: 22px;

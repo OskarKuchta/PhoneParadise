@@ -14,7 +14,7 @@ import PaymentsEnd from "./pages/PaymentsEnd.tsx";
 import { resetPaymentState } from "./features/PaymentSlice.tsx";
 import Login from "./pages/Login.tsx";
 import Footer from "./components/Footer/MobileFooter.tsx";
-import Footertext from "./components/Footer/DesktopFooter.tsx";
+import DesktopFooter from "./components/Footer/DesktopFooter.tsx";
 import { usePhoneContext } from "./context/PhoneProvider.tsx";
 
 const App = () => {
@@ -43,7 +43,7 @@ const App = () => {
         <Route path="payment-submit" element={<PaymentsEnd />} />
         <Route path="*" element={<BadURL />} />
       </Routes>
-      {isPhone ? <Footer /> : <Footertext />}
+      {isPhone ? <Footer /> : <DesktopFooter />}
     </>
   );
 };

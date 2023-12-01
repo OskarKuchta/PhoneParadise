@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import PhoneCard from "../components/Products/PhoneCard.tsx";
-import Footertext from "../components/Footer/DesktopFooter.tsx";
+import DesktopFooter from "../components/Footer/DesktopFooter.tsx";
 import React, { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -61,7 +61,7 @@ const MainPage = () => {
   } else {
     return (
       <main>
-        <h1>
+        <h1 className="text-purple text-center font-trocchi text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-10 mb-8">
           Welcome to Phone Paradise – Your Ultimate Destination for the Phones.
           Explore a World of Innovation and Style. Shop Now!
         </h1>
@@ -143,7 +143,7 @@ const MainPage = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
-        <Footertext />
+        <DesktopFooter />
       </main>
     );
   }

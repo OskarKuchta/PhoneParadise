@@ -1,4 +1,4 @@
-export type Products = {
+export interface Products {
 
     id: number;
     name: string;
@@ -8,14 +8,14 @@ export type Products = {
     date: Date;
 }
 
-export type InititalFetch = {
+export interface InititalFetch {
     items: unknown;
     status: null | string;
     isLoading: boolean;
     error: null | unknown;
 }
 
-export type CartItems = {
+export interface CartItems {
     id: number;
     name: string;
     image: string;
@@ -23,24 +23,24 @@ export type CartItems = {
     quantity: number;
 }
 
-export type InitialCart = {
+export interface InitialCart {
     cartItems: CartItems[];
     amount: number;
     total: number;
 }
 
-export type InitialModal = {
+export interface InitialModal {
     isOpen: boolean;
 }
 
 
-export type InitialPayment = {
+export interface InitialPayment {
     isOpen: boolean;
     accepted: boolean;
     declined: boolean;
 }
 
-export type PhoneCard = {
+export interface PhoneCard {
     value: string;
     range: [number, number];
     paginationCount: number;
@@ -48,7 +48,7 @@ export type PhoneCard = {
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }
 
-export type FirebaseConfig = {
+export interface FirebaseConfig {
     apiKey: "AIzaSyDxloi2QFu7gcImAbsCz_wqjcQYhAfiPaA"
     authDomain: "phone-paradise.firebaseapp.com",
     projectId: "phone-paradise",
@@ -58,10 +58,16 @@ export type FirebaseConfig = {
     measurementId: "G-9LX4PNP9DC",
 }
 
-export type RatingBody = {
+export interface RatingBody {
     rate?: number;
     timestamp?: Date;
 }
-export type RatingData = RatingBody & {
+export interface RatingData extends RatingBody {
     id: string;
+}
+
+export interface isPhone {
+    windowWidth: number;
+    isPhone: boolean;
+    setIsPhone: React.Dispatch<React.SetStateAction<boolean>>;
 }

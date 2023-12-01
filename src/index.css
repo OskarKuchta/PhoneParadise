@@ -1,8 +1,6 @@
 @import url("./assets/LoadingError.css");
 @import url("./assets/Main.css");
-@import url("./assets/About.css");
 @import url("./assets/Cart.css");
-@import url("./assets/Payments.css");
 @import url("./assets/Modal.css");
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 @import url("@smastrom/react-rating/style.css");
@@ -76,8 +74,39 @@ button:disabled {
   background-color: var(--purple);
 }
 
+.dots span {
+  width: 1px;
+  height: 1px;
+  margin: 0 3px;
+  animation: dot-animation 1s infinite;
+  opacity: 1;
+}
+
+.dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.dots span:nth-child(2) {
+  animation-delay: 0.33s;
+}
+
+.dots span:nth-child(3) {
+  animation-delay: 0.66s;
+}
+
 @media (min-width: 1600px) {
   html {
     font-size: 22px;
+  }
+}
+
+@keyframes dot-animation {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  25%,
+  75% {
+    opacity: 1;
   }
 }

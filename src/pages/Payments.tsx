@@ -28,10 +28,10 @@ const Payments: FC = () => {
   return isOpen ? (
     <PaymentConfirm />
   ) : (
-    <section className="payment-start">
+    <section className="flex flex-col justify-center items-center mx-[10%] text-center">
       <PaymentTop />
-      <div className="payments-start-bottom">
-        <h3>
+      <div className="mb-8">
+        <h3 className="mx-auto mb-8 w-3/4">
           You will be redirected to your bank's website shortly. To proceed,
           click the button below or wait a few seconds{" "}
           <span className="dots">
@@ -41,7 +41,9 @@ const Payments: FC = () => {
           </span>
         </h3>
         <button
-          className="payments-start-button"
+          className="payments-start-button py-2 px-12 border rounded border-purple transition-all 
+          duration-500 hover:bg-purple hover:text-white hover:outline-none hover:scale-105 focus:bg-purple 
+          focus:text-white focus:outline-none focus:scale-105"
           onClick={() => dispatch(openPayment())}
         >
           To payment

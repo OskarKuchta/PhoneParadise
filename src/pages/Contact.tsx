@@ -1,5 +1,5 @@
 import { FacebookIcon, MailIcon, PhoneContact } from "../assets/icons";
-import Footertext from "../components/Footer/DesktopFooter";
+import DesktopFooter from "../components/Footer/DesktopFooter";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
@@ -48,6 +48,7 @@ const Contact = () => {
         </div>
         <div className="flex flex-col w-full items-center my-8">
           <Link
+            target="blank"
             to="https://www.facebook.com/oskar.kuchta.39/"
             className="outline-none focus:outline-none transition-all duration-200  hover:text-contactHover  focus:text-contactHover hover:fill-contactHover focus:fill-contactHover"
           >
@@ -56,6 +57,7 @@ const Contact = () => {
           <h4 className="mt-6 leading-7 text-center md:mx-4 text-xl">
             When you have loose questions about project or someone else{" "}
             <Link
+              target="blank"
               to="https://www.facebook.com/oskar.kuchta.39/"
               className="outline-none focus:outline-none transition-all duration-200 hover:text-contactHover focus:text-contactHover hover:fill-contactHover focus:fill-contactHover"
             >
@@ -64,7 +66,7 @@ const Contact = () => {
           </h4>
         </div>
       </aside>
-      <Footertext />
+      <DesktopFooter />
     </section>
   );
 };

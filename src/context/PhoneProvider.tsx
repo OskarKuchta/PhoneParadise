@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { isPhone } from "../Types";
-
+import { isPhone } from "../Types/Types";
 const PhoneContext = createContext<isPhone | undefined>(undefined);
 
 export const PhoneProvider = ({ children }) => {

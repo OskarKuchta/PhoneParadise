@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { PhoneCard, Products } from "../../Types";
+import { PhoneCard, Products } from "../../Types/Types";
 import { addItem } from "../../features/CartSlice";
 import { FC, useEffect, useState } from "react";
 import { usePhoneContext } from "../../context/PhoneProvider";
@@ -69,9 +69,12 @@ const PhoneCard: FC<PhoneCard> = ({
     <>
       {hasProducts ? (
         <>
-          <section className="phone-container">
+          <section className="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
             {currentProducts.map((product) => (
-              <aside className="phone-card" key={product.id}>
+              <aside
+                className="phone-card bg-[aliceblue] p-[0.7rem] rounded-[0.4rem] flex flex-col justify-center items-center text-cetner"
+                key={product.id}
+              >
                 <h2>{product.name}</h2>
                 <img src={product.image} alt={product.name} />
                 <div>

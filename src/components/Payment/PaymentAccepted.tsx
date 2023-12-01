@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { Rating } from "@smastrom/react-rating";
-import Footertext from "../Footer/DesktopFooter";
+import DesktopFooter from "../Footer/DesktopFooter";
 import { NavigateFunction, useNavigate } from "react-router";
 import { FirebaseApp, initializeApp } from "firebase/app";
 import {
@@ -16,7 +16,7 @@ import {
   Query,
   QueryDocumentSnapshot,
 } from "firebase/firestore";
-import { FirebaseConfig, RatingData } from "../../Types";
+import { FirebaseConfig, RatingData } from "../../Types/Types";
 import { Unsubscribe } from "redux";
 
 const firebaseConfig: FirebaseConfig = {
@@ -34,7 +34,7 @@ const db: Firestore = getFirestore(app);
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();
   const [average, setAverage] = useState<number>(0);
-  const [counter, setCounter] = useState<number>(10);
+  const [counter, setCounter] = useState<number>(15);
   const [rating, setRating] = useState<number>(0);
   const [showText, setShowText] = useState<boolean>(false);
   const [rateLength, setRateLength] = useState<number>(0);
@@ -101,27 +101,37 @@ const PaymentAccepted: FC = () => {
   }, [ratingsCollection]);
 
   return (
-    <section className="payment-accepted">
+    <section className="payment-accepted h-screen mt-12 flex flex-col text-center items-center">
       <h2>
         Thank you for trust. Proof of payment and numer of shipments will be
         send on your e-mail.
       </h2>
-      <h3>We'll be glad if you can leave a rating for shopping experience.</h3>
+      <h3 className="my-8">
+        We'll be glad if you can leave a rating for shopping experience.
+      </h3>
       <Rating
         style={{ maxWidth: 250 }}
         value={rating}
         onChange={showText ? undefined : setRating}
       />
       <div>
-        <button onClick={getRating} disabled={showText ? true : false}>
+        <button
+          onClick={getRating}
+          disabled={showText ? true : false}
+          className="mt-12 py-2 px-8 border-2 rounded border-purple transition-colors duration-500 focus:bg-purple focus:text-white focus:outline-none hover:bg-purple hover:text-white"
+        >
           Send rating
         </button>
-        <button style={{ marginLeft: "0.5rem" }} onClick={() => navigate("/")}>
+        <button
+          style={{ marginLeft: "0.5rem" }}
+          className="mt-12 py-2 px-8 border-2 rounded border-purple transition-colors duration-500 focus:bg-purple focus:text-white focus:outline-none hover:bg-purple hover:text-white"
+          onClick={() => navigate("/")}
+        >
           Back to main page
         </button>
       </div>
       {showText ? (
-        <aside className="rating-thanks">
+        <aside className="mt-4 text-center">
           <i>
             Thank you for rating, have a good day. You will redirected to main
             page for {counter} seconds
@@ -140,7 +150,7 @@ const PaymentAccepted: FC = () => {
           ({rateLength})
         </span>
       </i>
-      <Footertext />
+      <DesktopFooter />
     </section>
   );
 };

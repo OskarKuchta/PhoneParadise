@@ -9,6 +9,9 @@ export default {
       screens: {
         xl: "1600px"
       },
+      fontFamily: {
+        'trocchi': ['Trocchi', 'serif'],
+      },
       colors: {
         purple: "rgb(46, 3, 87)",
         hoverPurple: "rgb(110, 3, 117)",

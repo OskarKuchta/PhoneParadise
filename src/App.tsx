@@ -20,7 +20,7 @@ import { usePhoneContext } from "./context/PhoneProvider.tsx";
 const App = () => {
   const dispatch = useDispatch();
   const location: Location = useLocation();
-  const { cartItems} = useSelector(
+  const { cartItems, isDiscount } = useSelector(
     (store: RootState) => store.cart
   );
   const isPhone = usePhoneContext();
@@ -31,7 +31,8 @@ const App = () => {
   }, [location.pathname, dispatch]);
   useEffect(() => {
     dispatch(getTotal());
-  }, [cartItems]);
+    console.log(isDiscount);
+  }, [cartItems, isDiscount]);
   return (
     <>
       <Navbar />

@@ -29,6 +29,7 @@ export interface InitialCart {
     total: number;
     discount: number;
     isDiscount: boolean;
+    codeName: string;
 }
 
 export interface InitialModal {

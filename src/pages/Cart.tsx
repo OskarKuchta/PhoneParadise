@@ -5,7 +5,7 @@ import { RootState } from "../store";
 import { NavigateFunction, useNavigate } from "react-router";
 import { open } from "../features/ModalSlice";
 import Modal from "../components/Modal";
-import { useState } from 'react';
+import { useState } from "react";
 import { addCode } from "../features/CartSlice";
 
 const Cart = () => {
@@ -13,7 +13,7 @@ const Cart = () => {
   const openModal = () => {
     dispatch(open());
   };
-  let { amount, total, discount, isDiscount } = useSelector(
+  let { amount, total, codeName, isDiscount } = useSelector(
     (store: RootState) => store.cart
   );
   const { isOpen } = useSelector((store: RootState) => store.modal);
@@ -24,13 +24,13 @@ const Cart = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const addDiscount = () => {
     if (inputValue === "winter24") {
-      dispatch(addCode(20));
+      dispatch(addCode({ percentage: 20, codeName: "winter24" }));
     }
     if (inputValue === "phone15") {
-      dispatch(addCode(15));
+      dispatch(addCode({ percentage: 15, codeName: "phone15" }));
     }
     if (inputValue === "paradise10") {
-      dispatch(addCode(10));
+      dispatch(addCode({ percentage: 10, codeName: "paradise10" }));
     }
   };
   if (amount < 1) {
@@ -55,10 +55,20 @@ const Cart = () => {
             </label>
             <input
               id="discount-label"
-              className="block focus:outline-purple my-4"
+              className={`${
+                !isDiscount ? "mb-6" : ""
+              } block focus:outline-purple mt-4`}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              
             />
+            {isDiscount ? (
+              <p className="text-[0.7rem] mb-4">
+                You have already used code:{codeName}
+              </p>
+            ) : (
+              ""
+            )}
             <button
               className="py-2 px-6 border rounded border-purple text-sm transition-all 
           duration-500 hover:bg-purple hover:text-white hover:outline-none hover:scale-105 focus:bg-purple 
@@ -69,7 +79,7 @@ const Cart = () => {
             </button>
           </div>
           <section className="cart-bottom">
-            <h2>Total: ${isDiscount ? discount : total} </h2>
+            <h2>Total: ${isDiscount ? total  : total} </h2>
             <button className="cart-payments" onClick={navigateToPayments}>
               Go to payments
             </button>

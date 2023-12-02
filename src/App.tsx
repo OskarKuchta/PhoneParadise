@@ -20,7 +20,9 @@ import { usePhoneContext } from "./context/PhoneProvider.tsx";
 const App = () => {
   const dispatch = useDispatch();
   const location: Location = useLocation();
-  const { cartItems } = useSelector((store: RootState) => store.cart);
+  const { cartItems} = useSelector(
+    (store: RootState) => store.cart
+  );
   const isPhone = usePhoneContext();
   useEffect(() => {
     if (location.pathname !== "/payment-submit") {

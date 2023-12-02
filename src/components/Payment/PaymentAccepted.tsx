@@ -102,10 +102,7 @@ const PaymentAccepted: FC = () => {
 
   return (
     <section className="payment-accepted h-screen mt-12 flex flex-col text-center items-center">
-      <h2>
-        Thank you for trust. Proof of payment and numer of shipments will be
-        send on your e-mail.
-      </h2>
+      <h2 className="text-xl">Thank you for trust.</h2>
       <h3 className="my-8">
         We'll be glad if you can leave a rating for shopping experience.
       </h3>

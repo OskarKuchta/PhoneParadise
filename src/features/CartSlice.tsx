@@ -7,6 +7,7 @@ export const initialState: InitialCart = {
   total: 0,
   withDiscount: 0,
   discount: 0,
+  percentage: 0,
   isDiscount: false,
   codeName: "",
 };
@@ -65,21 +66,16 @@ const cartSlice = createSlice({
         state.isDiscount = false;
       }
       if (state.isDiscount) {
-        state.withDiscount =
-          state.cartItems.reduce(
-            (acc, item) => acc + item.price * item.quantity,
-            0
-          ) - state.discount;
+        state.withDiscount = state.total - (state.total * state.percentage) / 100;
       }
     },
     addCode: (state, action) => {
-      const { percentage, codeName } = action.payload;
-      state.discount = (state.total * percentage) / 100;
+      state.percentage = action.payload.percentage;
+      state.discount = (state.total * state.percentage) / 100;
       state.isDiscount = true;
-      state.codeName = codeName;
+      state.codeName = action.payload.codeName;
       state.total -= Number(state.discount.toFixed(2));
     },
-
     removeAllProducts: (state) => {
       state.cartItems = [];
       state.amount = 0;

@@ -78,7 +78,16 @@ const Cart = () => {
             </button>
           </div>
           <section className="cart-bottom">
-            <h2>Total: ${isDiscount ? withDiscount : total} </h2>
+            <h2>
+              Total: $
+              {isDiscount ? (
+                <p>
+                  <s className="strike">{total}</s> {withDiscount}
+                </p>
+              ) : (
+                total
+              )}{" "}
+            </h2>
             <button className="cart-payments" onClick={navigateToPayments}>
               Go to payments
             </button>

@@ -29,6 +29,7 @@ export interface InitialCart {
     total: number;
     discount: number;
     withDiscount: number;
+    percentage: number;
     isDiscount: boolean;
     codeName: string;
 }

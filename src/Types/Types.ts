@@ -28,6 +28,7 @@ export interface InitialCart {
     amount: number;
     total: number;
     discount: number;
+    withDiscount: number;
     isDiscount: boolean;
     codeName: string;
 }

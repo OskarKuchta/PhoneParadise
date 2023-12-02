@@ -13,7 +13,7 @@ const Cart = () => {
   const openModal = () => {
     dispatch(open());
   };
-  let { amount, total, codeName, isDiscount } = useSelector(
+  let { amount, total, withDiscount, codeName, isDiscount } = useSelector(
     (store: RootState) => store.cart
   );
   const { isOpen } = useSelector((store: RootState) => store.modal);
@@ -60,7 +60,6 @@ const Cart = () => {
               } block focus:outline-purple mt-4`}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              
             />
             {isDiscount ? (
               <p className="text-[0.7rem] mb-4">
@@ -79,7 +78,7 @@ const Cart = () => {
             </button>
           </div>
           <section className="cart-bottom">
-            <h2>Total: ${isDiscount ? total  : total} </h2>
+            <h2>Total: ${isDiscount ? withDiscount : total} </h2>
             <button className="cart-payments" onClick={navigateToPayments}>
               Go to payments
             </button>

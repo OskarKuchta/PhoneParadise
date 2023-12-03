@@ -5,7 +5,7 @@ import { RootState } from "../../store";
 import { AnyAction, Dispatch } from "redux";
 
 const Discount = () => {
-  const dispatch:Dispatch<AnyAction> = useDispatch();
+  const dispatch: Dispatch<AnyAction> = useDispatch();
   const [inputValue, setInputValue] = useState<string>("");
   let { codeName, isDiscount } = useSelector((store: RootState) => store.cart);
   const addDiscount = () => {
@@ -30,7 +30,7 @@ const Discount = () => {
       </h2>
       <label className="block" htmlFor="discount-label">
         Do you have a discount code?{" "}
-        <span className="text-[0.8rem] ml-2">
+        <span className="text-[0.8rem] ml-2 block md:inline">
           (winter24, paradise10, phone15)
         </span>
       </label>

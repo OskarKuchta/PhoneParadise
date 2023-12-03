@@ -39,10 +39,10 @@ const Cart = () => {
               {isDiscount ? (
                 <p>
                   <s className="mr-2">${total}</s> $
-                  {withDiscount.toFixed(2).replace(/\.00$/, "")}
+                  {withDiscount?.toFixed(2).replace(/\.00$/, "")}
                 </p>
               ) : (
-                total
+                ` $${total}`
               )}
               {isDiscount ? (
                 <span className="text-[0.8rem]">

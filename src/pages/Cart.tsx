@@ -33,24 +33,39 @@ const Cart = () => {
         <>
           <CartProducts />
           <Discount />
-          <section className="cart-bottom">
-            <h2 className="text-center">
+          <section className="cart-bottom flex flex-col md:flex-row justify-center md:justify-around items-center mb-12 md:mb-16">
+            <h2 className="text-center mb-8 md:mb-0">
               Total:
               {isDiscount ? (
                 <p>
-                  <s className="mr-2">${total}</s> ${withDiscount}
+                  <s className="mr-2">${total}</s> $
+                  {withDiscount.toFixed(2).replace(/\.00$/, "")}
                 </p>
               ) : (
                 total
               )}
-              <span className="text-[0.8rem]">
-                (${Number(total - withDiscount).toFixed(2)}) save
-              </span>
+              {isDiscount ? (
+                <span className="text-[0.8rem]">
+                  ($
+                  {Number(total - withDiscount)
+                    .toFixed(2)
+                    .replace(/\.00$/, "")}
+                  ) save
+                </span>
+              ) : (
+                ""
+              )}
             </h2>
-            <button className="cart-payments" onClick={navigateToPayments}>
+            <button
+              className="button-withArrow py-[0.7rem] px-12 mb-8 md:mb-0"
+              onClick={navigateToPayments}
+            >
               Go to payments
             </button>
-            <button onClick={openModal} className="cart-remove">
+            <button
+              onClick={openModal}
+              className="py-[0.7rem] px-12 border-2 border-red shadow-md rounded-md outline-none transition-all duration-1000 ease-in-out hover:bg-red focus:bg-red hover:text-lightGray focus:text-lightGray mb-8 md:mb-0"
+            >
               Remove cart
             </button>
           </section>

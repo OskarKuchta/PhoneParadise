@@ -22,20 +22,28 @@ const CartProducts: FC = () => {
     dispatch(removeProduct({ productId }));
   };
   return (
-    <section className="cart">
-      <h2 className="cart-header">Your cart:</h2>
+    <section className="flex flex-col items-center m-8">
+      <h2 className="text-center mb-8">Your cart:</h2>
       {[...new Set(cartItems.map((product) => product.id))].map((productId) => {
         const product = cartItems.find((item) => item.id === productId);
         return (
-          <aside className="cart-product" key={product.id}>
-            <div className="product-main">
-              <h2 className="product-name">{product.name}</h2>
-              <img src={product.image} alt={product.name} loading="lazy"/>
+          <aside
+            className=" bg-[aliceblue] w-full flex flex-col justify-center items-center md:flex-row py-12 px-8 border rounded-lg mb-4 "
+            key={product.id}
+          >
+            <div className="flex-[33%]">
+              <h2 className="my-2 w-[150px] text-center">{product.name}</h2>
+              <img
+                className="mb-4 md:mb-0"
+                src={product.image}
+                alt={product.name}
+                loading="lazy"
+              />
             </div>
-            <div className="product-quantity">
-              <div className="quantity-top">
+            <div className="mb-4 md:mb-0 flex-[33%] flex-col justify-center items-center">
+              <div className="flex items-center mb-4">
                 <p>Quantity: {Number(product.quantity)}</p>
-                <div className="quantity-icons">
+                <div className="w-4 flex flex-col ml-2">
                   <button onClick={() => increase(product.id)}>
                     <ChevronUp />
                   </button>
@@ -44,8 +52,13 @@ const CartProducts: FC = () => {
                   </button>
                 </div>
               </div>
-              <div className="quantity-bottom">
-                <button onClick={() => remove(product.id)}>Remove</button>
+              <div>
+                <button
+                  className="p-2 pl-6 pr-6 border-2 border-red shadow-md rounded-md outline-none transition-all duration-1000 ease-in-out hover:bg-red focus:bg-red hover:text-lightGray focus:text-lightGray"
+                  onClick={() => remove(product.id)}
+                >
+                  Remove
+                </button>
               </div>
             </div>
             <p>Cost: ${product.price * product.quantity}</p>

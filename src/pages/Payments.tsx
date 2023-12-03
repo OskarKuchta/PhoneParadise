@@ -41,9 +41,7 @@ const Payments: FC = () => {
           </span>
         </h3>
         <button
-          className="py-2 px-12 border rounded border-purple transition-all 
-          duration-500 hover:bg-purple hover:text-white hover:outline-none hover:scale-105 focus:bg-purple 
-          focus:text-white focus:outline-none focus:scale-105"
+          className="button-withArrow py-[0.7rem] px-12 mb-8 md:mb-0"
           onClick={() => dispatch(openPayment())}
         >
           To payment

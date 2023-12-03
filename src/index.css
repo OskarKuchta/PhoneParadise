@@ -1,6 +1,5 @@
 @import url("./assets/LoadingError.css");
 @import url("./assets/Main.css");
-@import url("./assets/Cart.css");
 @import url("./assets/Modal.css");
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 @import url("@smastrom/react-rating/style.css");
@@ -45,7 +44,6 @@ img {
 }
 
 main,
-.cart,
 .contact {
   margin: 2rem;
 }
@@ -94,6 +92,37 @@ button:disabled {
   animation-delay: 0.66s;
 }
 
+.button-withArrow {
+  border-radius: 4px;
+  outline-color: transparent;
+  border: 2px solid var(--purple);
+  transition: background-color 1s, color 0.5s;
+  position: relative;
+}
+.button-withArrow::after {
+  content: "\21E8";
+  color: var(--white);
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.button-withArrow:hover,
+.button-withArrow:focus {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+.button-withArrow:hover::after,
+.button-withArrow:focus::after {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .button-withArrow::after {
+    top: 0.3rem;
+  }
+}
 @media (min-width: 1600px) {
   html {
     font-size: 22px;

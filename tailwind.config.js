@@ -14,6 +14,7 @@ export default {
       },
       colors: {
         purple: "rgb(46, 3, 87)",
+        red: "rgb(255, 15, 15)",
         hoverPurple: "rgb(110, 3, 117)",
         contactHover: "rgb(174, 1, 255)",
         lightGray: "rgb(241, 238, 238)",

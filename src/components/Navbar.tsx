@@ -65,11 +65,16 @@ const Navbar: FC = () => {
               <CartCount />
             </Link>
           </li>
-          <li className="text-gray-900">
+          <li
+            className={`${
+              location.pathname.includes("/login") ? "bg-hoverPurple" : ""
+            } h-16 flex justify-center items-center
+        `}
+          >
             <Link
               to="/login"
-              className="focus:outline-none text-lightGray px-[1.2rem] 
-        transition-all duration-500 h-16 flex items-center"
+              className="focus:outline-none text-lightGray  px-[0.5rem] rounded-full 
+        transition-all duration-500  flex items-center hover:bg-hoverPurple focus:bg-hoverPurple"
             >
               Login
             </Link>

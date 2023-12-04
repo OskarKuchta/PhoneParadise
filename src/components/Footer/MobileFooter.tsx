@@ -1,4 +1,11 @@
-import { CartIcon, CartCount, HomeIcon, InfoIcon } from "../../assets/icons";
+import {
+  CartIcon,
+  CartCount,
+  HomeIcon,
+  InfoIcon,
+  LoginIcon,
+  ContactIcon,
+} from "../../assets/icons";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
@@ -11,9 +18,19 @@ const Footer: FC = () => {
             <InfoIcon />
           </Link>
         </li>
+        <li>
+          <Link to="/contact" aria-label="Contact with us">
+            <ContactIcon />
+          </Link>
+        </li>
         <li className="mb-[5px]">
           <Link to="/" aria-label="Back to main page">
             <HomeIcon />
+          </Link>
+        </li>
+        <li>
+          <Link to="/login" aria-label="Login to account">
+            <LoginIcon />
           </Link>
         </li>
         <li>

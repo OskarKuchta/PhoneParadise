@@ -37,7 +37,7 @@ const About: FC = () => {
               <Link
                 to="/contact"
                 aria-label="Contact with us"
-                className="text-[rgb(4, 4, 250)]"
+                className="text-blue-500"
               >
                 customer support
               </Link>{" "}

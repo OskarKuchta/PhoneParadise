@@ -23,7 +23,7 @@ const CartProducts: FC = () => {
   };
   return (
     <section className="flex flex-col items-center m-8">
-      <h2 className="text-center mb-8">Your cart:</h2>
+      <h2 className="text-center text-2xl mb-8">Your cart:</h2>
       {[...new Set(cartItems.map((product) => product.id))].map((productId) => {
         const product = cartItems.find((item) => item.id === productId);
         return (

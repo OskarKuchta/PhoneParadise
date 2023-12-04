@@ -1,15 +1,34 @@
 import { FacebookIcon, MailIcon, PhoneContact } from "../assets/icons";
 import DesktopFooter from "../components/Footer/DesktopFooter";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 
 const Contact = () => {
+  const createAnimationObject = (y: number) => {
+    return {
+      hidden: { opacity: 0, y: y },
+      visible: { opacity: 1, y: 0 },
+    };
+  };
+  const ref = useRef(null);
+  const fadeInAnimation = createAnimationObject(-40);
   const emailAddress: string = "oskarkuchta5@gmail.com";
   const subject: string = "Ocena i uwagi na temat projektu";
   return (
-    <section className="flex flex-col items-center my-[5vh]">
+    <section ref={ref} className="flex flex-col items-center my-[5vh]">
       <h2 className="mb-12 text-3xl">Contact us:</h2>
-      <aside className="contact-options w-4/5 flex justify-between flex-col md:flex-row">
-        <div className="flex flex-col w-full items-center my-8">
+      <aside className="w-4/5 flex justify-between flex-col md:flex-row">
+        <motion.div
+          variants={fadeInAnimation}
+          initial="hidden"
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.65, delay: 1 },
+          }}
+          className="flex flex-col w-full items-center my-8"
+        >
           <Link
             to="tel:+48123456789"
             className="outline-none focus:outline-none transition-all duration-200  hover:text-contactHover focus:text-contactHover hover:fill-contactHover focus:fill-contactHover"
@@ -26,8 +45,17 @@ const Contact = () => {
             </Link>
             .
           </h4>
-        </div>
-        <div className="flex flex-col w-full items-center my-8">
+        </motion.div>
+        <motion.div
+          variants={fadeInAnimation}
+          initial="hidden"
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.65, delay: 2 },
+          }}
+          className="flex flex-col w-full items-center my-8"
+        >
           <Link
             to={`mailto:${emailAddress}?subject=${encodeURIComponent(subject)}`}
             className="outline-none focus:outline-none transition-all duration-200 hover:text-contactHover  focus:text-contactHover hover:fill-contactHover focus:fill-contactHover"
@@ -45,8 +73,17 @@ const Contact = () => {
               oskarkuchta5@gmail.com
             </Link>
           </h4>
-        </div>
-        <div className="flex flex-col w-full items-center my-8">
+        </motion.div>
+        <motion.div
+          variants={fadeInAnimation}
+          initial="hidden"
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.65, delay: 3 },
+          }}
+          className="flex flex-col w-full items-center my-8"
+        >
           <Link
             target="blank"
             to="https://www.facebook.com/oskar.kuchta.39/"
@@ -64,7 +101,7 @@ const Contact = () => {
               click here
             </Link>
           </h4>
-        </div>
+        </motion.div>
       </aside>
       <DesktopFooter />
     </section>

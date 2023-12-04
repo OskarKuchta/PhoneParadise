@@ -1,5 +1,4 @@
 @import url("./assets/LoadingError.css");
-@import url("./assets/Main.css");
 @import url("./assets/Modal.css");
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 @import url("@smastrom/react-rating/style.css");
@@ -41,11 +40,6 @@ button {
 img {
   width: 150px;
   height: 115px;
-}
-
-main,
-.contact {
-  margin: 2rem;
 }
 
 .rr--has-stroke .rr--on .rr--svg,
@@ -92,6 +86,21 @@ button:disabled {
   animation-delay: 0.66s;
 }
 
+.rc-slider-handle {
+  border: 2px solid var(--purple);
+}
+.rc-slider-handle:hover,
+.rc-slider-handle:focus,
+.rc-slider-handle:active {
+  border: 2px solid var(--purple);
+}
+.filter-input {
+  outline-color: var(--purple);
+}
+.rc-slider-handle-dragging {
+  background-color: var(--purple);
+}
+
 .button-withArrow {
   border-radius: 4px;
   outline-color: transparent;
@@ -118,6 +127,7 @@ button:disabled {
 .button-withArrow:focus::after {
   opacity: 1;
 }
+
 @media (max-width: 768px) {
   .button-withArrow::after {
     top: 0.3rem;

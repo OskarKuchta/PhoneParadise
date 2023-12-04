@@ -7,7 +7,7 @@ const PaymentDeclined: FC = () => {
     navigate("/cart");
   };
   return (
-    <section className="flex flex-col justify-center items-center text-center h-[60vh] w-[80vw] mx-[10%]">
+    <main className="flex flex-col justify-center items-center text-center h-[60vh] w-[80vw] mx-[10%]">
       <h2>Something went wrong with payment. Back to cart and try again.</h2>
       <button
         onClick={backToCart}
@@ -16,7 +16,7 @@ const PaymentDeclined: FC = () => {
         Back to main
       </button>
       <DesktopFooter />
-    </section>
+    </main>
   );
 };
 

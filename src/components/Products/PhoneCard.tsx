@@ -72,21 +72,33 @@ const PhoneCard: FC<PhoneCard> = ({
           <section className="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
             {currentProducts.map((product) => (
               <aside
-                className="phone-card bg-[aliceblue] p-[0.7rem] rounded-[0.4rem] flex flex-col justify-center items-center text-cetner"
+                className="bg-[aliceblue] p-[0.7rem] border rounded-[0.3rem] flex flex-col justify-center items-center text-center"
                 key={product.id}
               >
-                <h2>{product.name}</h2>
-                <img src={product.image} alt={product.name} />
-                <div>
-                  <p>{product.desc}</p>
-                  <p>${product.price}</p>
+                <h2 className="my-[0.3rem]">{product.name}</h2>
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="my-[0.3rem]"
+                />
+                <div className="my-[0.3rem]">
+                  <p className="my-[0.3rem]">{product.desc}</p>
+                  <p className="my-[0.3rem]">${product.price}</p>
                 </div>
-                <button onClick={() => addToCart(product)}>Add to cart</button>
+                <button
+                  className="my-[0.3rem] py-[0.4rem] px-[0.7rem] boder border-transparent 
+                  bg-purple rounded text-lightGray transition-all duration-500 focus:outline-purple hover:scale-110
+                  focus:scale-110"
+                  onClick={() => addToCart(product)}
+                >
+                  Add to cart
+                </button>
               </aside>
             ))}
           </section>
-          <aside className="pagination">
+          <aside className="mb-20 flex justify-center md:mt-8">
             <button
+              className="mx-2 p-[0.2rem] border border-transparent bg-transparent"
               onClick={() => {
                 setCurrentPage((currentPage) => currentPage - 1);
               }}
@@ -104,13 +116,18 @@ const PhoneCard: FC<PhoneCard> = ({
                   onClick={() => {
                     setCurrentPage(index + 1);
                   }}
-                  className={currentPage === index + 1 ? "active" : ""}
+                  className={
+                    currentPage === index + 1
+                      ? "mx-2 py-[0.4rem] px-[0.8rem] rounded-full bg-purple text-lightGray"
+                      : "mx-2 p-[0.2rem] border border-transparent bg-transparent"
+                  }
                 >
                   {index + 1}
                 </button>
               )
             )}
             <button
+              className="mx-2 p-[0.2rem] border border-transparent bg-transparent"
               onClick={() => {
                 setCurrentPage((currentPage) => currentPage + 1);
               }}
@@ -121,7 +138,7 @@ const PhoneCard: FC<PhoneCard> = ({
           </aside>
         </>
       ) : (
-        <h3 className="phone-card-empty">
+        <h3 className="text-purple mt-12 mb-[23rem] w-full text-center">
           There are no products for the given filters. Take different filters.
         </h3>
       )}

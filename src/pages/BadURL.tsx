@@ -16,7 +16,7 @@ const BadURL = () => {
     };
   }, [count, navigate]);
   return (
-    <section className="flex flex-col mx-[10%] text-center items-center mt-[20vh]">
+    <main className="m-8 flex flex-col mx-[10%] text-center items-center mt-[20vh]">
       <h2 className="text-3xl my-[0.7rem]">404</h2>
       <p className="text-lg sm:text-2xl my-[0.7rem] md:w-1/2">
         Your url adress is incorrect, back to main site or you will be
@@ -29,7 +29,7 @@ const BadURL = () => {
       >
         Back to main site
       </Link>
-    </section>
+    </main>
   );
 };
 

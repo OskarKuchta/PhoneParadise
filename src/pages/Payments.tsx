@@ -28,7 +28,7 @@ const Payments: FC = () => {
   return isOpen ? (
     <PaymentConfirm />
   ) : (
-    <section className="flex flex-col justify-center items-center mx-[10%] text-center">
+    <main className="m-8 flex flex-col justify-center items-center mx-[10%] text-center">
       <PaymentTop />
       <div className="mb-8">
         <h3 className="mx-auto mb-8 w-3/4">
@@ -47,7 +47,7 @@ const Payments: FC = () => {
           To payment
         </button>
       </div>
-    </section>
+    </main>
   );
 };
 

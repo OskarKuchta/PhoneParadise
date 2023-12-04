@@ -101,7 +101,7 @@ const PaymentAccepted: FC = () => {
   }, [ratingsCollection]);
 
   return (
-    <section className="payment-accepted h-screen mt-12 flex flex-col text-center items-center">
+    <main className="h-screen mt-12 flex flex-col text-center items-center">
       <h2 className="text-xl">Thank you for trust.</h2>
       <h3 className="my-8">
         We'll be glad if you can leave a rating for shopping experience.
@@ -148,7 +148,7 @@ const PaymentAccepted: FC = () => {
         </span>
       </i>
       <DesktopFooter />
-    </section>
+    </main>
   );
 };
 

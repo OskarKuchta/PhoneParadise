@@ -5,7 +5,7 @@ import { FC } from "react";
 const About: FC = () => {
   return (
     <>
-      <section className="m-8 flex flex-col  items-center md:flex-row md:items-start">
+      <main className="m-8 flex flex-col  items-center md:flex-row md:items-start">
         <div className="w-full md:w-1/2">
           <h2 className="text-purple my-8 text-center md:text-start">
             Why Choose Phone Paradise?
@@ -50,7 +50,7 @@ const About: FC = () => {
             </li>
           </ul>
         </div>
-      </section>
+      </main>
       <FooterDesktop />
     </>
   );

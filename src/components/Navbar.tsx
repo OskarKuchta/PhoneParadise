@@ -7,7 +7,7 @@ const Navbar: FC = () => {
 
   return (
     <header>
-      <nav className="navbar max-w-[100vw] h-16 bg-purple flex justify-between items-center">
+      <nav className="max-w-[100vw] h-16 bg-purple flex justify-between items-center">
         <Link
           to="/"
           aria-label="Phone Paradise"

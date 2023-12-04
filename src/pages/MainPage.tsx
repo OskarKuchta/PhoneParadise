@@ -60,17 +60,17 @@ const MainPage = () => {
     return <main className="without-data">{error.toString()}</main>;
   } else {
     return (
-      <main>
+      <main className="m-8">
         <h1 className="text-purple text-center font-trocchi text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-10 mb-8">
           Welcome to Phone Paradise – Your Ultimate Destination for the Phones.
           Explore a World of Innovation and Style. Shop Now!
         </h1>
-        <section className="sort-container">
-          <aside className="sort-select">
+        <section className="flex flex-col md:flex-row justify-center mb-16">
+          <aside className="flex flex-col items-center md:mr-12">
             <label htmlFor="sortOrder">Sort by:</label>
-
             <select
               id="sortOrder"
+              className="w-40 mt-2 mb-10"
               onChange={(e) => setValue(e.target.value)}
               style={{ outlineColor: "rgb(46, 3, 87)" }}
             >
@@ -81,9 +81,9 @@ const MainPage = () => {
               <option>Screen size</option>
             </select>
           </aside>
-          <aside className="slider">
+          <aside className="flex flex-col items-center mb-8">
             <Slider
-              className="slider-filter"
+              className="mb-8 md:mb-[0.4rem] w-40"
               range
               min={1}
               max={1200}
@@ -94,7 +94,7 @@ const MainPage = () => {
               ariaLabelForHandle="Price range slider"
               ariaLabelledByForHandle="Price range slider"
             />
-            <div className="slider-from">
+            <div className=" mb-[0.7rem] my-[0.2rem] flex">
               <label className="first-price-filter" htmlFor="first-range">
                 Price up:{" "}
               </label>
@@ -109,7 +109,7 @@ const MainPage = () => {
               />
               <span>$</span>
             </div>
-            <div className="slider-to">
+            <div className="mb-[0.7rem] my-[0.2rem] flex">
               <label htmlFor="second-range">Price to: </label>
               <input
                 id="second-range"
@@ -123,7 +123,7 @@ const MainPage = () => {
               <span>$</span>
             </div>
           </aside>
-          <aside className="choose-pagination">
+          <aside className="choose-pagination flex flex-col items-center md:ml-8">
             <label htmlFor="page-pagination">Products on page:</label>
             <select
               id="page-pagination"

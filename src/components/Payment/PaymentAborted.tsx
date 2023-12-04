@@ -6,7 +6,7 @@ const PaymentAborted: FC = () => {
     navigate("/");
   };
   return (
-    <section className="flex flex-col justify-center items-center text-center h-[60vh] w-[80vw] mx-[10%]">
+    <main className="flex flex-col justify-center items-center text-center h-[60vh] w-[80vw] mx-[10%]">
       <h2>Your link is expired. Back to cart and try again.</h2>
       <button
         onClick={backToMain}
@@ -15,7 +15,7 @@ const PaymentAborted: FC = () => {
         {" "}
         Back to main
       </button>
-    </section>
+    </main>
   );
 };
 

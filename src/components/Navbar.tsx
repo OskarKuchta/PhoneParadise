@@ -12,7 +12,7 @@ const Navbar: FC = () => {
           to="/"
           aria-label="Phone Paradise"
           className="md:hover:bg-hoverPurple md:focus:bg-hoverPurple focus:outline-none text-lightGray px-[1.2rem] 
-        transition-all duration-500 h-16 flex items-center"
+          transition-colors duration-500 h-16 flex items-center"
         >
           <TypeAnimation
             sequence={["Phone Paradise"]}
@@ -30,7 +30,7 @@ const Navbar: FC = () => {
             <Link
               to="about"
               className="focus:outline-none list-none hover:bg-hoverPurple focus:bg-hoverPurple text-lightGray px-[1.2rem] 
-            transition-all duration-500 h-16 flex items-center"
+              transition-colors duration-500 h-16 flex items-center"
             >
               Why us?
             </Link>
@@ -44,7 +44,7 @@ const Navbar: FC = () => {
               to="contact"
               aria-label="Contact with us"
               className="focus:outline-none list-none hover:bg-hoverPurple focus:bg-hoverPurple text-lightGray px-[1.2rem] 
-            transition-all duration-500 h-16 flex items-center"
+              transition-colors duration-500 h-16 flex items-center"
             >
               Contact
             </Link>
@@ -59,7 +59,7 @@ const Navbar: FC = () => {
               to="cart"
               aria-label="Go to cart"
               className="focus:outline-none list-none hover:bg-hoverPurple focus:bg-hoverPurple text-lightGray px-[1.2rem] 
-            transition-all duration-500 h-16 flex items-center"
+              transition-colors duration-500 h-16 flex items-center"
             >
               <CartIcon />
               <CartCount />
@@ -68,13 +68,13 @@ const Navbar: FC = () => {
           <li
             className={`${
               location.pathname.includes("/login") ? "bg-hoverPurple" : ""
-            } h-16 flex justify-center items-center
+            } h-16 flex justify-center items-center px-[0.5rem]
         `}
           >
             <Link
               to="/login"
               className="focus:outline-none text-lightGray  px-[0.5rem] rounded-full 
-        transition-all duration-500  flex items-center hover:bg-hoverPurple focus:bg-hoverPurple"
+        transition-colors duration-500  flex items-center hover:bg-hoverPurple focus:bg-hoverPurple"
             >
               Login
             </Link>

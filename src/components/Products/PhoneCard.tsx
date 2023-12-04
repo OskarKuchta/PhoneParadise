@@ -96,7 +96,7 @@ const PhoneCard: FC<PhoneCard> = ({
               </aside>
             ))}
           </section>
-          <aside className="mb-20 flex justify-center md:mt-8">
+          <aside className="mb-20 flex justify-center mt-8">
             <button
               className="mx-2 p-[0.2rem] border border-transparent bg-transparent"
               onClick={() => {

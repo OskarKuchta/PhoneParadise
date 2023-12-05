@@ -76,3 +76,10 @@ export interface isPhone {
     isPhone: boolean;
     setIsPhone: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface UserData {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+}

@@ -1,19 +1,24 @@
 import { useState } from "react";
 import { Link, NavigateFunction, useNavigate } from "react-router-dom";
-import { UserData } from "../Types/Types";
+import { UserData, UserDataError } from "../Types/Types";
 
 const Register = () => {
   const navigate: NavigateFunction = useNavigate();
+
   const [userData, setUserData] = useState<UserData>({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+  const [userDataError, setUserDataError] = useState<UserDataError>({
+    name: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
+  });
   const passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*\d)/;
   const emailRegex: RegExp = /^[A-Za-z0-9]+@[A-Za-z0-9._-]+\.[A-Za-z]{2,}$/;
-
-  console.log(userData);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -21,32 +26,50 @@ const Register = () => {
 
     if (userData.name.length <= 4) {
       validationErrors.push("Name must be longer than 4 characters");
+      setUserDataError((prevErrors) => ({
+        ...prevErrors,
+        name: true,
+      }));
     }
 
     if (!emailRegex.test(userData.email)) {
       validationErrors.push("Invalid email format");
+      setUserDataError((prevErrors) => ({
+        ...prevErrors,
+        email: true,
+      }));
+    }
+
+    if (!passwordRegex.test(userData.password)) {
+      validationErrors.push(
+        "Password must contain at least one uppercase letter and one digit."
+      );
+      setUserDataError((prevErrors) => ({
+        ...prevErrors,
+        password: true,
+      }));
     }
 
     if (userData.password !== userData.confirmPassword) {
       validationErrors.push("Both passwords are different");
-    }
-
-    if (
-      !(
-        passwordRegex.test(userData.password) &&
-        passwordRegex.test(userData.confirmPassword)
-      )
-    ) {
-      validationErrors.push(
-        "Password must contain at least one uppercase letter and one digit."
-      );
+      setUserDataError((prevErrors) => ({
+        ...prevErrors,
+        confirmPassword: true,
+      }));
+      return;
     }
 
     if (validationErrors.length > 0) {
       validationErrors.forEach((error) => console.log(error));
       return;
     }
-
+    setUserDataError((prevErrors) => ({
+      ...prevErrors,
+      name: false,
+      email: false,
+      password: false,
+      confirmPassword: false,
+    }));
     navigate("/login");
   };
   return (
@@ -80,11 +103,11 @@ const Register = () => {
                   required
                   autoComplete="name"
                 />
-                {userData.name.length <= 4 && (
+                {userData.name.length <= 4 && userDataError.name ? (
                   <p className="text-[0.75rem] text-purple mt-1">
                     Name must be longer than 4 characters.
                   </p>
-                )}
+                ) : null}
               </div>
               <div>
                 <label
@@ -108,6 +131,11 @@ const Register = () => {
                   required
                   autoComplete="email"
                 />
+                {!emailRegex.test(userData.email) && userDataError.email ? (
+                  <p className="text-[0.75rem] text-purple mt-1">
+                    Invalid email format.
+                  </p>
+                ) : null}
               </div>
               <div>
                 <label
@@ -130,6 +158,13 @@ const Register = () => {
                   className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
                 />
+                {!passwordRegex.test(userData.password) &&
+                userDataError.password ? (
+                  <p className="text-[0.75rem] text-purple mt-1">
+                    Password must contain at least one uppercase letter and one
+                    digit.
+                  </p>
+                ) : null}
               </div>
               <div>
                 <label
@@ -152,6 +187,13 @@ const Register = () => {
                   className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
                 />
+                {userData.password !== userData.confirmPassword
+                  ? userDataError.confirmPassword && (
+                      <p className="text-[0.75rem] text-purple mt-1">
+                        Both password are different.
+                      </p>
+                    )
+                  : null}
               </div>
               <button
                 type="submit"

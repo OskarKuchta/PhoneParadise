@@ -83,3 +83,10 @@ export interface UserData {
     password: string;
     confirmPassword: string;
 }
+
+export interface UserDataError {
+    name: boolean;
+    email: boolean;
+    password: boolean;
+    confirmPassword: boolean;
+}

@@ -2,7 +2,7 @@ import { FirebaseApp, initializeApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
 import { FirebaseConfig } from "../Types/Types";
 
-const firebaseConfig: FirebaseConfig = {
+export const firebaseConfig: FirebaseConfig = {
   apiKey: "AIzaSyDxloi2QFu7gcImAbsCz_wqjcQYhAfiPaA",
   authDomain: "phone-paradise.firebaseapp.com",
   projectId: "phone-paradise",

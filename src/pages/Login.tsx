@@ -1,10 +1,51 @@
-import { FC } from "react";
-import { Link, NavigateFunction } from "react-router-dom";
+import { FC, useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword, AuthError } from "firebase/auth";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  CollectionReference,
+  DocumentData,
+} from "firebase/firestore";
+import { app, db } from "../assets/FirebaseConfig";
+import { UserData } from "../Types/Types";
+
 const Login: FC = () => {
-  const navigate: NavigateFunction = useNavigate();
-  const loginAuth = () => {
-    navigate("/profile");
+  const navigate = useNavigate();
+  const accountCollection: CollectionReference<DocumentData> = collection(
+    db,
+    "accounts"
+  );
+  const [userData, setUserData] = useState<UserData>({
+    email: "",
+    password: "",
+  });
+
+  const loginAuth = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const auth = getAuth(app);
+
+    try {
+      await signInWithEmailAndPassword(auth, userData.email, userData.password);
+      const querySnapshot = await getDocs(
+        query(accountCollection, where("email", "==", userData.email))
+      );
+      if (!querySnapshot.empty) {
+        console.log("User exists in 'accounts' collection");
+        navigate("/profile");
+      } else {
+        console.log("User does not exist in 'accounts' collection");
+      }
+    } catch (error) {
+      handleAuthError(error);
+    }
+  };
+
+  const handleAuthError = (error: AuthError) => {
+    console.error("Invalid credentials:", error.code, error.message);
   };
   return (
     <main>
@@ -34,6 +75,12 @@ const Login: FC = () => {
                   placeholder="name@company.com"
                   required
                   autoComplete="email"
+                  onChange={(e) =>
+                    setUserData((prevUserData) => ({
+                      ...prevUserData,
+                      email: e.target.value,
+                    }))
+                  }
                 />
               </div>
               <div>
@@ -51,6 +98,12 @@ const Login: FC = () => {
                   className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
                   autoComplete="current-password"
+                  onChange={(e) =>
+                    setUserData((prevUserData) => ({
+                      ...prevUserData,
+                      password: e.target.value,
+                    }))
+                  }
                 />
               </div>
               <div className="flex items-center justify-between">

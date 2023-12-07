@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { Link, NavigateFunction, useNavigate } from "react-router-dom";
+import {
+  collection,
+  addDoc,
+  CollectionReference,
+  DocumentData,
+  getDocs,
+} from "firebase/firestore";
 import { UserData, UserDataError } from "../Types/Types";
-
-const Register = () => {
+import { db } from "../assets/FirebaseConfig";
+const Register: FC = () => {
   const navigate: NavigateFunction = useNavigate();
 
   const [userData, setUserData] = useState<UserData>({
@@ -13,19 +20,74 @@ const Register = () => {
   });
   const [userDataError, setUserDataError] = useState<UserDataError>({
     name: false,
+    nameTaken: false,
+    emailTaken: false,
     email: false,
     password: false,
     confirmPassword: false,
   });
-  const passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*\d)/;
-  const emailRegex: RegExp = /^[A-Za-z0-9]+@[A-Za-z0-9._-]+\.[A-Za-z]{2,}$/;
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const accountCollection: CollectionReference<DocumentData, DocumentData> =
+    collection(db, "accounts");
 
+  const nameRegex: RegExp = /^(?=.*[A-Za-z])[A-Za-z0-9]+$/;
+  const passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*\d)/;
+  const emailRegex: RegExp =
+    /^[A-Za-z0-9]+([._-][A-Za-z0-9]+)*[A-Za-z][A-Za-z0-9]*@[A-Za-z0-9._-]+\.[A-Za-z]{2,}$/;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const querySnapshot = await getDocs(accountCollection);
     const validationErrors: string[] = [];
+
+    querySnapshot.forEach((doc) => {
+      const nameInDoc = doc.data().name;
+      const emailInDoc: string | undefined = doc.data().email;
+
+      if (
+        nameInDoc &&
+        typeof nameInDoc === "string" &&
+        userData.name.includes(nameInDoc)
+      ) {
+        validationErrors.push("Name is already taken");
+        setUserDataError((prevErrors) => ({
+          ...prevErrors,
+          nameTaken: true,
+        }));
+      } else {
+        setUserDataError((prevErrors) => ({
+          ...prevErrors,
+          nameTaken: false,
+        }));
+      }
+
+      if (
+        emailInDoc &&
+        typeof emailInDoc === "string" &&
+        userData.email.includes(emailInDoc)
+      ) {
+        validationErrors.push("Email is already taken");
+        setUserDataError((prevErrors) => ({
+          ...prevErrors,
+          emailTaken: true,
+        }));
+      } else {
+        setUserDataError((prevErrors) => ({
+          ...prevErrors,
+          emailTaken: false,
+        }));
+      }
+    });
 
     if (userData.name.length <= 4) {
       validationErrors.push("Name must be longer than 4 characters");
+      setUserDataError((prevErrors) => ({
+        ...prevErrors,
+        name: true,
+      }));
+    }
+
+    if (!nameRegex.test(userData.name)) {
+      validationErrors.push("Invalid characters in name");
       setUserDataError((prevErrors) => ({
         ...prevErrors,
         name: true,
@@ -42,7 +104,7 @@ const Register = () => {
 
     if (!passwordRegex.test(userData.password)) {
       validationErrors.push(
-        "Password must contain at least one uppercase letter and one digit."
+        "Password must contain at least one uppercase letter and one digit"
       );
       setUserDataError((prevErrors) => ({
         ...prevErrors,
@@ -56,31 +118,44 @@ const Register = () => {
         ...prevErrors,
         confirmPassword: true,
       }));
-      return;
     }
 
     if (validationErrors.length > 0) {
       validationErrors.forEach((error) => console.log(error));
       return;
     }
+
     setUserDataError((prevErrors) => ({
       ...prevErrors,
       name: false,
+      nameTaken: false,
       email: false,
+      emailTaken: false,
       password: false,
       confirmPassword: false,
     }));
-    navigate("/login");
+
+    await addDoc(accountCollection, {
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+    });
+
+    navigate("/register/complete", { state: { fromRegister: true } });
   };
   return (
     <main>
       <div className="flex flex-col items-center mt-[10vh] px-6 mx-auto lg:py-0">
-        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 mb-28">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h2 className="text-xl font-bold leading-tight tracking-tight text-purple md:text-2xl">
               Sign up your account
             </h2>
-            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+            <form
+              className="space-y-4 md:space-y-6"
+              onSubmit={handleSubmit}
+              autoComplete="on"
+            >
               <div>
                 <label
                   htmlFor="name"
@@ -106,6 +181,16 @@ const Register = () => {
                 {userData.name.length <= 4 && userDataError.name ? (
                   <p className="text-[0.75rem] text-purple mt-1">
                     Name must be longer than 4 characters.
+                  </p>
+                ) : null}
+                {!nameRegex?.test(userData.name) && userDataError.name ? (
+                  <p className="text-[0.75rem] text-purple mt-1">
+                    Invalid characters.
+                  </p>
+                ) : null}
+                {userDataError.nameTaken ? (
+                  <p className="text-[0.75rem] text-purple mt-1">
+                    Name is already taken.
                   </p>
                 ) : null}
               </div>
@@ -136,6 +221,11 @@ const Register = () => {
                     Invalid email format.
                   </p>
                 ) : null}
+                {userDataError.emailTaken ? (
+                  <p className="text-[0.75rem] text-purple mt-1">
+                    Email is already taken.
+                  </p>
+                ) : null}
               </div>
               <div>
                 <label
@@ -157,12 +247,18 @@ const Register = () => {
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
+                  autoComplete="current-password"
                 />
                 {!passwordRegex.test(userData.password) &&
                 userDataError.password ? (
                   <p className="text-[0.75rem] text-purple mt-1">
                     Password must contain at least one uppercase letter and one
                     digit.
+                  </p>
+                ) : null}
+                {userData.password.length < 5 && userDataError.password ? (
+                  <p className="text-[0.75rem] text-purple mt-1">
+                    Password is so short.
                   </p>
                 ) : null}
               </div>

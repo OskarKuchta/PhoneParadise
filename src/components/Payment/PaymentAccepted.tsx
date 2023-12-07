@@ -2,34 +2,20 @@ import { FC, useState, useEffect } from "react";
 import { Rating } from "@smastrom/react-rating";
 import DesktopFooter from "../Footer/DesktopFooter";
 import { NavigateFunction, useNavigate } from "react-router";
-import { FirebaseApp, initializeApp } from "firebase/app";
 import {
   collection,
   addDoc,
   serverTimestamp,
   query,
   onSnapshot,
-  getFirestore,
-  Firestore,
   CollectionReference,
   DocumentData,
   Query,
   QueryDocumentSnapshot,
 } from "firebase/firestore";
-import { FirebaseConfig, RatingData } from "../../Types/Types";
+import { db } from "../../assets/FirebaseConfig";
+import { RatingData } from "../../Types/Types";
 import { Unsubscribe } from "redux";
-
-const firebaseConfig: FirebaseConfig = {
-  apiKey: "AIzaSyDxloi2QFu7gcImAbsCz_wqjcQYhAfiPaA",
-  authDomain: "phone-paradise.firebaseapp.com",
-  projectId: "phone-paradise",
-  storageBucket: "phone-paradise.appspot.com",
-  messagingSenderId: "342601028672",
-  appId: "1:342601028672:web:4ca8b36533ed7fe6237ba5",
-  measurementId: "G-9LX4PNP9DC",
-};
-const app: FirebaseApp = initializeApp(firebaseConfig);
-const db: Firestore = getFirestore(app);
 
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();

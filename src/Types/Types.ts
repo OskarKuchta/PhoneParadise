@@ -86,6 +86,8 @@ export interface UserData {
 
 export interface UserDataError {
     name: boolean;
+    nameTaken: boolean;
+    emailTaken: boolean;
     email: boolean;
     password: boolean;
     confirmPassword: boolean;

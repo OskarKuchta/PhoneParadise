@@ -17,6 +17,8 @@ import Footer from "./components/Footer/MobileFooter.tsx";
 import DesktopFooter from "./components/Footer/DesktopFooter.tsx";
 import { usePhoneContext } from "./context/PhoneProvider.tsx";
 import Register from "./pages/Register.tsx";
+import CompleteRegistration from "./pages/CompleteRegistration.tsx";
+import Profile from "./pages/Profile.tsx";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -43,6 +45,8 @@ const App = () => {
         <Route path="cart" element={<Cart />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="register/complete" element={<CompleteRegistration />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="cart/payments" element={<Payments />} />
         <Route path="payment-submit" element={<PaymentsEnd />} />
         <Route path="*" element={<BadURL />} />

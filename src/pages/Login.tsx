@@ -1,7 +1,11 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, NavigateFunction } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Login: FC = () => {
+  const navigate: NavigateFunction = useNavigate();
+  const loginAuth = () => {
+    navigate("/profile");
+  };
   return (
     <main>
       <div className="flex flex-col items-center mt-[10vh] px-6 mx-auto lg:py-0">
@@ -10,7 +14,11 @@ const Login: FC = () => {
             <h2 className="text-xl font-bold leading-tight tracking-tight text-purple md:text-2xl">
               Sign in to your account
             </h2>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form
+              className="space-y-4 md:space-y-6"
+              autoComplete="on"
+              onSubmit={loginAuth}
+            >
               <div>
                 <label
                   htmlFor="email"
@@ -25,6 +33,7 @@ const Login: FC = () => {
                   className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   placeholder="name@company.com"
                   required
+                  autoComplete="email"
                 />
               </div>
               <div>
@@ -41,6 +50,7 @@ const Login: FC = () => {
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
+                  autoComplete="current-password"
                 />
               </div>
               <div className="flex items-center justify-between">

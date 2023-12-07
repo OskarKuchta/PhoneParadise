@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import PaymentAccepted from "../components/Payment/PaymentAccepted";
 import PaymentDeclined from "../components/Payment/PaymentDeclined";
-import PaymentAborted from "../components/Payment/PaymentAborted";
+import Expired from "../components/Expired";
 
 const PaymentsEnd = () => {
   const { accepted, declined } = useSelector(
@@ -13,7 +13,7 @@ const PaymentsEnd = () => {
   ) : declined ? (
     <PaymentDeclined />
   ) : (
-    <PaymentAborted />
+    <Expired />
   );
 };
 

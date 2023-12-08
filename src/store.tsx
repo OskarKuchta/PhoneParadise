@@ -3,6 +3,7 @@ import productsReducer from "./features/Productslice.tsx";
 import { productsFetch } from "./features/Productslice.tsx";
 import CartReducer from "./features/CartSlice.tsx";
 import ModalReducer from "./features/ModalSlice.tsx";
+import LoginReducer from "./features/LoginSlice.tsx";
 import PaymentReducer from "./features/PaymentSlice.tsx";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   cart: CartReducer,
   modal: ModalReducer,
   payment: PaymentReducer,
+  login: LoginReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({

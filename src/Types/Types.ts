@@ -92,3 +92,8 @@ export interface UserDataError {
     password: boolean;
     confirmPassword: boolean;
 }
+
+export interface UserDataChceck {
+    isEmailExist: boolean,
+    isPasswordCorrect: boolean,
+}

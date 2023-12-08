@@ -7,9 +7,16 @@ import {
   ContactIcon,
 } from "../../assets/icons";
 import { FC } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RootState } from "../../store";
 
 const Footer: FC = () => {
+  const storedUserData = useSelector(
+    (state: RootState) => state.login.userData
+  );
+  const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
+
   return (
     <footer className="block md:hidden w-screen fixed bottom-0 h-12 bg-gray-800">
       <ul className="h-full flex justify-between px-8 items-center">
@@ -28,11 +35,19 @@ const Footer: FC = () => {
             <HomeIcon />
           </Link>
         </li>
-        <li>
-          <Link to="/login" aria-label="Login to account">
-            <LoginIcon />
-          </Link>
-        </li>
+        {isLoggedIn ? (
+          <div className="border border-black w-8 h-8 mb-1 rounded-full bg-emerald-500 flex justify-center items-center">
+            <span>{storedUserData.name.slice(0, 1)}</span>
+          </div>
+        ) : (
+          <>
+            <li>
+              <Link to="/login" aria-label="Login to account">
+                <LoginIcon />
+              </Link>
+            </li>
+          </>
+        )}
         <li>
           <Link to="cart" aria-label="Go to cart">
             <CartIcon />

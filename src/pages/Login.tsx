@@ -1,19 +1,21 @@
-import { FC, useState } from "react";
+import { Dispatch, FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword, AuthError } from "firebase/auth";
 import {
   collection,
   getDocs,
-  query,
-  where,
   CollectionReference,
   DocumentData,
 } from "firebase/firestore";
-import { app, db } from "../assets/FirebaseConfig";
-import { UserData } from "../Types/Types";
+import { db } from "../assets/FirebaseConfig";
+import { UserData, UserDataChceck } from "../Types/Types";
+import { useDispatch } from "react-redux";
+import { AnyAction } from "redux";
+import { login } from "../features/LoginSlice";
+
 
 const Login: FC = () => {
+  const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate = useNavigate();
   const accountCollection: CollectionReference<DocumentData> = collection(
     db,
@@ -23,30 +25,48 @@ const Login: FC = () => {
     email: "",
     password: "",
   });
-
+  const [userDataCheck, setUserDataCheck] = useState<UserDataChceck>({
+    isEmailExist: true,
+    isPasswordCorrect: true,
+  });
   const loginAuth = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const auth = getAuth(app);
 
-    try {
-      await signInWithEmailAndPassword(auth, userData.email, userData.password);
-      const querySnapshot = await getDocs(
-        query(accountCollection, where("email", "==", userData.email))
-      );
-      if (!querySnapshot.empty) {
-        console.log("User exists in 'accounts' collection");
-        navigate("/profile");
-      } else {
-        console.log("User does not exist in 'accounts' collection");
+    const querySnapshot = await getDocs(accountCollection);
+
+    for (const doc of querySnapshot.docs) {
+      const emailInDoc: string | undefined = doc.data().email;
+      const passwordInDoc: string | undefined = doc.data().password;
+
+      if (emailInDoc === userData.email) {
+        setUserDataCheck((prevState) => ({
+          ...prevState,
+          isEmailExist: true,
+        }));
+        if (passwordInDoc === userData.password) {
+          dispatch(login(doc.data()));
+          navigate("/profile");
+          setUserDataCheck((prevState) => ({
+            ...prevState,
+            isEmailExist: true,
+            isPasswordCorrect: true,
+          }));
+        } else {
+          setUserDataCheck((prevState) => ({
+            ...prevState,
+            isPasswordCorrect: false,
+          }));
+        }
+        return;
       }
-    } catch (error) {
-      handleAuthError(error);
     }
+    setUserDataCheck((prevState) => ({
+      ...prevState,
+      isPasswordCorrect: true,
+      isEmailExist: false,
+    }));
   };
 
-  const handleAuthError = (error: AuthError) => {
-    console.error("Invalid credentials:", error.code, error.message);
-  };
   return (
     <main>
       <div className="flex flex-col items-center mt-[10vh] px-6 mx-auto lg:py-0">
@@ -82,6 +102,11 @@ const Login: FC = () => {
                     }))
                   }
                 />
+                {userDataCheck.isEmailExist === false ? (
+                  <p className="text-[0.75rem] text-purple mt-1">
+                    Email not exist in database.
+                  </p>
+                ) : null}
               </div>
               <div>
                 <label
@@ -105,6 +130,11 @@ const Login: FC = () => {
                     }))
                   }
                 />
+                {userDataCheck.isPasswordCorrect === false ? (
+                  <p className="text-[0.75rem] text-purple mt-1">
+                    Password is incorrect.
+                  </p>
+                ) : null}
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-start">

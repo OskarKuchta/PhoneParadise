@@ -2,8 +2,15 @@ import { Link, useLocation } from "react-router-dom";
 import { CartCount, CartIcon } from "../assets/icons";
 import { TypeAnimation } from "react-type-animation";
 import { FC } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+
 const Navbar: FC = () => {
   const location = useLocation();
+  const storedUserData = useSelector(
+    (state: RootState) => state.login.userData
+  );
+  const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
 
   return (
     <header>
@@ -21,7 +28,7 @@ const Navbar: FC = () => {
           ></TypeAnimation>
         </Link>
 
-        <ul className="items-center pr-8 hidden md:flex">
+        <ul className="items-center pr-6 hidden md:flex">
           <li
             className={
               location.pathname.includes("/about") ? "bg-hoverPurple" : ""
@@ -67,17 +74,35 @@ const Navbar: FC = () => {
           </li>
           <li
             className={`${
-              location.pathname.includes("/login") ? "bg-hoverPurple" : ""
-            } h-16 flex justify-center items-center px-[0.5rem]
-        `}
+              location.pathname.includes("/login") ||
+              location.pathname.includes("/profile")
+                ? "bg-hoverPurple"
+                : ""
+            }  ${
+              location.pathname.includes("/profile")
+                ? "px-[0.8rem]"
+                : "px-[0.5rem]"
+            } h-16 flex justify-center items-center 
+            `}
           >
-            <Link
-              to="/login"
-              className="focus:outline-none text-lightGray  px-[0.5rem] rounded-full 
-        transition-colors duration-500  flex items-center hover:bg-hoverPurple focus:bg-hoverPurple"
-            >
-              Login
-            </Link>
+            {isLoggedIn ? (
+              <Link
+                to="/profile"
+                className="hover:bg-hoverPurple focus:bg-hoverPurple focus:outline-none w-full h-full flex items-center px-[0.8rem]"
+              >
+                <div className="border border-black w-8 h-8 rounded-full bg-emerald-500 flex justify-center items-center">
+                  <span>{storedUserData.name.slice(0, 1)}</span>
+                </div>
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="focus:outline-none text-lightGray  px-[0.5rem] rounded-full 
+            transition-colors duration-500  flex items-center hover:bg-hoverPurple focus:bg-hoverPurple"
+              >
+                Login
+              </Link>
+            )}
           </li>
         </ul>
       </nav>

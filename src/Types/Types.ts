@@ -82,6 +82,7 @@ export interface UserData {
     email: string;
     password: string;
     confirmPassword?: string;
+    avatarColor?: string;
 }
 
 export interface UserDataError {
@@ -96,4 +97,9 @@ export interface UserDataError {
 export interface UserDataChceck {
     isEmailExist: boolean,
     isPasswordCorrect: boolean,
+}
+export interface LoginState {
+    isLoggedIn: boolean;
+    userData: UserData | null;
+  
 }

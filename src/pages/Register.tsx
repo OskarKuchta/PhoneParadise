@@ -17,6 +17,7 @@ const Register: FC = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    avatarColor: "bg-emerald-500",
   });
   const [userDataError, setUserDataError] = useState<UserDataError>({
     name: false,
@@ -139,6 +140,7 @@ const Register: FC = () => {
       name: userData.name,
       email: userData.email,
       password: userData.password,
+      avatarColor: userData.avatarColor,
     });
 
     navigate("/register/complete", { state: { fromRegister: true } });

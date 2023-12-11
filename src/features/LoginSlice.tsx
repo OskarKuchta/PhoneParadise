@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserData } from "../Types/Types";
-
-interface LoginState {
-  isLoggedIn: boolean;
-  userData: UserData | null;
-}
+import { LoginState } from "../Types/Types";
 
 const initialState: LoginState = {
   isLoggedIn: false,
-  userData: null,
+  userData: {
+    name: "",
+    email: "",
+    password: "",
+    avatarColor: "bg-emerald-500",
+  },
 };
 
 const loginSlice = createSlice({
@@ -19,6 +19,9 @@ const loginSlice = createSlice({
       state.isLoggedIn = true;
       state.userData = action.payload;
     },
+    changeAvatar: (state, action) => {
+      state.userData.avatarColor = action.payload;
+    },
     logout: (state) => {
       state.isLoggedIn = false;
       state.userData = { name: "", email: "", password: "" };
@@ -26,5 +29,5 @@ const loginSlice = createSlice({
   },
 });
 
-export const { login, logout } = loginSlice.actions;
+export const { login, logout, changeAvatar } = loginSlice.actions;
 export default loginSlice.reducer;

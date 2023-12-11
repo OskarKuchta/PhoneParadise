@@ -78,11 +78,7 @@ const Navbar: FC = () => {
               location.pathname.includes("/profile")
                 ? "bg-hoverPurple"
                 : ""
-            }  ${
-              location.pathname.includes("/profile")
-                ? "px-[0.8rem]"
-                : "px-[0.5rem]"
-            } h-16 flex justify-center items-center 
+            }  h-16 flex justify-center items-center 
             `}
           >
             {isLoggedIn ? (

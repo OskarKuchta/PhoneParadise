@@ -4,9 +4,11 @@ import { TypeAnimation } from "react-type-animation";
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import { useAvatarContext } from "../context/AvatarProvider";
 
 const Navbar: FC = () => {
   const location = useLocation();
+  const { actualColor } = useAvatarContext();
   const storedUserData = useSelector(
     (state: RootState) => state.login.userData
   );
@@ -86,7 +88,9 @@ const Navbar: FC = () => {
                 to="/profile"
                 className="hover:bg-hoverPurple focus:bg-hoverPurple focus:outline-none w-full h-full flex items-center px-[0.8rem]"
               >
-                <div className="border border-black w-8 h-8 rounded-full bg-emerald-500 flex justify-center items-center">
+                <div
+                  className={`border border-black w-8 h-8 rounded-full ${actualColor} flex justify-center items-center`}
+                >
                   <span>{storedUserData.name.slice(0, 1)}</span>
                 </div>
               </Link>

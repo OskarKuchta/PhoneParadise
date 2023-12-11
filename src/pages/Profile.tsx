@@ -1,25 +1,42 @@
 import { Dispatch, FC, useState } from "react";
 import { RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../features/LoginSlice";
+import { changeAvatar, logout } from "../features/LoginSlice";
 import { NavigateFunction, useNavigate } from "react-router";
 import { AnyAction } from "redux";
+import { useAvatarContext } from "../context/AvatarProvider";
 
 const Profile: FC = () => {
   const [isColorsPallete, setIsColorsPallete] = useState<boolean>(false);
   const storedUserData = useSelector(
     (state: RootState) => state.login.userData
   );
-  console.log(storedUserData);
   const avatarColor = useSelector(
     (state: RootState) => state.login.userData.avatarColor
   );
+  const { actualColor, setTempColor } = useAvatarContext();
+  const [prevColor, setPrevColor] = useState<string>(avatarColor);
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate: NavigateFunction = useNavigate();
 
   const logoutAccount = () => {
     dispatch(logout());
     navigate("/login");
+  };
+
+  const changeProfileAvatar = (color: string) => {
+    setTempColor(color);
+  };
+
+  const saveColor = () => {
+    dispatch(changeAvatar(actualColor));
+    setPrevColor(actualColor);
+    setIsColorsPallete(false);
+  };
+
+  const revertColor = () => {
+    setTempColor(prevColor);
+    setIsColorsPallete(false);
   };
 
   return (
@@ -29,7 +46,7 @@ const Profile: FC = () => {
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <div className="flex">
               <div
-                className={`border border-black w-16 h-16 rounded-full ${avatarColor} flex justify-center items-center`}
+                className={`border border-black w-16 h-16 rounded-full ${actualColor} flex justify-center items-center`}
               >
                 <span>{storedUserData.name.slice(0, 1)}</span>
               </div>
@@ -43,21 +60,38 @@ const Profile: FC = () => {
             {isColorsPallete ? (
               <div className="flex items-center">
                 <div className="bg-gray-200 w-60 left-[4.5rem] bottom-[0.7rem] rounded-md border border-black grid grid-cols-3 gap-2 place-items-center py-2">
-                  <button className="border border-black w-10 h-10 rounded-full bg-emerald-500 flex justify-center items-center"></button>
-                  <button className="border border-black w-10 h-10 rounded-full bg-pink-500 flex justify-center items-center"></button>
-                  <button className="border border-black w-10 h-10 rounded-full bg-blue-500 flex justify-center items-center"></button>
-                  <button className="border border-black w-10 h-10 rounded-full bg-yellow-500 flex justify-center items-center"></button>
-                  <button className="border border-black w-10 h-10 rounded-full bg-rose-500 flex justify-center items-center"></button>
-                  <button className="border border-black w-10 h-10 rounded-full bg-fuchsia-500 flex justify-center items-center"></button>
+                  <button
+                    className="border border-black w-10 h-10 rounded-full bg-emerald-500 flex justify-center items-center"
+                    onClick={() => changeProfileAvatar("bg-emerald-500")}
+                  ></button>
+                  <button
+                    className="border border-black w-10 h-10 rounded-full bg-pink-500 flex justify-center items-center"
+                    onClick={() => changeProfileAvatar("bg-pink-500")}
+                  ></button>
+                  <button
+                    className="border border-black w-10 h-10 rounded-full bg-blue-500 flex justify-center items-center"
+                    onClick={() => changeProfileAvatar("bg-blue-500")}
+                  ></button>
+                  <button
+                    className="border border-black w-10 h-10 rounded-full bg-yellow-500 flex justify-center items-center"
+                    onClick={() => changeProfileAvatar("bg-yellow-500")}
+                  ></button>
+                  <button
+                    className="border border-black w-10 h-10 rounded-full bg-rose-400 flex justify-center items-center"
+                    onClick={() => changeProfileAvatar("bg-rose-400")}
+                  ></button>
+                  <button
+                    className="border border-black w-10 h-10 rounded-full bg-fuchsia-400 flex justify-center items-center"
+                    onClick={() => changeProfileAvatar("bg-fuchsia-400")}
+                  ></button>
                 </div>
                 <div className="flex flex-col mt-12">
-                  <button
-                    className="ml-4 mb-4"
-                    onClick={() => setIsColorsPallete(false)}
-                  >
+                  <button className="ml-4 mb-4" onClick={() => revertColor()}>
                     Back
                   </button>
-                  <button className="ml-4">Save</button>
+                  <button className="ml-4" onClick={() => saveColor()}>
+                    Save
+                  </button>
                 </div>
               </div>
             ) : null}

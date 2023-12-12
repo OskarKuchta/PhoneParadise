@@ -1,5 +1,5 @@
-import { Dispatch, FC, useState } from "react";
-import { Link } from "react-router-dom";
+import { Dispatch, FC, useEffect, useState } from "react";
+import { Link, NavigateFunction } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {
   collection,
@@ -9,14 +9,21 @@ import {
 } from "firebase/firestore";
 import { db } from "../assets/FirebaseConfig";
 import { UserData, UserDataChceck } from "../Types/Types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AnyAction } from "redux";
 import { login } from "../features/LoginSlice";
-
+import { RootState } from "../store";
 
 const Login: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
+  const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/profile");
+    }
+  }, [isLoggedIn, navigate]);
+  
   const accountCollection: CollectionReference<DocumentData> = collection(
     db,
     "accounts"

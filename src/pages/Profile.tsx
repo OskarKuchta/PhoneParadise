@@ -4,15 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeAvatar, logout } from "../features/LoginSlice";
 import { NavigateFunction, useNavigate } from "react-router";
 import { AnyAction } from "redux";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { db } from "../assets/FirebaseConfig";
 
 const Profile: FC = () => {
   const [isColorsPallete, setIsColorsPallete] = useState<boolean>(false);
-  const storedUserData = useSelector(
-    (state: RootState) => state.login.userData
-  );
-  const avatarColor = useSelector(
-    (state: RootState) => state.login.userData.avatarColor
-  );
+  const {
+    userData: storedUserData,
+    userData: { avatarColor },
+  } = useSelector((state: RootState) => state.login);
   const [actualColor, setActualColor] = useState<string>(avatarColor);
   const [prevColor, setPrevColor] = useState<string>(avatarColor);
   const dispatch: Dispatch<AnyAction> = useDispatch();
@@ -27,10 +34,27 @@ const Profile: FC = () => {
     setActualColor(color);
   };
 
-  const saveColor = () => {
-    dispatch(changeAvatar(actualColor));
-    setPrevColor(actualColor);
-    setIsColorsPallete(false);
+  const saveColor = async () => {
+    try {
+      const accountsQuery = query(
+        collection(db, "accounts"),
+        where("id", "==", storedUserData.id)
+      );
+
+      const querySnapshot = await getDocs(accountsQuery);
+
+      if (!querySnapshot.empty) {
+        const userDocRef = doc(db, "accounts", querySnapshot.docs[0].id);
+        await updateDoc(userDocRef, { avatarColor: actualColor });
+        dispatch(changeAvatar(actualColor));
+        setPrevColor(actualColor);
+        setIsColorsPallete(false);
+      } else {
+        console.log("No matching document found for the given condition.");
+      }
+    } catch (error) {
+      console.error("Error updating avatarColor:", error.message);
+    }
   };
 
   const revertColor = () => {

@@ -78,6 +78,7 @@ export interface isPhone {
 }
 
 export interface UserData {
+    id?: string;
     name?: string;
     email: string;
     password: string;
@@ -101,5 +102,5 @@ export interface UserDataChceck {
 export interface LoginState {
     isLoggedIn: boolean;
     userData: UserData | null;
-  
+
 }

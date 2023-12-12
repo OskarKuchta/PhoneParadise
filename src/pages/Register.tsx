@@ -9,10 +9,12 @@ import {
 } from "firebase/firestore";
 import { UserData, UserDataError } from "../Types/Types";
 import { db } from "../assets/FirebaseConfig";
+import { v4 as uuidv4 } from "uuid";
 const Register: FC = () => {
   const navigate: NavigateFunction = useNavigate();
 
   const [userData, setUserData] = useState<UserData>({
+    id: "",
     name: "",
     email: "",
     password: "",
@@ -137,6 +139,7 @@ const Register: FC = () => {
     }));
 
     await addDoc(accountCollection, {
+      id: uuidv4(),
       name: userData.name,
       email: userData.email,
       password: userData.password,

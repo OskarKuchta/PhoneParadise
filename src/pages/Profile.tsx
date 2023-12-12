@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeAvatar, logout } from "../features/LoginSlice";
 import { NavigateFunction, useNavigate } from "react-router";
 import { AnyAction } from "redux";
-import { useAvatarContext } from "../context/AvatarProvider";
 
 const Profile: FC = () => {
   const [isColorsPallete, setIsColorsPallete] = useState<boolean>(false);
@@ -14,7 +13,7 @@ const Profile: FC = () => {
   const avatarColor = useSelector(
     (state: RootState) => state.login.userData.avatarColor
   );
-  const { actualColor, setTempColor } = useAvatarContext();
+  const [actualColor, setActualColor] = useState<string>(avatarColor);
   const [prevColor, setPrevColor] = useState<string>(avatarColor);
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate: NavigateFunction = useNavigate();
@@ -25,7 +24,7 @@ const Profile: FC = () => {
   };
 
   const changeProfileAvatar = (color: string) => {
-    setTempColor(color);
+    setActualColor(color);
   };
 
   const saveColor = () => {
@@ -35,7 +34,7 @@ const Profile: FC = () => {
   };
 
   const revertColor = () => {
-    setTempColor(prevColor);
+    setActualColor(prevColor);
     setIsColorsPallete(false);
   };
 

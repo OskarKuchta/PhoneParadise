@@ -4,16 +4,17 @@ import { TypeAnimation } from "react-type-animation";
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import { useAvatarContext } from "../context/AvatarProvider";
 
 const Navbar: FC = () => {
   const location = useLocation();
-  const { actualColor } = useAvatarContext();
+
   const storedUserData = useSelector(
     (state: RootState) => state.login.userData
   );
   const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
-
+  const actualColor = useSelector(
+    (state: RootState) => state.login.userData.avatarColor
+  );
   return (
     <header>
       <nav className="max-w-[100vw] h-16 bg-purple flex justify-between items-center">

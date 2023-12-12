@@ -7,7 +7,7 @@ const initialState: LoginState = {
     name: "",
     email: "",
     password: "",
-    avatarColor: "bg-emerald-500",
+    avatarColor: "",
   },
 };
 

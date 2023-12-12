@@ -8,15 +8,17 @@ import {
 } from "../../assets/icons";
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { RootState } from "../../store";
-import { useAvatarContext } from "../../context/AvatarProvider";
 
 const Footer: FC = () => {
   const storedUserData = useSelector(
     (state: RootState) => state.login.userData
   );
-  const { actualColor } = useAvatarContext();
+  const avatarColor = useSelector(
+    (state: RootState) => state.login.userData.avatarColor
+  );
+  const navigate: NavigateFunction = useNavigate();
   const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
 
   return (
@@ -38,11 +40,12 @@ const Footer: FC = () => {
           </Link>
         </li>
         {isLoggedIn ? (
-          <div
-            className={`border border-black w-8 h-8 mb-1 rounded-full ${actualColor} flex justify-center items-center`}
+          <button
+            className={`border border-black w-8 h-8 mb-1 rounded-full ${avatarColor} flex justify-center items-center`}
+            onClick={() => navigate("/profile")}
           >
             <span>{storedUserData.name.slice(0, 1)}</span>
-          </div>
+          </button>
         ) : (
           <>
             <li>

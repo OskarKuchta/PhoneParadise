@@ -12,11 +12,11 @@ import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { RootState } from "../../store";
 
 const Footer: FC = () => {
-  const storedUserData = useSelector(
-    (state: RootState) => state.login.userData
-  );
   const avatarColor = useSelector(
-    (state: RootState) => state.login.userData.avatarColor
+    (state: RootState) => state.profile.userData.avatarColor
+  );
+  const userName = useSelector(
+    (state: RootState) => state.profile.userData.name
   );
   const navigate: NavigateFunction = useNavigate();
   const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
@@ -44,7 +44,7 @@ const Footer: FC = () => {
             className={`border border-black w-8 h-8 mb-1 rounded-full ${avatarColor} flex justify-center items-center`}
             onClick={() => navigate("/profile")}
           >
-            <span>{storedUserData.name.slice(0, 1)}</span>
+            <span>{userName.slice(0, 1)}</span>
           </button>
         ) : (
           <>

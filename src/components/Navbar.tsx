@@ -6,12 +6,12 @@ import { RootState } from "../store";
 
 const Navbar: FC = () => {
   const location: Location = useLocation();
-  const storedUserData = useSelector(
-    (state: RootState) => state.login.userData
-  );
   const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
   const actualColor = useSelector(
-    (state: RootState) => state.login.userData.avatarColor
+    (state: RootState) => state.profile.userData.avatarColor
+  );
+  const userName = useSelector(
+    (state: RootState) => state.profile.userData.name
   );
   return (
     <header>
@@ -86,7 +86,7 @@ const Navbar: FC = () => {
                 <div
                   className={`border border-black w-8 h-8 rounded-full ${actualColor} flex justify-center items-center`}
                 >
-                  <span>{storedUserData.name.slice(0, 1)}</span>
+                  <span>{userName.slice(0, 1)}</span>
                 </div>
               </Link>
             ) : (

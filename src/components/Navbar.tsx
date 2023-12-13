@@ -1,13 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, Location, useLocation } from "react-router-dom";
 import { CartCount, CartIcon } from "../assets/icons";
-import { TypeAnimation } from "react-type-animation";
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 
 const Navbar: FC = () => {
-  const location = useLocation();
-
+  const location: Location = useLocation();
   const storedUserData = useSelector(
     (state: RootState) => state.login.userData
   );
@@ -24,11 +22,7 @@ const Navbar: FC = () => {
           className="md:hover:bg-hoverPurple md:focus:bg-hoverPurple focus:outline-none text-lightGray px-[1.2rem] 
           transition-colors duration-500 h-16 flex items-center"
         >
-          <TypeAnimation
-            sequence={["Phone Paradise"]}
-            cursor={false}
-            speed={5}
-          ></TypeAnimation>
+          Phone Paradise
         </Link>
 
         <ul className="items-center pr-6 hidden md:flex">

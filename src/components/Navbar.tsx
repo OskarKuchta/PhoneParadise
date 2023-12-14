@@ -6,11 +6,15 @@ import { RootState } from "../store";
 
 const Navbar: FC = () => {
   const location: Location = useLocation();
-  const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
-  const actualColor = useSelector(
-    (state: RootState) => state.login.userData.avatarColor
+  const isLoggedIn = useSelector(
+    (state: RootState) => state.account.isLoggedIn
   );
-  const userName = useSelector((state: RootState) => state.login.userData.name);
+  const actualColor = useSelector(
+    (state: RootState) => state.account.userData.avatarColor
+  );
+  const userName = useSelector(
+    (state: RootState) => state.account.userData.name
+  );
   return (
     <header>
       <nav className="max-w-[100vw] h-16 bg-purple flex justify-between items-center">

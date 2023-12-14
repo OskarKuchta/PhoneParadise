@@ -11,19 +11,19 @@ import { db } from "../assets/FirebaseConfig";
 import { UserData, UserDataChceck } from "../Types/Types";
 import { useDispatch, useSelector } from "react-redux";
 import { AnyAction } from "redux";
-import { login } from "../features/LoginSlice";
+import { login } from "../features/AccountSlice";
 import { RootState } from "../store";
 
 const Login: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate: NavigateFunction = useNavigate();
-  const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
+  const isLoggedIn = useSelector((state: RootState) => state.account.isLoggedIn);
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/profile");
     }
   }, [isLoggedIn, navigate]);
-  
+
   const accountCollection: CollectionReference<DocumentData> = collection(
     db,
     "accounts"

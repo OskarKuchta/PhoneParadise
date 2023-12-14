@@ -1,8 +1,8 @@
 import { Dispatch, FC, useState } from "react";
 import { RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../features/LoginSlice";
-import { changeAvatar, changeName } from "../features/LoginSlice";
+import { logout } from "../features/AccountSlice";
+import { changeAvatar, changeName } from "../features/AccountSlice";
 import { NavigateFunction, useNavigate } from "react-router";
 import { AnyAction } from "redux";
 import {
@@ -18,18 +18,25 @@ import { db } from "../assets/FirebaseConfig";
 const Profile: FC = () => {
   const [isColorsPallete, setIsColorsPallete] = useState<boolean>(false);
   const storedUserData = useSelector(
-    (state: RootState) => state.login.userData
+    (state: RootState) => state.account.userData
   );
   const avatarColor = useSelector(
-    (state: RootState) => state.login.userData.avatarColor
+    (state: RootState) => state.account.userData.avatarColor
   );
-  const userName = useSelector((state: RootState) => state.login.userData.name);
+  const userName = useSelector(
+    (state: RootState) => state.account.userData.name
+  );
   const [actualColor, setActualColor] = useState<string>(avatarColor);
   const [prevColor, setPrevColor] = useState<string>(avatarColor);
   const [isButtonName, setIsButtonName] = useState<boolean>(false);
-  const [isNameTaken, setIsNameTaken] = useState<boolean>(false);
+  const [nameError, setNameError] = useState({
+    nameIsTaken: false,
+    nameIsShort: false,
+    nameIsInvalid: false,
+  });
   const [changedName, setChangedName] = useState<string>("");
   const dispatch: Dispatch<AnyAction> = useDispatch();
+  const nameRegex: RegExp = /^[A-Za-z][A-Za-z0-9]*$/;
   const navigate: NavigateFunction = useNavigate();
 
   const logoutAccount = () => {
@@ -44,14 +51,29 @@ const Profile: FC = () => {
         where("id", "==", storedUserData.id)
       );
       const accountCollection = collection(db, "accounts");
-
       const userList = await getDocs(accountCollection);
-
       const isNameTaken = userList.docs.some((doc) => {
         const nameInDoc = doc.data().name;
-
         if (changedName === nameInDoc) {
-          setIsNameTaken(true);
+          setNameError({
+            nameIsTaken: true,
+            nameIsShort: false,
+            nameIsInvalid: false,
+          });
+          return true;
+        } else if (changedName.length < 4) {
+          setNameError({
+            nameIsTaken: false,
+            nameIsShort: true,
+            nameIsInvalid: false,
+          });
+          return true;
+        } else if (!nameRegex.test(changedName)) {
+          setNameError({
+            nameIsTaken: false,
+            nameIsShort: false,
+            nameIsInvalid: true,
+          });
           return true;
         }
         return false;
@@ -62,7 +84,11 @@ const Profile: FC = () => {
         const userDocRef = doc(db, "accounts", querySnapshot.docs[0].id);
         await updateDoc(userDocRef, { name: changedName });
         dispatch(changeName(changedName));
-        setIsNameTaken(false);
+        setNameError({
+          nameIsTaken: false,
+          nameIsShort: false,
+          nameIsInvalid: false,
+        });
         setIsButtonName(false);
       }
     } catch (error) {
@@ -95,7 +121,11 @@ const Profile: FC = () => {
   const revertName = () => {
     setChangedName("");
     setIsButtonName(false);
-    setIsNameTaken(false);
+    setNameError({
+      nameIsTaken: false,
+      nameIsShort: false,
+      nameIsInvalid: false,
+    });
   };
   const revertColor = () => {
     setActualColor(prevColor);
@@ -115,11 +145,20 @@ const Profile: FC = () => {
                 <div className="flex">
                   {isButtonName ? (
                     <div className="flex flex-col md:flex-row items-start relative pb-2">
-                      {isNameTaken ? (
+                      {nameError.nameIsTaken ? (
                         <span className="absolute bottom-12 md:bottom-2 left-28 text-[12px] text-purple">
                           Name is taken
                         </span>
+                      ) : nameError.nameIsShort ? (
+                        <span className="absolute bottom-12 md:bottom-2 left-28 text-[12px] text-purple">
+                          Name is too short
+                        </span>
+                      ) : nameError.nameIsInvalid ? (
+                        <span className="absolute bottom-12 md:bottom-2 left-28 text-[12px] text-purple">
+                          Name is invalid
+                        </span>
                       ) : null}
+
                       <div className="mb-6">
                         <label htmlFor="change-name" className="mr-2 text-sm">
                           Type name

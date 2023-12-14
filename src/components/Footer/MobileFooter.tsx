@@ -13,10 +13,10 @@ import { RootState } from "../../store";
 
 const Footer: FC = () => {
   const avatarColor = useSelector(
-    (state: RootState) => state.login.userData.avatarColor
+    (state: RootState) => state.account.userData.avatarColor
   );
-  const userName = useSelector((state: RootState) => state.login.userData.name);
-  const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
+  const userName = useSelector((state: RootState) => state.account.userData.name);
+  const isLoggedIn = useSelector((state: RootState) => state.account.isLoggedIn);
   const navigate: NavigateFunction = useNavigate();
 
   return (

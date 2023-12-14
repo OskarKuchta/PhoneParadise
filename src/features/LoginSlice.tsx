@@ -23,8 +23,14 @@ const loginSlice = createSlice({
       state.isLoggedIn = false;
       state.userData = { name: "", email: "", password: "" };
     },
+    changeAvatar: (state, action) => {
+      state.userData.avatarColor = action.payload;
+    },
+    changeName: (state, action) => {
+      state.userData.name = action.payload;
+    },
   },
 });
 
-export const { login, logout } = loginSlice.actions;
+export const { login, logout, changeName, changeAvatar } = loginSlice.actions;
 export default loginSlice.reducer;

@@ -13,13 +13,11 @@ import { RootState } from "../../store";
 
 const Footer: FC = () => {
   const avatarColor = useSelector(
-    (state: RootState) => state.profile.userData.avatarColor
+    (state: RootState) => state.login.userData.avatarColor
   );
-  const userName = useSelector(
-    (state: RootState) => state.profile.userData.name
-  );
-  const navigate: NavigateFunction = useNavigate();
+  const userName = useSelector((state: RootState) => state.login.userData.name);
   const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
+  const navigate: NavigateFunction = useNavigate();
 
   return (
     <footer className="block md:hidden w-screen fixed bottom-0 h-12 bg-gray-800">
@@ -44,7 +42,7 @@ const Footer: FC = () => {
             className={`border border-black w-8 h-8 mb-1 rounded-full ${avatarColor} flex justify-center items-center`}
             onClick={() => navigate("/profile")}
           >
-            <span>{userName.slice(0, 1)}</span>
+            <span>{userName.slice(0, 1).toUpperCase()}</span>
           </button>
         ) : (
           <>

@@ -2,7 +2,7 @@ import { Dispatch, FC, useState } from "react";
 import { RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/LoginSlice";
-import { changeAvatar, changeName } from "../features/ProfileSlice";
+import { changeAvatar, changeName } from "../features/LoginSlice";
 import { NavigateFunction, useNavigate } from "react-router";
 import { AnyAction } from "redux";
 import {
@@ -21,15 +21,13 @@ const Profile: FC = () => {
     (state: RootState) => state.login.userData
   );
   const avatarColor = useSelector(
-    (state: RootState) => state.profile.userData.avatarColor
+    (state: RootState) => state.login.userData.avatarColor
   );
-  const userName = useSelector(
-    (state: RootState) => state.profile.userData.name
-  );
-  const name = useSelector((state: RootState) => state.profile.userData.name);
+  const userName = useSelector((state: RootState) => state.login.userData.name);
   const [actualColor, setActualColor] = useState<string>(avatarColor);
   const [prevColor, setPrevColor] = useState<string>(avatarColor);
   const [isButtonName, setIsButtonName] = useState<boolean>(false);
+  const [isNameTaken, setIsNameTaken] = useState<boolean>(false);
   const [changedName, setChangedName] = useState<string>("");
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate: NavigateFunction = useNavigate();
@@ -45,22 +43,32 @@ const Profile: FC = () => {
         collection(db, "accounts"),
         where("id", "==", storedUserData.id)
       );
+      const accountCollection = collection(db, "accounts");
+
+      const userList = await getDocs(accountCollection);
+
+      const isNameTaken = userList.docs.some((doc) => {
+        const nameInDoc = doc.data().name;
+
+        if (changedName === nameInDoc) {
+          setIsNameTaken(true);
+          return true;
+        }
+        return false;
+      });
 
       const querySnapshot = await getDocs(accountsQuery);
-
-      if (!querySnapshot.empty) {
+      if (!isNameTaken && !querySnapshot.empty) {
         const userDocRef = doc(db, "accounts", querySnapshot.docs[0].id);
         await updateDoc(userDocRef, { name: changedName });
         dispatch(changeName(changedName));
+        setIsNameTaken(false);
         setIsButtonName(false);
-      } else {
-        console.log("No matching document found for the given condition.");
       }
     } catch (error) {
       console.error("Error updating name:", error.message);
     }
   };
-  console.log(name);
 
   const saveColor = async () => {
     try {
@@ -76,7 +84,7 @@ const Profile: FC = () => {
         await updateDoc(userDocRef, { avatarColor: actualColor });
         dispatch(changeAvatar(actualColor));
         setPrevColor(actualColor);
-        setIsButtonName(true);
+        setIsColorsPallete(false);
       } else {
         console.log("No matching document found for the given condition.");
       }
@@ -87,6 +95,7 @@ const Profile: FC = () => {
   const revertName = () => {
     setChangedName("");
     setIsButtonName(false);
+    setIsNameTaken(false);
   };
   const revertColor = () => {
     setActualColor(prevColor);
@@ -103,10 +112,15 @@ const Profile: FC = () => {
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <div className="flex flex-col md:flex-row">
               <div className="flex flex-col">
-                <div className="flex mb-6">
+                <div className="flex">
                   {isButtonName ? (
-                    <div className="flex flex-col md:flex-row items-start">
-                      <div className="mb-4">
+                    <div className="flex flex-col md:flex-row items-start relative pb-2">
+                      {isNameTaken ? (
+                        <span className="absolute bottom-12 md:bottom-2 left-28 text-[12px] text-purple">
+                          Name is taken
+                        </span>
+                      ) : null}
+                      <div className="mb-6">
                         <label htmlFor="change-name" className="mr-2 text-sm">
                           Type name
                         </label>
@@ -117,15 +131,15 @@ const Profile: FC = () => {
                           onChange={(e) => setChangedName(e.target.value)}
                         />
                       </div>
-                      <div className="flex">
+                      <div className="flex mt-2 md:mt-0 mb-2">
                         <button
-                          className="text-xs ml-4 border border-black py-[0.2rem] px-[0.8rem] rounded focus:bg-red focus:text-lightGray hover:bg-red hover:text-lightGray focus:outline-none"
+                          className="text-xs ml-4  py-[0.3rem] px-[0.8rem] rounded focus:bg-red focus:text-lightGray hover:bg-red hover:text-lightGray focus:outline-none"
                           onClick={() => revertName()}
                         >
                           Back
                         </button>
                         <button
-                          className="text-xs ml-2 border border-black py-[0.2rem] px-[0.8rem] rounded focus:bg-green-500 focus:text-lightGray hover:bg-green-500 hover:text-lightGray focus:outline-none"
+                          className="text-xs ml-2  py-[0.3rem] px-[0.8rem] rounded focus:bg-green-500 focus:text-lightGray hover:bg-green-500 hover:text-lightGray focus:outline-none"
                           onClick={saveName}
                         >
                           Save
@@ -138,24 +152,30 @@ const Profile: FC = () => {
                         Hey,&nbsp;<span>{userName}</span>.
                       </span>
                       <button
-                        className="text-xs ml-4 border border-black p-[0.3rem] rounded focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray"
-                        onClick={() => setIsButtonName(true)}
+                        className="text-xs ml-4 p-[0.3rem] rounded focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray"
+                        onClick={() => {
+                          setIsButtonName(true);
+                          setIsColorsPallete(false);
+                        }}
                       >
                         Change name
                       </button>
                     </>
                   )}
                 </div>
-                <div className="flex">
+                <div className="flex mt-6">
                   <div
                     className={`border border-black w-16 h-16 rounded-full ${actualColor} flex justify-center items-center`}
                   >
-                    <span>{userName.slice(0, 1)}</span>
+                    <span>{userName.slice(0, 1).toUpperCase()}</span>
                   </div>
 
                   <button
-                    className="mb-10 md:mb-20 ml-2 mt-1 border border-black p-[0.3rem] rounded focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray text-sm"
-                    onClick={() => setIsColorsPallete(true)}
+                    className="mb-10 md:mb-20 ml-2 mt-1 p-[0.3rem] rounded focus:outline-none focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray text-sm"
+                    onClick={() => {
+                      setIsButtonName(false);
+                      setIsColorsPallete(true);
+                    }}
                   >
                     Change color
                   </button>
@@ -206,9 +226,14 @@ const Profile: FC = () => {
                 </div>
               ) : null}
             </div>
-            <button onClick={logoutAccount} className="">
-              Logout
-            </button>
+            <div className="flex">
+              <button
+                onClick={logoutAccount}
+                className="ml-auto p-[0.3rem] rounded focus:outline-none focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray text-sm"
+              >
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </div>

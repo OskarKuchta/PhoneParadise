@@ -7,7 +7,6 @@ import LoginReducer from "./features/LoginSlice.tsx";
 import PaymentReducer from "./features/PaymentSlice.tsx";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
-import ProfileReducer from "./features/ProfileSlice.tsx";
 
 const persistConfig = {
   key: "main-root",
@@ -19,7 +18,6 @@ const rootReducer = combineReducers({
   modal: ModalReducer,
   payment: PaymentReducer,
   login: LoginReducer,
-  profile: ProfileReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = configureStore({

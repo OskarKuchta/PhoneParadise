@@ -17,23 +17,30 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
+      const { payload } = action;
       const existingProduct = state.cartItems.find(
-        (item) => item.id === action.payload.id
+        (item) => item.id === payload.id
       );
       if (existingProduct) {
-        existingProduct.quantity += 1;
+        if (existingProduct.quantity < existingProduct.inStock) {
+          existingProduct.quantity += 1;
+          state.amount += 1;
+        }
       } else {
-        state.cartItems.push({ ...action.payload, quantity: 1 });
+        if (payload.inStock > 0) {
+          state.cartItems.push({ ...payload, quantity: 1 });
+          state.amount += 1;
+        }
       }
-      state.cartItems.push(action.payload);
-      state.amount += 1;
     },
     increaseProductAmount: (state, action) => {
       state.amount += 1;
       const { productId } = action.payload;
       const product = state.cartItems.find((item) => item.id === productId);
-      if (product) {
+      if (product && product.quantity < product.inStock) {
         product.quantity += 1;
+      } else {
+        state.amount -= 1;
       }
     },
     decreaseProductAmount: (state, action) => {
@@ -66,7 +73,8 @@ const cartSlice = createSlice({
         state.isDiscount = false;
       }
       if (state.isDiscount) {
-        state.withDiscount = state.total - (state.total * state.percentage) / 100;
+        state.withDiscount =
+          state.total - (state.total * state.percentage) / 100;
       }
     },
     addCode: (state, action) => {

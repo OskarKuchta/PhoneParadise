@@ -126,7 +126,7 @@ const products = [
         price: 949,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/13-min.jpg",
         quantity: 0,
-        inStock: 15,
+        inStock: 0,
         date: new Date(2022, 4, 7),
     },
     {
@@ -216,7 +216,7 @@ const products = [
         price: 899,
         image: "https://raw.githubusercontent.com/OskarKuchta/PhoneParadise/main/server/photos/22-min.jpg",
         quantity: 0,
-        inStock: 13,
+        inStock: 0,
         date: new Date(2022, 6, 4),
     },
     {

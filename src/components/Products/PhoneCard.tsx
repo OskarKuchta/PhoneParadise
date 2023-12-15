@@ -72,7 +72,7 @@ const PhoneCard: FC<PhoneCard> = ({
           <section className="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
             {currentProducts.map((product) => (
               <aside
-                className="bg-[aliceblue] p-[0.7rem] border rounded-[0.3rem] flex flex-col justify-center items-center text-center"
+                className="bg-[aliceblue] p-[0.7rem] border rounded-[0.3rem] flex flex-col justify-center items-center text-center relative"
                 key={product.id}
               >
                 <h2 className="my-[0.3rem]">{product.name}</h2>
@@ -94,6 +94,12 @@ const PhoneCard: FC<PhoneCard> = ({
                   Add to cart
                 </button>
                 <p className="my-[0.3rem]">{product.inStock} pieces</p>
+                {!product.inStock ? (
+                  <img
+                    src="/public/out-of-stock.png"
+                    className="absolute top-0 right-[-20px] rotate-[60deg] w-20 h-12"
+                  />
+                ) : null}
               </aside>
             ))}
           </section>

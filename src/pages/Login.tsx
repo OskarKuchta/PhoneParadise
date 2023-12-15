@@ -17,7 +17,9 @@ import { RootState } from "../store";
 const Login: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate: NavigateFunction = useNavigate();
-  const isLoggedIn = useSelector((state: RootState) => state.account.isLoggedIn);
+  const isLoggedIn = useSelector(
+    (state: RootState) => state.account.isLoggedIn
+  );
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/profile");
@@ -143,23 +145,7 @@ const Login: FC = () => {
                   </p>
                 ) : null}
               </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="remember"
-                      aria-describedby="remember"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="remember" className="text-gray-500 ">
-                      Remember me
-                    </label>
-                  </div>
-                </div>
-              </div>
+
               <button
                 type="submit"
                 className="w-full text-purple bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"

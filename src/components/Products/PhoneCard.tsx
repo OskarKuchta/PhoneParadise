@@ -93,6 +93,7 @@ const PhoneCard: FC<PhoneCard> = ({
                 >
                   Add to cart
                 </button>
+                <p className="my-[0.3rem]">{product.inStock} pieces</p>
               </aside>
             ))}
           </section>

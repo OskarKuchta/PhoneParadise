@@ -86,7 +86,7 @@ const Navbar: FC = () => {
                 className="hover:bg-hoverPurple focus:bg-hoverPurple focus:outline-none w-full h-full flex items-center px-[0.8rem]"
               >
                 <button
-                  className={`border border-black w-8 h-8 rounded-full ${actualColor} flex justify-center items-center`}
+                  className={`border border-black w-8 h-8 rounded-full ${actualColor} flex justify-center items-center focus:outline-none`}
                 >
                   <span>{userName.slice(0, 1).toUpperCase()}</span>
                 </button>

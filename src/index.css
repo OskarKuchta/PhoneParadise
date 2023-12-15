@@ -52,8 +52,8 @@ button:disabled {
 }
 
 *::selection {
-  background-color: rgb(240, 195, 241);
-  color: var(--purple);
+  background-color: var(--purple);
+  color: white;
 }
 ::-webkit-scrollbar {
   width: 11px;

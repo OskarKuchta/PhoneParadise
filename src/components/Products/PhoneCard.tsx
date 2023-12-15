@@ -86,10 +86,13 @@ const PhoneCard: FC<PhoneCard> = ({
                   <p className="my-[0.3rem]">${product.price}</p>
                 </div>
                 <button
-                  className="my-[0.3rem] py-[0.4rem] px-[0.7rem] boder border-transparent 
-                  bg-purple rounded text-lightGray transition-all duration-500 focus:outline-purple hover:scale-110
-                  focus:scale-110"
+                  className={`my-[0.3rem] py-[0.4rem] px-[0.7rem] boder border-transparent 
+                  bg-purple ${
+                    !product.inStock ? "bg-red" : ""
+                  } rounded text-lightGray transition-all duration-500 focus:outline-purple hover:scale-110
+                  focus:scale-110`}
                   onClick={() => addToCart(product)}
+                  disabled={!product.inStock}
                 >
                   Add to cart
                 </button>
@@ -105,7 +108,9 @@ const PhoneCard: FC<PhoneCard> = ({
           </section>
           <aside className="mb-20 flex justify-center mt-8">
             <button
-              className="mx-2 p-[0.2rem] border border-transparent bg-transparent"
+              className={`mx-2 p-[0.2rem] border border-transparent bg-transparent ${
+                currentPage === 1 ? "opacity-50" : ""
+              }`}
               onClick={() => {
                 setCurrentPage((currentPage) => currentPage - 1);
               }}
@@ -134,7 +139,9 @@ const PhoneCard: FC<PhoneCard> = ({
               )
             )}
             <button
-              className="mx-2 p-[0.2rem] border border-transparent bg-transparent"
+              className={`mx-2 p-[0.2rem] border border-transparent bg-transparent ${
+                endIndex >= sortedItemsArray.length ? "opacity-50" : ""
+              }`}
               onClick={() => {
                 setCurrentPage((currentPage) => currentPage + 1);
               }}

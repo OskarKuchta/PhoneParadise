@@ -25,7 +25,8 @@ const PhoneCard: FC<PhoneCard> = ({
     dispatch(addItem(product));
   };
   const { items } = useSelector((store: RootState) => store.products);
-  const itemsArray = (items as { default: Products[] }).default.filter(
+  console.log(items);
+  const itemsArray = (items as Products[]).filter(
     (item) =>
       (item.price >= range[0] && item.price <= range[1]) ||
       (item.price >= range[1] && item.price <= range[0])
@@ -99,7 +100,7 @@ const PhoneCard: FC<PhoneCard> = ({
                 <p className="my-[0.3rem]">{product.inStock} pieces</p>
                 {!product.inStock ? (
                   <img
-                    src="/public/out-of-stock.png"
+                    src="/out-of-stock.png"
                     className="absolute top-0 right-[-20px] rotate-[60deg] w-20 h-12"
                   />
                 ) : null}

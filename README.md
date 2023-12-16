@@ -8,8 +8,6 @@
 
 <img src="https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
 <img src="https://img.shields.io/badge/TypeScript-%2320232a.svg?style=for-the-badge&logo=typescript&logoColor=%3178C6" />
-<img src="https://img.shields.io/badge/Node.js-%2320232a.svg?style=for-the-badge&logo=node.js&logoColor=%339933" />
-<img  src="https://img.shields.io/badge/Express.js-%2320232a.svg?style=for-the-badge&logo=express&logoColor=%white"/>
 <img src="https://img.shields.io/badge/Redux-%2320232a.svg?style=for-the-badge&logo=redux&logoColor=%764ABC" />
  <img src="https://img.shields.io/badge/React%20Router-%2320232a.svg?style=for-the-badge&logo=react-router&logoColor=%CA4245" />
  <img src="https://img.shields.io/badge/Firebase-%2320232a.svg?style=for-the-badge&logo=firebase&logoColor=%FFA611" />

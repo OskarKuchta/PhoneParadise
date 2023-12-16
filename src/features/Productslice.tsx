@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { InititalFetch } from "../Types/Types";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../assets/FirebaseConfig";
 
 const initialState: InititalFetch = {
   items: [],
@@ -12,10 +13,15 @@ export const productsFetch = createAsyncThunk(
   "products/productsFetch",
   async () => {
     try {
-      const response = await axios.get(
-        "https://phoneparadise.netlify.app/.netlify/functions/index/products"
-      );
-      return { items: response.data, isLoading: false, error: null };
+      const productsCollection = collection(db, "products");
+      const querySnapshot = await getDocs(productsCollection);
+      const productsData = [];
+      
+      querySnapshot.forEach((doc) => {
+        productsData.push(doc.data());
+      });
+
+      return { items: productsData, isLoading: false, error: null };
     } catch (error) {
       console.error(error);
       return { items: [], isLoading: false, error: error.message };

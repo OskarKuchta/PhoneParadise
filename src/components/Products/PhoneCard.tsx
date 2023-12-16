@@ -25,7 +25,6 @@ const PhoneCard: FC<PhoneCard> = ({
     dispatch(addItem(product));
   };
   const { items } = useSelector((store: RootState) => store.products);
-  console.log(items);
   const itemsArray = (items as Products[]).filter(
     (item) =>
       (item.price >= range[0] && item.price <= range[1]) ||

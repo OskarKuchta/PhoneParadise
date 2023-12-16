@@ -87,7 +87,12 @@ const cartSlice = createSlice({
     removeAllProducts: (state) => {
       state.cartItems = [];
       state.amount = 0;
+      state.total = 0;
+      state.withDiscount = 0;
+      state.discount = 0;
+      state.percentage = 0;
       state.isDiscount = false;
+      state.codeName = "";
     },
   },
 });

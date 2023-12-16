@@ -8,6 +8,7 @@ const initialState: LoginState = {
     email: "",
     password: "",
     avatarColor: "",
+    shopHistory: {},
   },
 };
 
@@ -29,8 +30,13 @@ const loginSlice = createSlice({
     changeName: (state, action) => {
       state.userData.name = action.payload;
     },
+    addShopHistory: (state, action) => {
+      state.userData.shopHistory = action.payload;
+      
+    },
   },
 });
 
-export const { login, logout, changeName, changeAvatar } = loginSlice.actions;
+export const { login, logout, changeName, changeAvatar, addShopHistory } =
+  loginSlice.actions;
 export default loginSlice.reducer;

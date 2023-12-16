@@ -96,19 +96,24 @@ const PhoneCard: FC<PhoneCard> = ({
                 >
                   Add to cart
                 </button>
-                <p className="my-[0.3rem]">{product.inStock} pieces</p>
+
                 {!product.inStock ? (
-                  <img
-                    src="/out-of-stock.png"
-                    className="absolute top-0 right-[-20px] rotate-[60deg] w-20 h-12"
-                  />
-                ) : null}
+                  <>
+                    <p className="my-[0.3rem]">Off sale</p>
+                    <img
+                      src="/out-of-stock.png"
+                      className="absolute top-0 right-[-20px] rotate-[60deg] w-20 h-12"
+                    />
+                  </>
+                ) : (
+                  <p className="my-[0.3rem]">{product.inStock} pieces</p>
+                )}
               </aside>
             ))}
           </section>
           <aside className="mb-20 flex justify-center mt-8">
             <button
-              className={`mx-2 p-[0.2rem] border border-transparent bg-transparent ${
+              className={`mx-2 px-[0.2rem] border rounded-full border-transparent bg-transparent ${
                 currentPage === 1 ? "opacity-50" : ""
               }`}
               onClick={() => {
@@ -130,8 +135,8 @@ const PhoneCard: FC<PhoneCard> = ({
                   }}
                   className={
                     currentPage === index + 1
-                      ? "mx-2 py-[0.4rem] px-[0.8rem] rounded-full bg-purple text-lightGray"
-                      : "mx-2 p-[0.2rem] border border-transparent bg-transparent"
+                      ? "mx-2 py-[0.5rem] px-[1rem] rounded-full bg-purple text-lightGray"
+                      : "mx-2 px-[0.2rem] border rounded-full border-transparent bg-transparent"
                   }
                 >
                   {index + 1}

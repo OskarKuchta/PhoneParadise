@@ -20,6 +20,7 @@ const Discount = () => {
         dispatch(addCode({ percentage: 10, codeName: "paradise10" }));
         break;
       default:
+        dispatch(addCode({ percentage: 0, codeName: "" }));
         break;
     }
   };

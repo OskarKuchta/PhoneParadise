@@ -1,26 +1,34 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCode } from "../../features/CartSlice";
+import { addCode, removeDiscount } from "../../features/CartSlice";
 import { RootState } from "../../store";
 import { AnyAction, Dispatch } from "redux";
 
 const Discount = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const [inputValue, setInputValue] = useState<string>("");
+  const [invalidCode, setInvalidCode] = useState<boolean>(false);
   let { codeName, isDiscount } = useSelector((store: RootState) => store.cart);
   const addDiscount = () => {
     switch (inputValue) {
       case "winter24":
         dispatch(addCode({ percentage: 20, codeName: "winter24" }));
+        setInvalidCode(false);
         break;
       case "phone15":
         dispatch(addCode({ percentage: 15, codeName: "phone15" }));
+        setInvalidCode(false);
         break;
       case "paradise10":
         dispatch(addCode({ percentage: 10, codeName: "paradise10" }));
+        setInvalidCode(false);
+        break;
+      case "":
+        dispatch(removeDiscount());
+        setInvalidCode(false);
         break;
       default:
-        dispatch(addCode({ percentage: 0, codeName: "" }));
+        setInvalidCode(true);
         break;
     }
   };
@@ -38,11 +46,16 @@ const Discount = () => {
       <input
         id="discount-label"
         className={`${
-          !isDiscount ? "mb-6" : ""
+          !isDiscount && !invalidCode ? "mb-6" : ""
         } block focus:outline-purple mt-4`}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
+      {invalidCode ? (
+        <p className="text-[0.8rem] my-3 text-purple">
+          You type invalid code.Try another.
+        </p>
+      ) : null}
       {isDiscount ? (
         <p className="text-[0.9rem] mt-2 mb-4">
           You have already used code: {codeName}

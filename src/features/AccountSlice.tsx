@@ -31,18 +31,20 @@ const loginSlice = createSlice({
       state.userData.name = action.payload;
     },
     addShopHistory: (state, action) => {
-      if (!state.userData.shopHistory) {
-        state.userData.shopHistory = [];
-        state.userData.shopHistory.push({
-          cartItems: action.payload,
-          date: new Date(),
-        });
+      if(state.isLoggedIn) {
+        if (!state.userData.shopHistory) {
+          state.userData.shopHistory = [];
+          state.userData.shopHistory.push({
+            cartItems: action.payload,
+            date: new Date(),
+          });
       }
       state.userData.shopHistory.push({
         cartItems: action.payload,
         date: new Date(),
       });
-    },
+    }
+  },
   },
 });
 

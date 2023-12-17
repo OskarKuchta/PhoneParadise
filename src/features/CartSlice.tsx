@@ -84,6 +84,9 @@ const cartSlice = createSlice({
       state.codeName = action.payload.codeName;
       state.total -= Number(state.discount.toFixed(2));
     },
+    removeDiscount: (state) => {
+      state.isDiscount = false;
+    },
     removeAllProducts: (state) => {
       state.cartItems = [];
       state.amount = 0;
@@ -104,6 +107,7 @@ export const {
   removeProduct,
   getTotal,
   addCode,
+  removeDiscount,
   removeAllProducts,
 } = cartSlice.actions;
 export default cartSlice.reducer;

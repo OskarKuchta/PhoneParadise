@@ -23,7 +23,10 @@ import { addShopHistory } from "../../features/AccountSlice";
 const PaymentConfirm: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate: NavigateFunction = useNavigate();
-
+  const saveDataPayment = () => {
+    dispatch(removeAllProducts());
+    dispatch(addShopHistory({ cart: cart }));
+  };
   const cart = useSelector((state: RootState) => state.cart);
   const isLoggedIn = useSelector(
     (state: RootState) => state.account.isLoggedIn
@@ -66,10 +69,9 @@ const PaymentConfirm: FC = () => {
               shopHistory: updatedShopHistory,
             });
           }
-          dispatch(addShopHistory({ cart: cart }));
-          dispatch(removeAllProducts());
         }
       }
+      saveDataPayment();
     } else {
       dispatch(declinedPayment());
     }

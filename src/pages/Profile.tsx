@@ -17,20 +17,10 @@ import { db } from "../assets/FirebaseConfig";
 
 const Profile: FC = () => {
   const [isColorsPallete, setIsColorsPallete] = useState<boolean>(false);
-  const today: Date = new Date();
-
-  const formattedDate: string =
-    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
-
-  const formattedHour: string =
-    today.getHours() +
-    ":" +
-    (today.getMinutes() < 10 ? "0" : "") +
-    today.getMinutes();
-
   const storedUserData = useSelector(
     (state: RootState) => state.account.userData
   );
+  console.log(storedUserData);
   const avatarColor = useSelector(
     (state: RootState) => state.account.userData.avatarColor
   );
@@ -280,9 +270,7 @@ const Profile: FC = () => {
               <h2 className="font-bold text-2xl  border-black border-b-[1px]">
                 Shopping history
               </h2>
-              <p className="mt-6">
-                {formattedDate} {formattedHour}
-              </p>
+              <p className="mt-6"></p>
               <p>1x iPhone12</p>
               <p>1x Samsung Galaxy s20</p>
               <p className=" border-black pb-2 border-b-[1px]">

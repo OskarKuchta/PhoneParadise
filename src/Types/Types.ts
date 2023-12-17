@@ -84,7 +84,7 @@ export interface UserData {
     name?: string;
     email: string;
     password: string;
-    shopHistory?: object;
+    shopHistory?: any[];
     confirmPassword?: string;
     avatarColor?: string;
 }

@@ -56,7 +56,7 @@ const PhoneCard: FC<PhoneCard> = ({
       return sizeB - sizeA;
     }
   });
-
+  
   const hasProducts: boolean = sortedItemsArray.length > 0;
   const productsPerPage: number = paginationCount;
   const startIndex: number = (currentPage - 1) * productsPerPage;

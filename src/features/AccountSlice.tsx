@@ -8,7 +8,7 @@ const initialState: LoginState = {
     email: "",
     password: "",
     avatarColor: "",
-    shopHistory: {},
+    shopHistory: [],
   },
 };
 
@@ -31,8 +31,17 @@ const loginSlice = createSlice({
       state.userData.name = action.payload;
     },
     addShopHistory: (state, action) => {
-      state.userData.shopHistory = action.payload;
-      
+      if (!state.userData.shopHistory) {
+        state.userData.shopHistory = [];
+        state.userData.shopHistory.push({
+          cartItems: action.payload,
+          date: new Date(),
+        });
+      }
+      state.userData.shopHistory.push({
+        cartItems: action.payload,
+        date: new Date(),
+      });
     },
   },
 });

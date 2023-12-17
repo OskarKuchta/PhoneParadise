@@ -19,6 +19,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
+import { addShopHistory } from "../../features/AccountSlice";
 const PaymentConfirm: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate: NavigateFunction = useNavigate();
@@ -52,11 +53,20 @@ const PaymentConfirm: FC = () => {
             const currentShopHistory = Array.isArray(userData.shopHistory)
               ? userData.shopHistory
               : [];
+            const newShopHistoryEntry = {
+              cart: cart,
+              date: new Date(),
+            };
+            const updatedShopHistory = [
+              ...currentShopHistory,
+              newShopHistoryEntry,
+            ];
 
-            const updatedShopHistory = [...currentShopHistory, cart];
-            await updateDoc(userDocRef, { shopHistory: updatedShopHistory });
+            await updateDoc(userDocRef, {
+              shopHistory: updatedShopHistory,
+            });
           }
-
+          dispatch(addShopHistory({ cart: cart }));
           dispatch(removeAllProducts());
         }
       }

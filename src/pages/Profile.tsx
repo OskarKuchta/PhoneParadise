@@ -14,13 +14,13 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../assets/FirebaseConfig";
+import ShoppingHistory from "../components/Profile/ShoppingHistory";
 
 const Profile: FC = () => {
   const [isColorsPallete, setIsColorsPallete] = useState<boolean>(false);
   const storedUserData = useSelector(
     (state: RootState) => state.account.userData
   );
-  console.log(storedUserData);
   const avatarColor = useSelector(
     (state: RootState) => state.account.userData.avatarColor
   );
@@ -266,21 +266,11 @@ const Profile: FC = () => {
                 </div>
               ) : null}
             </div>
-            <div>
-              <h2 className="font-bold text-2xl  border-black border-b-[1px]">
-                Shopping history
-              </h2>
-              <p className="mt-6"></p>
-              <p>1x iPhone12</p>
-              <p>1x Samsung Galaxy s20</p>
-              <p className=" border-black pb-2 border-b-[1px]">
-                Total price: $3000
-              </p>
-            </div>
+            <ShoppingHistory />
             <div className="flex">
               <button
                 onClick={logoutAccount}
-                className="ml-auto p-[0.3rem] rounded focus:outline-none focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray text-sm"
+                className="ml-auto p-[0.3rem] rounded focus:outline-none focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray text-sm mt-16"
               >
                 Logout
               </button>

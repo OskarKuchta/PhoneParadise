@@ -27,6 +27,18 @@ const PaymentConfirm: FC = () => {
     dispatch(removeAllProducts());
     dispatch(addShopHistory({ cart: cart }));
   };
+  const formatDateTime = (date: Date) => {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    const hours = String(date.getHours() + 1).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  };
+  const currentDate: Date = new Date();
+  const formattedDate = formatDateTime(currentDate);
+
   const cart = useSelector((state: RootState) => state.cart);
   const isLoggedIn = useSelector(
     (state: RootState) => state.account.isLoggedIn
@@ -58,7 +70,7 @@ const PaymentConfirm: FC = () => {
               : [];
             const newShopHistoryEntry = {
               cart: cart,
-              date: new Date(),
+              date: formattedDate,
             };
             const updatedShopHistory = [
               ...currentShopHistory,

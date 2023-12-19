@@ -72,10 +72,29 @@ const PaymentConfirm: FC = () => {
               cart: cart,
               date: formattedDate,
             };
+            const productsCollection = collection(db, "products");
+            const cartItems = newShopHistoryEntry.cart.cartItems;
+
+            for (const item of cartItems) {
+              const productsQuery = query(
+                productsCollection,
+                where("name", "==", item.name)
+              );
+              const productsSnapshot = await getDocs(productsQuery);
+
+              if (!productsSnapshot.empty) {
+                productsSnapshot.forEach((productDoc) => {
+                  const productDocRef = doc(productsCollection, productDoc.id);
+                  const newInStock = productDoc.data().inStock - item.quantity;
+                  updateDoc(productDocRef, { inStock: newInStock });
+                });
+              }
+            }
+
             const updatedShopHistory = [
-              ...currentShopHistory,
+              currentShopHistory,
               newShopHistoryEntry,
-            ];
+            ].flatMap((entry) => entry);
 
             await updateDoc(userDocRef, {
               shopHistory: updatedShopHistory,

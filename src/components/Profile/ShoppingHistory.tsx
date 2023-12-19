@@ -24,41 +24,39 @@ const ShoppingHistory: FC = () => {
     };
 
     fetchData();
-  }, [username]);
-
-  console.log(shopHistoryList.flatMap((item) => item.length));
-
+  }, []);
   return (
     <div>
       <h2 className="font-bold text-2xl border-black border-b-[1px]">
         Shopping history
       </h2>
-
-      {shopHistoryList.flatMap((item) => item.length) > 0 ? (
-        shopHistoryList
-          .flatMap((item) => item)
-          .map((item, index: number) => (
-            <div key={index} className=" border-black border-b pb-2">
-              <p className="mt-4">{item?.date}</p>
-              {item.cart.cartItems.map((data, index) => (
-                <p className="" key={index}>
-                  {data.quantity}x {data.name}
+      {shopHistoryList.length > 0 ? (
+        <>
+          {shopHistoryList
+            .flatMap((item) => item)
+            .map((item, index: number) => (
+              <div key={index} className="border-black border-b pb-2">
+                <p className="mt-4">{item?.date}</p>
+                {item.cart.cartItems.map((data, innerIndex) => (
+                  <p className="" key={innerIndex}>
+                    {data.quantity}x {data.name}
+                  </p>
+                ))}
+                <p>
+                  Total: $
+                  {item.cart.isDiscount ? (
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: `${item.cart.withDiscount} <span class="ml-1 text-[0.8rem]">($${item.cart.discount} saved)</span>`,
+                      }}
+                    />
+                  ) : (
+                    item.cart.total
+                  )}
                 </p>
-              ))}
-              <p>
-                Total: $
-                {item.cart.isDiscount ? (
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: `${item.cart.withDiscount} <span class="ml-1 text-[0.8rem]">($${item.cart.discount} saved)</span>`,
-                    }}
-                  />
-                ) : (
-                  item.cart.total
-                )}
-              </p>
-            </div>
-          ))
+              </div>
+            ))}
+        </>
       ) : (
         <p className="mt-6 text-center text-xl">List is empty yet.</p>
       )}

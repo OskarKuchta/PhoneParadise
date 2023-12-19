@@ -8,9 +8,15 @@ export interface Products {
     inStock: number;
     date: Date;
 }
+export interface SetProductsPayload {
+    items: { id: string }[];
+    isLoading: boolean;
+    error: null;
+}
+
 
 export interface InititalFetch {
-    items: unknown;
+    items: any[];
     status: null | string;
     isLoading: boolean;
     error: null | unknown;

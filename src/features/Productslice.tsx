@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { InititalFetch } from "../Types/Types";
-import { collection, getDocs } from "firebase/firestore";
+import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
+import { InititalFetch, SetProductsPayload } from "../Types/Types";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "../assets/FirebaseConfig";
 
 const initialState: InititalFetch = {
@@ -9,39 +9,57 @@ const initialState: InititalFetch = {
   isLoading: true,
   error: null,
 };
+
 export const productsFetch = createAsyncThunk(
   "products/productsFetch",
-  async () => {
+  async (_, { dispatch }) => {
     try {
       const productsCollection = collection(db, "products");
-      const querySnapshot = await getDocs(productsCollection);
-      const productsData = [];
-      
-      querySnapshot.forEach((doc) => {
-        productsData.push(doc.data());
+      const unsubscribe = onSnapshot(productsCollection, (querySnapshot) => {
+        const updatedProducts = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        dispatch(
+          setProducts({ items: updatedProducts, isLoading: false, error: null })
+        );
       });
+      const initialQuerySnapshot = await getDocs(productsCollection);
+      const initialProductsData = initialQuerySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
-      return { items: productsData, isLoading: false, error: null };
+      return {
+        items: initialProductsData,
+        isLoading: false,
+        error: null,
+        unsubscribe,
+      };
     } catch (error) {
       console.error(error);
       return { items: [], isLoading: false, error: error.message };
     }
   }
 );
+
+export const setProducts = createAction<SetProductsPayload>("products/setProducts");
+
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    setProducts: (state, action) => {
+      Object.assign(state, action.payload);
+      state.status = "success";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(productsFetch.pending, (state) => {
         state.status = "pending";
         state.isLoading = true;
         state.error = null;
-      })
-      .addCase(productsFetch.fulfilled, (state, action) => {
-        Object.assign(state, action.payload);
-        state.status = "success";
       })
       .addCase(productsFetch.rejected, (state, action) => {
         state.status = "rejected";
@@ -50,4 +68,5 @@ const productsSlice = createSlice({
       });
   },
 });
+
 export default productsSlice.reducer;

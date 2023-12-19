@@ -138,7 +138,7 @@ const Profile: FC = () => {
 
   return (
     <main>
-      <div className="flex flex-col items-center mt-[10vh]  lg:py-0">
+      <div className="flex flex-col items-center mt-[10vh]  lg:py-0 mb-32">
         <div className="w-[90vw] bg-white rounded-lg shadow md:mt-0 xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <div className="flex flex-col md:flex-row">
@@ -270,7 +270,7 @@ const Profile: FC = () => {
             <div className="flex">
               <button
                 onClick={logoutAccount}
-                className="ml-auto p-[0.3rem] rounded focus:outline-none focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray text-sm mt-16"
+                className="ml-auto p-[0.3rem] rounded focus:outline-none focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray text-sm mt-16 mb-16 md:mb-0"
               >
                 Logout
               </button>

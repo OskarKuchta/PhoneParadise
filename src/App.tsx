@@ -1,24 +1,28 @@
-import About from "./pages/About.tsx";
+import { ErrorBoundary } from "react-error-boundary";
+import React, { Suspense, useEffect } from "react";
+import { Routes, Route, useLocation, Location } from "react-router-dom";
 import Navbar from "./components/Navbar.tsx";
-import Contact from "./pages/Contact.tsx";
-import BadURL from "./pages/BadURL.tsx";
-import { Location, Route, Routes, useLocation } from "react-router-dom";
-import Cart from "./pages/Cart.tsx";
-import { useEffect } from "react";
-import MainPage from "./pages/MainPage.tsx";
+import { usePhoneContext } from "./context/PhoneProvider.tsx";
+import DesktopFooter from "./components/Footer/DesktopFooter.tsx";
+import Footer from "./components/Footer/MobileFooter.tsx";
 import { getTotal } from "./features/CartSlice.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store";
-import Payments from "./pages/Payments";
-import PaymentsEnd from "./pages/PaymentsEnd.tsx";
 import { resetPaymentState } from "./features/PaymentSlice.tsx";
-import Login from "./pages/Login.tsx";
-import Footer from "./components/Footer/MobileFooter.tsx";
-import DesktopFooter from "./components/Footer/DesktopFooter.tsx";
-import { usePhoneContext } from "./context/PhoneProvider.tsx";
-import Register from "./pages/Register.tsx";
-import CompleteRegistration from "./pages/CompleteRegistration.tsx";
-import Profile from "./pages/Profile.tsx";
+
+const About = React.lazy(() => import("./pages/About.tsx"));
+const Contact = React.lazy(() => import("./pages/Contact.tsx"));
+const BadURL = React.lazy(() => import("./pages/BadURL.tsx"));
+const Cart = React.lazy(() => import("./pages/Cart.tsx"));
+const MainPage = React.lazy(() => import("./pages/MainPage.tsx"));
+const Payments = React.lazy(() => import("./pages/Payments.tsx"));
+const PaymentsEnd = React.lazy(() => import("./pages/PaymentsEnd.tsx"));
+const Login = React.lazy(() => import("./pages/Login.tsx"));
+const Register = React.lazy(() => import("./pages/Register.tsx"));
+const CompleteRegistration = React.lazy(
+  () => import("./pages/CompleteRegistration.tsx")
+);
+const Profile = React.lazy(() => import("./pages/Profile.tsx"));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,19 +42,46 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="register/complete" element={<CompleteRegistration />} />
-        <Route path="profile" element={<Profile />} />
-        <Route path="cart/payments" element={<Payments />} />
-        <Route path="payment-submit" element={<PaymentsEnd />} />
-        <Route path="*" element={<BadURL />} />
-      </Routes>
+      <ErrorBoundary
+        fallback={<main className="without-data">{Error.toString()}</main>}
+      >
+        <Suspense
+          fallback={
+            <>
+              <main className="without-data">
+                <div className="lds-roller">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                Loading...
+              </main>
+            </>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route
+              path="register/complete"
+              element={<CompleteRegistration />}
+            />
+            <Route path="profile" element={<Profile />} />
+            <Route path="cart/payments" element={<Payments />} />
+            <Route path="payment-submit" element={<PaymentsEnd />} />
+            <Route path="*" element={<BadURL />} />
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
       {isPhone ? <Footer /> : <DesktopFooter />}
     </>
   );

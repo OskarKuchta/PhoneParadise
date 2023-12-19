@@ -144,6 +144,7 @@ const Register: FC = () => {
       email: userData.email,
       password: userData.password,
       avatarColor: userData.avatarColor,
+      shopHistory: [],
     });
 
     navigate("/register/complete", { state: { fromRegister: true } });

@@ -1,4 +1,4 @@
-import { Dispatch, FC, useState } from "react";
+import { Dispatch, FC, useEffect, useState } from "react";
 import { RootState } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/AccountSlice";
@@ -17,6 +17,9 @@ import { db } from "../assets/FirebaseConfig";
 import ShoppingHistory from "../components/Profile/ShoppingHistory";
 
 const Profile: FC = () => {
+  const isLoggedIn = useSelector(
+    (state: RootState) => state.account.isLoggedIn
+  );
   const [isColorsPallete, setIsColorsPallete] = useState<boolean>(false);
   const storedUserData = useSelector(
     (state: RootState) => state.account.userData
@@ -39,7 +42,11 @@ const Profile: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const nameRegex: RegExp = /^[A-Za-z][A-Za-z0-9]*$/;
   const navigate: NavigateFunction = useNavigate();
-
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn]);
   const logoutAccount = () => {
     dispatch(logout());
     navigate("/login");

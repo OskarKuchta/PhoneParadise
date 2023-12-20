@@ -79,6 +79,7 @@ const MainPage = () => {
               <option>Price descending</option>
               <option>Date release</option>
               <option>Screen size</option>
+              <option>Actual available</option>
             </select>
           </aside>
           <aside className="flex flex-col items-center mb-8">

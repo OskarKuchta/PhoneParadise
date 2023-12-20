@@ -46,12 +46,37 @@ const PaymentConfirm: FC = () => {
   const currentDate: Date = new Date();
   const formattedDate: string = formatDateTime(currentDate);
 
-  const cart = useSelector((state: RootState) => state.cart);
+  const cart = useSelector((state: RootState) => state.cart) as any;
   const isLoggedIn = useSelector(
     (state: RootState) => state.account.isLoggedIn
   );
   const user = useSelector((state: RootState) => state.account.userData);
+  const removeFromStock = async (source: CartItems[]) => {
+    const productsCollection: CollectionReference<DocumentData> = collection(
+      db,
+      "products"
+    );
+    for (const item of source) {
+      const productsQuery: Query<DocumentData> = query(
+        productsCollection,
+        where("name", "==", item.name)
+      );
+      const productsSnapshot: QuerySnapshot<DocumentData> = await getDocs(
+        productsQuery
+      );
 
+      if (!productsSnapshot.empty) {
+        productsSnapshot.forEach((productDoc) => {
+          const productDocRef: DocumentReference<DocumentData> = doc(
+            productsCollection,
+            productDoc.id
+          );
+          const newInStock: number = productDoc.data().inStock - item.quantity;
+          updateDoc(productDocRef, { inStock: newInStock });
+        });
+      }
+    }
+  };
   const submitPayment = async (accepted: boolean) => {
     dispatch(closePayment());
 
@@ -89,41 +114,22 @@ const PaymentConfirm: FC = () => {
               cart: cart,
               date: formattedDate,
             };
-            const productsCollection: CollectionReference<DocumentData> =
-              collection(db, "products");
+
             const cartItems: CartItems[] = newShopHistoryEntry.cart.cartItems;
 
-            
             const updatedShopHistory = [
               currentShopHistory,
               newShopHistoryEntry,
             ].flatMap((entry) => entry);
-            for (const item of cartItems) {
-              const productsQuery: Query<DocumentData> = query(
-                productsCollection,
-                where("name", "==", item.name)
-              );
-              const productsSnapshot: QuerySnapshot<DocumentData> =
-                await getDocs(productsQuery);
-
-              if (!productsSnapshot.empty) {
-                productsSnapshot.forEach((productDoc) => {
-                  const productDocRef: DocumentReference<DocumentData> = doc(
-                    productsCollection,
-                    productDoc.id
-                  );
-                  const newInStock: number =
-                    productDoc.data().inStock - item.quantity;
-                  updateDoc(productDocRef, { inStock: newInStock });
-                });
-              }
-            }
+            removeFromStock(cartItems);
 
             await updateDoc(userDocRef, {
               shopHistory: updatedShopHistory,
             });
           }
         }
+      } else {
+        removeFromStock(cart.cartItems);
       }
       saveDataPayment();
     } else {

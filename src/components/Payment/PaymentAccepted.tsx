@@ -29,7 +29,7 @@ const PaymentAccepted: FC = () => {
   const getRating = async () => {
     if (rating !== 0) {
       try {
-        const rate = rating;
+        const rate: number = rating;
         await addDoc(ratingsCollection, {
           rate,
           timestamp: serverTimestamp(),
@@ -43,9 +43,9 @@ const PaymentAccepted: FC = () => {
   };
   useEffect(() => {
     if (showText) {
-      const intervalId = setInterval(() => {
+      const intervalId: NodeJS.Timeout = setInterval(() => {
         setCounter((prev) => {
-          const newCounter = prev - 1;
+          const newCounter: number = prev - 1;
           if (newCounter === 0) {
             clearInterval(intervalId);
             navigate("/");

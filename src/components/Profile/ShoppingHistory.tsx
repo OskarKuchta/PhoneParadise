@@ -1,8 +1,17 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  DocumentData,
+  Query,
+  QuerySnapshot,
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { FC, useEffect, useState } from "react";
 import { db } from "../../assets/FirebaseConfig";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { CartItems } from "../../Types/Types";
 
 const ShoppingHistory: FC = () => {
   const [shopHistoryList, setShopHistoryList] = useState<any>([]);
@@ -12,12 +21,14 @@ const ShoppingHistory: FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const accountsQuery = query(
+      const accountsQuery: Query<DocumentData> = query(
         collection(db, "accounts"),
         where("name", "==", username)
       );
-      const querySnapshot = await getDocs(accountsQuery);
-      const historyList = querySnapshot.docs.map(
+      const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(
+        accountsQuery
+      );
+      const historyList: any[] = querySnapshot.docs.map(
         (doc) => doc.data().shopHistory
       );
       setShopHistoryList(historyList);
@@ -25,7 +36,7 @@ const ShoppingHistory: FC = () => {
 
     fetchData();
   }, []);
-  console.log(shopHistoryList.map((item) => item.length));
+
   return (
     <div>
       <h2 className="font-bold text-2xl border-black border-b-[1px]">
@@ -38,11 +49,13 @@ const ShoppingHistory: FC = () => {
             .map((item, index: number) => (
               <div key={index} className="border-black border-b pb-2">
                 <p className="mt-4">{item?.date}</p>
-                {item.cart.cartItems.map((data, innerIndex) => (
-                  <p className="" key={innerIndex}>
-                    {data.quantity}x {data.name}
-                  </p>
-                ))}
+                {item.cart.cartItems.map(
+                  (data: CartItems, innerIndex: number) => (
+                    <p className="" key={innerIndex}>
+                      {data.quantity}x {data.name}
+                    </p>
+                  )
+                )}
                 <p>
                   Total: $
                   {item.cart.isDiscount ? (

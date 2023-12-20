@@ -1,5 +1,5 @@
 import { ErrorBoundary } from "react-error-boundary";
-import React, { Suspense, useEffect } from "react";
+import React, { Dispatch, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation, Location } from "react-router-dom";
 import Navbar from "./components/Navbar.tsx";
 import { usePhoneContext } from "./context/PhoneProvider.tsx";
@@ -9,6 +9,8 @@ import { getTotal } from "./features/CartSlice.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store";
 import { resetPaymentState } from "./features/PaymentSlice.tsx";
+import { AnyAction } from "redux";
+import { isPhone } from "./Types/Types.ts";
 
 const About = React.lazy(() => import("./pages/About.tsx"));
 const Contact = React.lazy(() => import("./pages/Contact.tsx"));
@@ -25,12 +27,12 @@ const CompleteRegistration = React.lazy(
 const Profile = React.lazy(() => import("./pages/Profile.tsx"));
 
 const App = () => {
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<AnyAction> = useDispatch();
   const location: Location = useLocation();
   const { cartItems, isDiscount, total, discount } = useSelector(
     (store: RootState) => store.cart
   );
-  const isPhone = usePhoneContext();
+  const isPhone: isPhone = usePhoneContext();
   useEffect(() => {
     if (location.pathname !== "/payment-submit") {
       dispatch(resetPaymentState());

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { useNavigate } from "react-router";
+import { NavigateFunction, useNavigate } from "react-router";
 const Expired: FC = () => {
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const backToMain = () => {
     navigate("/");
   };

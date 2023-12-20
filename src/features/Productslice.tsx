@@ -1,7 +1,15 @@
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import { InititalFetch, SetProductsPayload } from "../Types/Types";
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import {
+  CollectionReference,
+  DocumentData,
+  QuerySnapshot,
+  collection,
+  getDocs,
+  onSnapshot,
+} from "firebase/firestore";
 import { db } from "../assets/FirebaseConfig";
+import { Unsubscribe } from "firebase/database";
 
 const initialState: InititalFetch = {
   items: [],
@@ -14,18 +22,32 @@ export const productsFetch = createAsyncThunk(
   "products/productsFetch",
   async (_, { dispatch }) => {
     try {
-      const productsCollection = collection(db, "products");
-      const unsubscribe = onSnapshot(productsCollection, (querySnapshot) => {
-        const updatedProducts = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        dispatch(
-          setProducts({ items: updatedProducts, isLoading: false, error: null })
-        );
-      });
-      const initialQuerySnapshot = await getDocs(productsCollection);
-      const initialProductsData = initialQuerySnapshot.docs.map((doc) => ({
+      const productsCollection: CollectionReference<DocumentData> = collection(
+        db,
+        "products"
+      );
+      const unsubscribe: Unsubscribe = onSnapshot(
+        productsCollection,
+        (querySnapshot) => {
+          const updatedProducts = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          dispatch(
+            setProducts({
+              items: updatedProducts,
+              isLoading: false,
+              error: null,
+            })
+          );
+        }
+      );
+      const initialQuerySnapshot: QuerySnapshot<DocumentData> = await getDocs(
+        productsCollection
+      );
+      const initialProductsData: {
+        id: string;
+      }[] = initialQuerySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
@@ -43,7 +65,9 @@ export const productsFetch = createAsyncThunk(
   }
 );
 
-export const setProducts = createAction<SetProductsPayload>("products/setProducts");
+export const setProducts = createAction<SetProductsPayload>(
+  "products/setProducts"
+);
 
 const productsSlice = createSlice({
   name: "products",

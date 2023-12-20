@@ -113,3 +113,17 @@ export interface LoginState {
     userData: UserData | null;
 
 }
+export interface AnimationObject {
+    hidden: {
+        opacity: number;
+        y: number;
+    };
+    visible: {
+        opacity: number;
+        y: number;
+    };
+    [key: string]: {
+        opacity: number;
+        y: number;
+    };
+}

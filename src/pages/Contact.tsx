@@ -2,16 +2,17 @@ import { FacebookIcon, MailIcon, PhoneContact } from "../assets/icons";
 import DesktopFooter from "../components/Footer/DesktopFooter";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { MutableRefObject, useRef } from "react";
+import { AnimationObject } from "../Types/Types";
 
 const Contact = () => {
-  const createAnimationObject = (y: number) => {
+  const createAnimationObject = (y: number): AnimationObject => {
     return {
       hidden: { opacity: 0, y: y },
       visible: { opacity: 1, y: 0 },
     };
   };
-  const ref = useRef(null);
+  const ref: MutableRefObject<any> = useRef(null);
   const fadeInAnimation = createAnimationObject(-40);
   const emailAddress: string = "oskarkuchta5@gmail.com";
   const subject: string = "Ocena i uwagi na temat projektu";

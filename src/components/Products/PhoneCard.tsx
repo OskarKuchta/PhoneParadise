@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { PhoneCard, Products } from "../../Types/Types";
 import { addItem } from "../../features/CartSlice";
-import { FC, useEffect, useState } from "react";
+import { Dispatch, FC, useEffect, useState } from "react";
 import { usePhoneContext } from "../../context/PhoneProvider";
+import { AnyAction } from "redux";
 const PhoneCard: FC<PhoneCard> = ({
   value,
   range,
@@ -20,7 +21,7 @@ const PhoneCard: FC<PhoneCard> = ({
     }
     window.scrollTo(0, isPhone ? 400 : 220);
   }, [currentPage]);
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<AnyAction> = useDispatch();
   const addToCart = (product: Products) => {
     dispatch(addItem(product));
   };

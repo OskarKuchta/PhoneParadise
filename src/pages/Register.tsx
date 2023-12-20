@@ -6,6 +6,7 @@ import {
   CollectionReference,
   DocumentData,
   getDocs,
+  QuerySnapshot,
 } from "firebase/firestore";
 import { UserData, UserDataError } from "../Types/Types";
 import { db } from "../assets/FirebaseConfig";
@@ -39,11 +40,13 @@ const Register: FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const querySnapshot = await getDocs(accountCollection);
+    const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(
+      accountCollection
+    );
     const validationErrors: string[] = [];
 
     querySnapshot.forEach((doc) => {
-      const nameInDoc = doc.data().name;
+      const nameInDoc: string | undefined = doc.data().name;
       const emailInDoc: string | undefined = doc.data().email;
 
       if (

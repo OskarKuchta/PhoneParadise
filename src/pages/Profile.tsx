@@ -6,6 +6,11 @@ import { changeAvatar, changeName } from "../features/AccountSlice";
 import { NavigateFunction, useNavigate } from "react-router";
 import { AnyAction } from "redux";
 import {
+  CollectionReference,
+  DocumentData,
+  DocumentReference,
+  Query,
+  QuerySnapshot,
   collection,
   doc,
   getDocs,
@@ -54,14 +59,19 @@ const Profile: FC = () => {
 
   const saveName = async () => {
     try {
-      const accountsQuery = query(
+      const accountsQuery: Query<DocumentData> = query(
         collection(db, "accounts"),
         where("id", "==", storedUserData.id)
       );
-      const accountCollection = collection(db, "accounts");
-      const userList = await getDocs(accountCollection);
-      const isNameTaken = userList.docs.some((doc) => {
-        const nameInDoc = doc.data().name;
+      const accountCollection: CollectionReference<DocumentData> = collection(
+        db,
+        "accounts"
+      );
+      const userList: QuerySnapshot<DocumentData> = await getDocs(
+        accountCollection
+      );
+      const isNameTaken: boolean = userList.docs.some((doc) => {
+        const nameInDoc: string | undefined = doc.data().name;
         if (changedName === nameInDoc) {
           setNameError({
             nameIsTaken: true,
@@ -87,9 +97,15 @@ const Profile: FC = () => {
         return false;
       });
 
-      const querySnapshot = await getDocs(accountsQuery);
+      const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(
+        accountsQuery
+      );
       if (!isNameTaken && !querySnapshot.empty) {
-        const userDocRef = doc(db, "accounts", querySnapshot.docs[0].id);
+        const userDocRef: DocumentReference<DocumentData> = doc(
+          db,
+          "accounts",
+          querySnapshot.docs[0].id
+        );
         await updateDoc(userDocRef, { name: changedName });
         dispatch(changeName(changedName));
         setNameError({
@@ -106,15 +122,21 @@ const Profile: FC = () => {
 
   const saveColor = async () => {
     try {
-      const accountsQuery = query(
+      const accountsQuery: Query<DocumentData> = query(
         collection(db, "accounts"),
         where("id", "==", storedUserData.id)
       );
 
-      const querySnapshot = await getDocs(accountsQuery);
+      const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(
+        accountsQuery
+      );
 
       if (!querySnapshot.empty) {
-        const userDocRef = doc(db, "accounts", querySnapshot.docs[0].id);
+        const userDocRef: DocumentReference<DocumentData> = doc(
+          db,
+          "accounts",
+          querySnapshot.docs[0].id
+        );
         await updateDoc(userDocRef, { avatarColor: actualColor });
         dispatch(changeAvatar(actualColor));
         setPrevColor(actualColor);

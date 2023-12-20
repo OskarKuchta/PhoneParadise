@@ -8,6 +8,7 @@ import {
 import { ChevronDown, ChevronUp } from "../../assets/icons";
 import { AnyAction, Dispatch } from "redux";
 import { FC } from "react";
+import { CartItems } from "../../Types/Types";
 
 const CartProducts: FC = () => {
   const { cartItems } = useSelector((state: RootState) => state.cart);
@@ -25,7 +26,9 @@ const CartProducts: FC = () => {
     <section className="flex flex-col items-center m-8">
       <h2 className="text-center text-2xl mb-8">Your cart:</h2>
       {[...new Set(cartItems.map((product) => product.id))].map((productId) => {
-        const product = cartItems.find((item) => item.id === productId);
+        const product: CartItems = cartItems.find(
+          (item) => item.id === productId
+        );
         return (
           <aside
             className=" bg-[aliceblue] w-full flex flex-col justify-center items-center md:flex-row py-12 px-8 border rounded-lg mb-4 "

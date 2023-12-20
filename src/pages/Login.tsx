@@ -6,6 +6,7 @@ import {
   getDocs,
   CollectionReference,
   DocumentData,
+  QuerySnapshot,
 } from "firebase/firestore";
 import { db } from "../assets/FirebaseConfig";
 import { UserData, UserDataChceck } from "../Types/Types";
@@ -41,7 +42,9 @@ const Login: FC = () => {
   const loginAuth = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const querySnapshot = await getDocs(accountCollection);
+    const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(
+      accountCollection
+    );
 
     for (const doc of querySnapshot.docs) {
       const emailInDoc: string | undefined = doc.data().email;

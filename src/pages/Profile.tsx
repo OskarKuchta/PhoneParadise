@@ -251,7 +251,7 @@ const Profile: FC = () => {
                 </div>
               </div>
               {isColorsPallete ? (
-                <div className="flex items-center ml-0 md:ml-2 mt-0 md:mt-10">
+                <div className="flex items-center ml-0 md:ml-2 mt-0 md:mt-10 md:absolute md:left-[300px] xl:left-[400px]">
                   <div className="bg-gray-100 w-60 rounded-md border border-black grid grid-cols-3 gap-2 place-items-center py-2">
                     <button
                       className="border border-black w-10 h-10 rounded-full bg-emerald-500 flex justify-center items-center hover:scale-110 focus:scale-110"

@@ -42,7 +42,7 @@ const ShoppingHistory: FC = () => {
       <h2 className="font-bold text-2xl border-black border-b-[1px]">
         Shopping history
       </h2>
-      {shopHistoryList.every((item) => item.length > 0) ? (
+      {shopHistoryList.every((item) => item?.length > 0) ? (
         <>
           {shopHistoryList
             .flatMap((item) => item)

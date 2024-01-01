@@ -71,7 +71,10 @@ const MainPage = () => {
             <select
               id="sortOrder"
               className="w-40 mt-2 mb-10"
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) => {
+                setValue(e.target.value)
+                setCurrentPage(1)
+              }}
               style={{ outlineColor: "rgb(46, 3, 87)" }}
             >
               <option>Default</option>

@@ -3,7 +3,7 @@ import { FC } from "react";
 
 const EmptyCart: FC = () => {
   return (
-    <section className="h-screen flex flex-col items-center text-center my-16 mx-8">
+    <section className="flex flex-col items-center text-center my-16 mx-8">
       <h2 className="tracking-widest mb-4">
         Currently, there are no items in the cart...
       </h2>

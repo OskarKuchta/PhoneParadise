@@ -1,11 +1,18 @@
 import { FacebookIcon, MailIcon, PhoneContact } from "../assets/icons";
 import DesktopFooter from "../components/Footer/DesktopFooter";
-import { Link } from "react-router-dom";
+import { Link, Location, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MutableRefObject, useRef } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 import { AnimationObject } from "../Types/Types";
 
 const Contact = () => {
+  const location: Location = useLocation();
+  useEffect(() => {
+    if (location.pathname.includes("/contact")) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
   const createAnimationObject = (y: number): AnimationObject => {
     return {
       hidden: { opacity: 0, y: y },

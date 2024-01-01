@@ -116,14 +116,17 @@ export interface LoginState {
 export interface AnimationObject {
     hidden: {
         opacity: number;
-        y: number;
+        x?: number;
+        y?: number;
     };
     visible: {
         opacity: number;
-        y: number;
+        x?: number;
+        y?: number;
     };
     [key: string]: {
         opacity: number;
-        y: number;
+        x?: number;
+        y?: number;
     };
 }

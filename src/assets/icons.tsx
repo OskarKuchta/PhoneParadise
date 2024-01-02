@@ -2,15 +2,14 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "../store";
 import { FC } from "react";
 
-export const CartIcon: FC = () => {
+export const CartIcon = ({ color = "white", width = 25, height = 20 }) => {
   return (
     <svg
-      className=""
       xmlns="http://www.w3.org/2000/svg"
-      width="25"
-      height="20"
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
-      fill="white"
+      fill={color}
     >
       <path d="M24 3l-.743 2h-1.929l-3.474 12h-13.239l-4.615-11h16.812l-.564 2h-13.24l2.937 7h10.428l3.432-12h4.195zm-15.5 15c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.9-7-1.9 7c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z" />
     </svg>
@@ -177,6 +176,55 @@ export const FacebookIcon: FC = () => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" height="5em" viewBox="0 0 512 512">
       <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z" />
+    </svg>
+  );
+};
+
+export const Smileicon = () => {
+  return (
+    <svg
+      width="48px"
+      height="48px"
+      viewBox="0 0 16 16"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+    >
+      <g fill="rgb(46, 3, 87)">
+        <path d="M8 12c-1.01 0-1.782-.504-2.267-.945a4.72 4.72 0 01-.564-.614 3.31 3.31 0 01-.212-.305.75.75 0 011.284-.775 3.214 3.214 0 00.5.584c.341.31.769.555 1.259.555.49 0 .918-.246 1.258-.555a3.214 3.214 0 00.5-.584.75.75 0 011.285.775l-.212.305c-.128.167-.317.39-.564.614C9.782 11.495 9.01 12 8 12zM5 6a1 1 0 011-1h.007a1 1 0 010 2H6a1 1 0 01-1-1zM10 5a1 1 0 100 2h.007a1 1 0 100-2H10z" />
+
+        <path
+          fill-rule="evenodd"
+          d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"
+          clip-rule="evenodd"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export const EyeIcon = () => {
+  return (
+    <svg
+      width="48px"
+      height="48px"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M15.0007 12C15.0007 13.6569 13.6576 15 12.0007 15C10.3439 15 9.00073 13.6569 9.00073 12C9.00073 10.3431 10.3439 9 12.0007 9C13.6576 9 15.0007 10.3431 15.0007 12Z"
+        stroke="rgb(46, 3, 87)"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M12.0012 5C7.52354 5 3.73326 7.94288 2.45898 12C3.73324 16.0571 7.52354 19 12.0012 19C16.4788 19 20.2691 16.0571 21.5434 12C20.2691 7.94291 16.4788 5 12.0012 5Z"
+        stroke="rgb(46, 3, 87)"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </svg>
   );
 };

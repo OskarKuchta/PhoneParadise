@@ -84,7 +84,7 @@ const App = () => {
           </Routes>
         </Suspense>
       </ErrorBoundary>
-      {isPhone ? <Footer /> : <DesktopFooter />}
+      {isPhone.isPhone ? <Footer /> : <DesktopFooter />}
     </>
   );
 };

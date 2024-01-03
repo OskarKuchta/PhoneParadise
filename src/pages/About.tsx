@@ -1,11 +1,38 @@
 import FooterDesktop from "../components/Footer/DesktopFooter";
-import { Link } from "react-router-dom";
-import { FC } from "react";
-import { motion } from "framer-motion";
+import { Link, Location, useLocation } from "react-router-dom";
+import { FC, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { AnimationObject } from "../Types/Types";
 import CountUp from "react-countup";
 import { CartIcon, EyeIcon, Smileicon } from "../assets/icons";
+import { usePhoneContext } from "../context/PhoneProvider";
 const About: FC = () => {
+  const location: Location = useLocation();
+  useEffect(() => {
+    if (location.pathname.includes("/contact")) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+  const useInViewWithRef: (margin?: string) => {
+    ref: React.MutableRefObject<any>;
+    inView: boolean;
+  } = (margin = "-50px") => {
+    const ref: React.MutableRefObject<HTMLDivElement> = useRef(null);
+    const inView: boolean = useInView(ref, {
+      once: true,
+      margin: `0px 0px ${margin} 0px`,
+    });
+    return { ref, inView };
+  };
+  const { ref: smileDivRef, inView: smileInView } = useInViewWithRef();
+  const { ref: cartDivRef, inView: cartInView } = useInViewWithRef();
+  const { ref: eyeDivRef, inView: eyeInView } = useInViewWithRef();
+
+  useEffect(() => {
+    console.log(smileInView, cartInView, eyeInView);
+  }, [smileInView, cartInView, eyeInView]);
+
+  const isPhone = usePhoneContext();
   const fadeLeftAnimation: AnimationObject = {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0 },
@@ -14,6 +41,7 @@ const About: FC = () => {
     hidden: { opacity: 0, y: -50 },
     visible: { opacity: 1, y: 0 },
   };
+
   return (
     <>
       <main className="m-8 flex flex-col items-center md:flex-row md:items-start">
@@ -78,13 +106,17 @@ const About: FC = () => {
             </li>
           </motion.ul>
         </div>
-        <div className="w-full md:w-1/2 flex flex-row justify-center items-center md:ml-16 mt-12 mb-20 md:h-[60vh] gap-16 flex-wrap text-purple">
+        <div className="w-full md:w-1/2 flex flex-row justify-center items-center md:ml-16 mt-12 mb-20 md:h-[60vh] gap-4 flex-wrap text-purple">
           <motion.div
             className="relative w-48 h-48 border-2 border-purple  rounded flex flex-col items-center p-6"
-            variants={fadeUpAnimation}
+            ref={smileDivRef}
+            variants={!isPhone.isPhone ? fadeUpAnimation : fadeLeftAnimation}
             initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.7, delay: 2.5 }}
+            animate={smileInView ? "visible" : "hidden"}
+            transition={{
+              duration: 0.7,
+              delay: !isPhone.isPhone ? 2.5 : 0.5,
+            }}
           >
             <div className="absolute bottom-0 w-full h-4 bg-purple"></div>
             <Smileicon />
@@ -93,28 +125,41 @@ const About: FC = () => {
               suffix=" K"
               decimals={1}
               className="mt-4"
-              delay={2.5}
+              delay={!isPhone.isPhone ? 2.5 : 0}
             />
             <p className="text-center">satisfied customers</p>
           </motion.div>
           <motion.div
             className="relative w-48 h-48 border-2 border-purple rounded flex flex-col items-center p-6"
-            variants={fadeUpAnimation}
+            ref={cartDivRef}
+            variants={!isPhone.isPhone ? fadeUpAnimation : fadeLeftAnimation}
             initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.7, delay: 3 }}
+            animate={cartInView ? "visible" : "hidden"}
+            transition={{
+              duration: 0.7,
+              delay: !isPhone.isPhone ? 3 : 1,
+            }}
           >
             <div className="absolute bottom-0 w-full h-4 bg-purple"></div>
             <CartIcon color="rgb(46, 3, 87)" width={48} height={48} />
-            <CountUp end={185} suffix=" K" className="mt-4" delay={3} />
+            <CountUp
+              end={185}
+              suffix=" K"
+              className="mt-4"
+              delay={!isPhone.isPhone ? 3 : 0}
+            />
             <p className="text-center">orders realized</p>
           </motion.div>
           <motion.div
             className="relative w-48 h-48 border-2 border-purple rounded flex flex-col items-center p-6"
-            variants={fadeUpAnimation}
+            ref={eyeDivRef}
+            variants={!isPhone.isPhone ? fadeUpAnimation : fadeLeftAnimation}
             initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.7, delay: 3.5 }}
+            animate={eyeInView ? "visible" : "hidden"}
+            transition={{
+              duration: 0.7,
+              delay: !isPhone.isPhone ? 3.5 : 1.5,
+            }}
           >
             <div className="absolute bottom-0 w-full h-4 bg-purple"></div>
             <EyeIcon />
@@ -123,7 +168,7 @@ const About: FC = () => {
               suffix=" M"
               decimals={1}
               className="mt-4"
-              delay={3.5}
+              delay={!isPhone.isPhone ? 3.5 : 0}
             />
             <p className="text-center">times page visited</p>
           </motion.div>

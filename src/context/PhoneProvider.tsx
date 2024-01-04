@@ -6,7 +6,7 @@ const PhoneContext = createContext<isPhone | undefined>(undefined);
 export const PhoneProvider = ({ children }) => {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
   const [isPhoneState, setIsPhoneState] = useState<boolean>(
-    window.innerWidth < 769
+    window.innerWidth < 768
   );
 
   useEffect(() => {

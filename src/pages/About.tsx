@@ -9,28 +9,24 @@ import { usePhoneContext } from "../context/PhoneProvider";
 const About: FC = () => {
   const location: Location = useLocation();
   useEffect(() => {
-    if (location.pathname.includes("/contact")) {
+    if (location.pathname.includes("/about")) {
       window.scrollTo(0, 0);
     }
   }, [location.pathname]);
-  const useInViewWithRef: (margin?: string) => {
+  const useInViewWithRef: () => {
     ref: React.MutableRefObject<any>;
     inView: boolean;
-  } = (margin = "-50px") => {
+  } = () => {
     const ref: React.MutableRefObject<HTMLDivElement> = useRef(null);
     const inView: boolean = useInView(ref, {
       once: true,
-      margin: `0px 0px ${margin} 0px`,
+      margin: `0px 0px 0px 0px`,
     });
     return { ref, inView };
   };
   const { ref: smileDivRef, inView: smileInView } = useInViewWithRef();
   const { ref: cartDivRef, inView: cartInView } = useInViewWithRef();
   const { ref: eyeDivRef, inView: eyeInView } = useInViewWithRef();
-
-  useEffect(() => {
-    console.log(smileInView, cartInView, eyeInView);
-  }, [smileInView, cartInView, eyeInView]);
 
   const isPhone = usePhoneContext();
   const fadeLeftAnimation: AnimationObject = {
@@ -106,7 +102,7 @@ const About: FC = () => {
             </li>
           </motion.ul>
         </div>
-        <div className="w-full md:w-1/2 flex flex-row justify-center items-center md:ml-16 mt-12 mb-20 md:h-[60vh] gap-4 flex-wrap text-purple">
+        <div className="w-full md:w-1/2 flex flex-row justify-center items-center md:ml-16 mt-12 mb-32 md:h-[60vh] gap-4 flex-wrap text-purple">
           <motion.div
             className="relative w-48 h-48 border-2 border-purple  rounded flex flex-col items-center p-6"
             ref={smileDivRef}
@@ -120,13 +116,15 @@ const About: FC = () => {
           >
             <div className="absolute bottom-0 w-full h-4 bg-purple"></div>
             <Smileicon />
-            <CountUp
-              end={24.5}
-              suffix=" K"
-              decimals={1}
-              className="mt-4"
-              delay={!isPhone.isPhone ? 2.5 : 0}
-            />
+            {smileInView && (
+              <CountUp
+                end={24.5}
+                suffix=" K"
+                decimals={1}
+                className="mt-4"
+                delay={!isPhone.isPhone ? 2.5 : 1}
+              />
+            )}
             <p className="text-center">satisfied customers</p>
           </motion.div>
           <motion.div
@@ -142,12 +140,14 @@ const About: FC = () => {
           >
             <div className="absolute bottom-0 w-full h-4 bg-purple"></div>
             <CartIcon color="rgb(46, 3, 87)" width={48} height={48} />
-            <CountUp
-              end={185}
-              suffix=" K"
-              className="mt-4"
-              delay={!isPhone.isPhone ? 3 : 0}
-            />
+            {cartInView && (
+              <CountUp
+                end={185}
+                suffix=" K"
+                className="mt-4"
+                delay={!isPhone.isPhone ? 3 : 1}
+              />
+            )}
             <p className="text-center">orders realized</p>
           </motion.div>
           <motion.div
@@ -163,13 +163,15 @@ const About: FC = () => {
           >
             <div className="absolute bottom-0 w-full h-4 bg-purple"></div>
             <EyeIcon />
-            <CountUp
-              end={2.5}
-              suffix=" M"
-              decimals={1}
-              className="mt-4"
-              delay={!isPhone.isPhone ? 3.5 : 0}
-            />
+            {eyeInView && (
+              <CountUp
+                end={2.5}
+                suffix=" M"
+                decimals={1}
+                className="mt-4"
+                delay={!isPhone.isPhone ? 3.5 : 2}
+              />
+            )}
             <p className="text-center">times page visited</p>
           </motion.div>
         </div>

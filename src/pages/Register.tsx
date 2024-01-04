@@ -185,7 +185,7 @@ const Register: FC = () => {
                   className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   placeholder="Your name"
                   required
-                  autoComplete="name"
+                  autoComplete="on"
                 />
                 {userData.name.length <= 4 && userDataError.name ? (
                   <p className="text-[0.75rem] text-purple mt-1">
@@ -223,7 +223,7 @@ const Register: FC = () => {
                   className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   placeholder="name@company.com"
                   required
-                  autoComplete="email"
+                  autoComplete="on"
                 />
                 {!emailRegex.test(userData.email) && userDataError.email ? (
                   <p className="text-[0.75rem] text-purple mt-1">
@@ -256,7 +256,7 @@ const Register: FC = () => {
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   required
-                  autoComplete="current-password"
+                  autoComplete="off"
                 />
                 {!passwordRegex.test(userData.password) &&
                 userDataError.password ? (

@@ -67,23 +67,25 @@ const MainPage = () => {
         </h1>
         <section className="flex flex-col md:flex-row justify-center mb-16">
           <aside className="flex flex-col items-center md:mr-12">
-            <label htmlFor="sortOrder">Sort by:</label>
-            <select
-              id="sortOrder"
-              className="w-40 mt-2 mb-10"
-              onChange={(e) => {
-                setValue(e.target.value)
-                setCurrentPage(1)
-              }}
-              style={{ outlineColor: "rgb(46, 3, 87)" }}
-            >
-              <option>Default</option>
-              <option>Price ascending</option>
-              <option>Price descending</option>
-              <option>Date release</option>
-              <option>Screen size</option>
-              <option>Actual available</option>
-            </select>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <label htmlFor="sortOrder">Sort by:</label>
+              <select
+                id="sortOrder"
+                className="w-40 mt-2 mb-10"
+                onChange={(e) => {
+                  setValue(e.target.value);
+                  setCurrentPage(1);
+                }}
+                style={{ outlineColor: "rgb(46, 3, 87)" }}
+              >
+                <option>Default</option>
+                <option>Price ascending</option>
+                <option>Price descending</option>
+                <option>Date release</option>
+                <option>Screen size</option>
+                <option>Actual available</option>
+              </select>
+            </form>
           </aside>
           <aside className="flex flex-col items-center mb-8">
             <Slider

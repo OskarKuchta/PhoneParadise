@@ -38,6 +38,29 @@ const Register: FC = () => {
   const emailRegex: RegExp =
     /^[A-Za-z0-9]+([._-][A-Za-z0-9]+)*[A-Za-z][A-Za-z0-9]*@[A-Za-z0-9._-]+\.[A-Za-z]{2,}$/;
 
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      name: e.target.value,
+    }));
+
+    setUserDataError((prevErrors) => ({
+      ...prevErrors,
+      nameTaken: false,
+    }));
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserData((prevUserData) => ({
+      ...prevUserData,
+      email: e.target.value,
+    }));
+
+    setUserDataError((prevErrors) => ({
+      ...prevErrors,
+      emailTaken: false,
+    }));
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(
@@ -52,34 +75,25 @@ const Register: FC = () => {
       if (
         nameInDoc &&
         typeof nameInDoc === "string" &&
-        userData.name.includes(nameInDoc)
+        nameInDoc.includes(userData.name)
       ) {
         validationErrors.push("Name is already taken");
+
         setUserDataError((prevErrors) => ({
           ...prevErrors,
           nameTaken: true,
-        }));
-      } else {
-        setUserDataError((prevErrors) => ({
-          ...prevErrors,
-          nameTaken: false,
         }));
       }
 
       if (
         emailInDoc &&
         typeof emailInDoc === "string" &&
-        userData.email.includes(emailInDoc)
+        emailInDoc.includes(userData.email)
       ) {
         validationErrors.push("Email is already taken");
         setUserDataError((prevErrors) => ({
           ...prevErrors,
           emailTaken: true,
-        }));
-      } else {
-        setUserDataError((prevErrors) => ({
-          ...prevErrors,
-          emailTaken: false,
         }));
       }
     });
@@ -176,12 +190,7 @@ const Register: FC = () => {
                   type="name"
                   name="name"
                   id="name"
-                  onChange={(e) =>
-                    setUserData((prevUserData) => ({
-                      ...prevUserData,
-                      name: e.target.value,
-                    }))
-                  }
+                  onChange={handleNameChange}
                   className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   placeholder="Your name"
                   required
@@ -214,12 +223,7 @@ const Register: FC = () => {
                   type="email"
                   name="email"
                   id="email"
-                  onChange={(e) =>
-                    setUserData((prevUserData) => ({
-                      ...prevUserData,
-                      email: e.target.value,
-                    }))
-                  }
+                  onChange={handleEmailChange}
                   className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                   placeholder="name@company.com"
                   required

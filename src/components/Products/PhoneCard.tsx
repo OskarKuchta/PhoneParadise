@@ -114,6 +114,7 @@ const PhoneCard: FC<PhoneCard> = ({
                     <p className="my-[0.3rem]">Off sale</p>
                     <img
                       src="/out-of-stock.png"
+                      alt=""
                       className="absolute top-0 right-[-20px] rotate-[60deg] w-20 h-12"
                     />
                   </>

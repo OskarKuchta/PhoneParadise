@@ -16,7 +16,6 @@ const About: FC = () => {
   const useInViewWithRef: () => UseInViewWithRefReturnType = () => {
     const ref: React.MutableRefObject<HTMLDivElement> = useRef(null);
     const inView: boolean = useInView(ref, {
-      once: true,
       margin: `0px 0px -100px 0px`,
     });
     return { ref, inView };

@@ -16,7 +16,7 @@ const CompleteRegistration: FC = () => {
               Your account has been created.
             </h2>
           </div>
-          <p className="text-sm font-light text-gray-500 mb-12 ">
+          <p className="text-sm font-light text-gray-500 mb-12 px-4">
             Thank you for creating an account. Now you can log in to your
             account.{" "}
             <Link

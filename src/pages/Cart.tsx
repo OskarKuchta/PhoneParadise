@@ -33,7 +33,7 @@ const Cart = () => {
         <main>
           <CartProducts />
           <Discount />
-          <section className="flex flex-col md:flex-row justify-center md:justify-around items-center mb-12 md:mb-16">
+          <section className="flex flex-col md:flex-row justify-center md:justify-around items-center mb-12 md:mb-32">
             <h2 className="text-center mb-8 md:mb-0">
               Total:
               {isDiscount ? (

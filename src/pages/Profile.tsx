@@ -299,7 +299,7 @@ const Profile: FC = () => {
             <div className="flex">
               <button
                 onClick={logoutAccount}
-                className="ml-auto p-[0.3rem] rounded focus:outline-none focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray text-sm mt-16 mb-16 md:mb-0"
+                className="ml-auto p-[0.3rem] rounded focus:outline-none focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray text-sm mt-16"
               >
                 Logout
               </button>

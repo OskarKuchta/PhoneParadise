@@ -58,3 +58,10 @@
   background-color: var(--red);
   color: var(--white);
 }
+
+@media (max-width: 768px) {
+  .btn-container button {
+    font-size: 0.7rem;
+    margin: 0 0.2rem;
+  }
+}

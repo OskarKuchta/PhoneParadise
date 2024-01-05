@@ -2,7 +2,7 @@ import FooterDesktop from "../components/Footer/DesktopFooter";
 import { Link, Location, useLocation } from "react-router-dom";
 import { FC, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { AnimationObject } from "../Types/Types";
+import { AnimationObject, UseInViewWithRefReturnType } from "../Types/Types";
 import CountUp from "react-countup";
 import { CartIcon, EyeIcon, Smileicon } from "../assets/icons";
 import { usePhoneContext } from "../context/PhoneProvider";
@@ -13,14 +13,11 @@ const About: FC = () => {
       window.scrollTo(0, 0);
     }
   }, [location.pathname]);
-  const useInViewWithRef: () => {
-    ref: React.MutableRefObject<any>;
-    inView: boolean;
-  } = () => {
+  const useInViewWithRef: () => UseInViewWithRefReturnType = () => {
     const ref: React.MutableRefObject<HTMLDivElement> = useRef(null);
     const inView: boolean = useInView(ref, {
       once: true,
-      margin: `0px 0px 0px 0px`,
+      margin: `0px 0px -100px 0px`,
     });
     return { ref, inView };
   };

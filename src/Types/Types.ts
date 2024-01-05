@@ -130,3 +130,8 @@ export interface AnimationObject {
         y?: number;
     };
 }
+
+export interface UseInViewWithRefReturnType {
+    ref: React.MutableRefObject<any>;
+    inView: boolean;
+};

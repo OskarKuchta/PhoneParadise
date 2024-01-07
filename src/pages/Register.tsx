@@ -8,9 +8,14 @@ import {
   getDocs,
   QuerySnapshot,
 } from "firebase/firestore";
-import { UserData, UserDataError } from "../Types/Types";
+import {
+  PasswordVisibleRegister,
+  UserData,
+  UserDataError,
+} from "../Types/Types";
 import { db } from "../assets/FirebaseConfig";
 import { v4 as uuidv4 } from "uuid";
+import { CheckPassword } from "../assets/icons";
 const Register: FC = () => {
   const navigate: NavigateFunction = useNavigate();
 
@@ -30,6 +35,19 @@ const Register: FC = () => {
     password: false,
     confirmPassword: false,
   });
+  const [passwordVisible, setPasswordVisible] =
+    useState<PasswordVisibleRegister>({
+      password: false,
+      confirmPassword: false,
+    });
+
+  const togglePasswordVisibility = (type: "password" | "confirmPassword") => {
+    setPasswordVisible((prev) => ({
+      ...prev,
+      [type]: !prev[type],
+    }));
+  };
+
   const accountCollection: CollectionReference<DocumentData, DocumentData> =
     collection(db, "accounts");
 
@@ -166,6 +184,7 @@ const Register: FC = () => {
 
     navigate("/register/complete", { state: { fromRegister: true } });
   };
+
   return (
     <main>
       <div className="flex flex-col items-center mt-[10vh] px-6 mx-auto lg:py-0">
@@ -247,21 +266,27 @@ const Register: FC = () => {
                 >
                   Password
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  onChange={(e) =>
-                    setUserData((prevUserData) => ({
-                      ...prevUserData,
-                      password: e.target.value,
-                    }))
-                  }
-                  placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  required
-                  autoComplete="off"
-                />
+                <div className="relative">
+                  <input
+                    type={passwordVisible.password ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    onChange={(e) =>
+                      setUserData((prevUserData) => ({
+                        ...prevUserData,
+                        password: e.target.value,
+                      }))
+                    }
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    required
+                    autoComplete="off"
+                  />
+                  <CheckPassword
+                    className={`absolute right-3 bottom-2`}
+                    togglePassword={() => togglePasswordVisibility("password")}
+                  />
+                </div>
                 {!passwordRegex.test(userData.password) &&
                 userDataError.password ? (
                   <p className="text-[0.75rem] text-purple mt-1">
@@ -282,20 +307,28 @@ const Register: FC = () => {
                 >
                   Confirm password
                 </label>
-                <input
-                  type="password"
-                  name="confirm-password"
-                  id="confirm-password"
-                  onChange={(e) =>
-                    setUserData((prevUserData) => ({
-                      ...prevUserData,
-                      confirmPassword: e.target.value,
-                    }))
-                  }
-                  placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  required
-                />
+                <div className="relative">
+                  <input
+                    type={passwordVisible.confirmPassword ? "text" : "password"}
+                    name="confirm-password"
+                    id="confirm-password"
+                    onChange={(e) =>
+                      setUserData((prevUserData) => ({
+                        ...prevUserData,
+                        confirmPassword: e.target.value,
+                      }))
+                    }
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    required
+                  />
+                  <CheckPassword
+                    className="absolute right-3 bottom-2"
+                    togglePassword={() =>
+                      togglePasswordVisibility("confirmPassword")
+                    }
+                  />
+                </div>
                 {userData.password !== userData.confirmPassword
                   ? userDataError.confirmPassword && (
                       <p className="text-[0.75rem] text-purple mt-1">

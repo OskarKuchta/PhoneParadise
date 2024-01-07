@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AnyAction } from "redux";
 import { login } from "../features/AccountSlice";
 import { RootState } from "../store";
+import { CheckPassword } from "../assets/icons";
 
 const Login: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
@@ -39,6 +40,11 @@ const Login: FC = () => {
     isEmailExist: true,
     isPasswordCorrect: true,
   });
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
   const loginAuth = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -127,21 +133,27 @@ const Login: FC = () => {
                 >
                   Password
                 </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  required
-                  autoComplete="current-password"
-                  onChange={(e) =>
-                    setUserData((prevUserData) => ({
-                      ...prevUserData,
-                      password: e.target.value,
-                    }))
-                  }
-                />
+                <div className="relative">
+                  <input
+                    type={passwordVisible ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    required
+                    autoComplete="current-password"
+                    onChange={(e) =>
+                      setUserData((prevUserData) => ({
+                        ...prevUserData,
+                        password: e.target.value,
+                      }))
+                    }
+                  />
+                  <CheckPassword
+                    className="absolute right-3 bottom-2"
+                    togglePassword={togglePasswordVisibility}
+                  />
+                </div>
                 {userDataCheck.isPasswordCorrect === false ? (
                   <p className="text-[0.75rem] text-purple mt-1">
                     Password is incorrect.

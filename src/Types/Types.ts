@@ -135,3 +135,8 @@ export interface UseInViewWithRefReturnType {
     ref: React.MutableRefObject<any>;
     inView: boolean;
 };
+
+export interface PasswordVisibleRegister {
+    password: boolean;
+    confirmPassword: boolean;
+}

@@ -158,7 +158,7 @@ const About: FC = () => {
             }}
           >
             <div className="absolute bottom-0 w-full h-4 bg-purple"></div>
-            <EyeIcon />
+            <EyeIcon size={48} />
             {eyeInView && (
               <CountUp
                 end={2.5}

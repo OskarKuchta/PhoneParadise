@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "../store";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 export const CartIcon = ({ color = "white", width = 25, height = 20 }) => {
   return (
@@ -202,11 +202,11 @@ export const Smileicon = () => {
   );
 };
 
-export const EyeIcon = () => {
+export const EyeIcon = ({ size = 48 }: { size: number }) => {
   return (
     <svg
-      width="48px"
-      height="48px"
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -226,5 +226,33 @@ export const EyeIcon = () => {
         strokeLinejoin="round"
       />
     </svg>
+  );
+};
+
+export const CheckPassword = ({
+  className,
+  togglePassword,
+}: {
+  className: string;
+  togglePassword: () => void;
+}) => {
+  const [isHidden, setIsHidden] = useState<boolean>(false);
+  const changeVisibility = () => {
+    setIsHidden(!isHidden);
+  };
+  return (
+    <div
+      className={className}
+      onClick={() => {
+        changeVisibility();
+        togglePassword();
+      }}
+    >
+      {!isHidden ? (
+        <EyeIcon size={24} />
+      ) : (
+        <i className="fas fa-eye-slash text-purple"></i>
+      )}
+    </div>
   );
 };

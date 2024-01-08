@@ -87,7 +87,7 @@ const PaymentAccepted: FC = () => {
   }, [ratingsCollection]);
 
   return (
-    <main className="h-screen mt-12 flex flex-col text-center items-center">
+    <main className="mt-12 flex flex-col text-center items-center max-w-[90vw] mx-auto">
       <h2 className="text-xl">Thank you for trust.</h2>
       <h3 className="my-8">
         We'll be glad if you can leave a rating for shopping experience.

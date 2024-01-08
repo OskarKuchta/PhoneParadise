@@ -40,30 +40,40 @@ const PhoneCard: FC<PhoneCard> = ({
   const sortedItemsArray: Products[] = itemsArray
     .slice()
     .sort((a, b) => {
-      if (value === "Price ascending") {
-        const priceA: number = a.price;
-        const priceB: number = b.price;
-        return itemsAscending.indexOf(priceA) - itemsAscending.indexOf(priceB);
-      } else if (value === "Price descending") {
-        const priceA: number = a.price;
-        const priceB: number = b.price;
-        return (
-          itemsDescending.indexOf(priceA) - itemsDescending.indexOf(priceB)
-        );
-      } else if (value === "Date release") {
-        const dateA: number = new Date(a.date).getTime();
-        const dateB: number = new Date(b.date).getTime();
-        return dateB - dateA;
-      } else if (value === "Screen size") {
-        const sizeA: number = parseFloat(a.desc.match(/\d+\.\d+/)[0]);
-        const sizeB: number = parseFloat(b.desc.match(/\d+\.\d+/)[0]);
-        return sizeB - sizeA;
-      } else if (value === "Actual available") {
-        const inStockA = a.inStock > 0 ? 1 : 0;
-        const inStockB = b.inStock > 0 ? 1 : 0;
-        return inStockB - inStockA;
+      let result = 0;
+
+      switch (value) {
+        case "Price ascending":
+          const priceA: number = a.price;
+          const priceB: number = b.price;
+          result =
+            itemsAscending.indexOf(priceA) - itemsAscending.indexOf(priceB);
+          break;
+        case "Price descending":
+          const priceA_desc: number = a.price;
+          const priceB_desc: number = b.price;
+          result =
+            itemsDescending.indexOf(priceA_desc) -
+            itemsDescending.indexOf(priceB_desc);
+          break;
+        case "Date release":
+          const dateA: number = new Date(a.date).getTime();
+          const dateB: number = new Date(b.date).getTime();
+          result = dateB - dateA;
+          break;
+        case "Screen size":
+          const sizeA: number = parseFloat(a.desc.match(/\d+\.\d+/)[0]);
+          const sizeB: number = parseFloat(b.desc.match(/\d+\.\d+/)[0]);
+          result = sizeB - sizeA;
+          break;
+        case "Actual available":
+          const inStockA = a.inStock > 0 ? 1 : 0;
+          const inStockB = b.inStock > 0 ? 1 : 0;
+          result = inStockB - inStockA;
+          break;
       }
-      return 0;
+
+      return result;
     })
     .filter((product) =>
       value === "Actual available" ? product.inStock > 0 : true

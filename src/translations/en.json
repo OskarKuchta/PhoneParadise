@@ -1,5 +1,22 @@
 {
   "translation": {
-    "desktop-footer": "Your Source for the Latest Technology"
+    "desktop-footer": "Your Source for the Latest Technology",
+    "quantity": "quantity",
+    "remove": "remove",
+    "cost": "cost",
+    "discount-code": "Discount code",
+    "your-cart": "Your cart",
+    "total": "Total",
+    "empty-cart": "Currently, there are no items in the cart...",
+    "empty-cart-hint": "Add some item and back to cart.",
+    "empty-cart-button": "Back to shopping",
+    "discount-question": "Do you have a discount code",
+    "discount-not-exist": "You type invalid code.Try another.",
+    "actual-discount": "You have already used code",
+    "discount-percent": "discount",
+    "add-discount-button": "Use code",
+    "save": "save",
+    "go-to-payments": "Go to payments",
+    "remove-cart": "Remove cart"
   }
 }

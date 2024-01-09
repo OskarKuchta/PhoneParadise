@@ -7,8 +7,10 @@ import { open } from "../features/ModalSlice";
 import Modal from "../components/Modal";
 import Discount from "../components/Cart/Discount";
 import { AnyAction, Dispatch } from "redux";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
+  const { t } = useTranslation();
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const openModal = () => {
     dispatch(open());
@@ -35,7 +37,7 @@ const Cart = () => {
           <Discount />
           <section className="flex flex-col md:flex-row justify-center md:justify-around items-center mb-12 md:mb-32">
             <h2 className="text-center mb-8 md:mb-0">
-              Total:
+              {t("total")}:
               {isDiscount ? (
                 <p>
                   <s className="mr-2">${total}</s> $
@@ -50,7 +52,7 @@ const Cart = () => {
                   {Number(total - withDiscount)
                     .toFixed(2)
                     .replace(/\.00$/, "")}
-                  ) save
+                  ) {t("save")}
                 </span>
               ) : (
                 ""
@@ -60,13 +62,13 @@ const Cart = () => {
               className="button-withArrow py-[0.7rem] px-12 mb-8 md:mb-0"
               onClick={navigateToPayments}
             >
-              Go to payments
+              {t("go-to-payments")}
             </button>
             <button
               onClick={openModal}
               className="py-[0.7rem] px-12 border-2 border-red shadow-md rounded-md outline-none transition-all duration-1000 ease-in-out hover:bg-red focus:bg-red hover:text-lightGray focus:text-lightGray mb-8 md:mb-0"
             >
-              Remove cart
+              {t("remove-cart")}
             </button>
           </section>
         </main>

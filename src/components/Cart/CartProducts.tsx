@@ -9,9 +9,11 @@ import { ChevronDown, ChevronUp } from "../../assets/icons";
 import { AnyAction, Dispatch } from "redux";
 import { FC } from "react";
 import { CartItems } from "../../Types/Types";
+import { useTranslation } from "react-i18next";
 
 const CartProducts: FC = () => {
   const { cartItems } = useSelector((state: RootState) => state.cart);
+  const { t } = useTranslation();
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const increase = (productId: number) => {
     dispatch(increaseProductAmount({ productId }));
@@ -24,7 +26,7 @@ const CartProducts: FC = () => {
   };
   return (
     <section className="flex flex-col items-center m-8">
-      <h2 className="text-center text-2xl mb-8">Your cart:</h2>
+      <h2 className="text-center text-2xl mb-8">{t("your-cart")}:</h2>
       {[...new Set(cartItems.map((product) => product.id))].map((productId) => {
         const product: CartItems = cartItems.find(
           (item) => item.id === productId
@@ -45,7 +47,9 @@ const CartProducts: FC = () => {
             </div>
             <div className="mb-4 md:mb-0 flex-[33%] flex-col justify-center items-center">
               <div className="flex items-center mb-4">
-                <p>Quantity: {Number(product.quantity)}</p>
+                <p>
+                  {t("quantity")}: {Number(product.quantity)}
+                </p>
                 <div className="w-4 flex flex-col ml-2">
                   <button onClick={() => increase(product.id)}>
                     <ChevronUp />
@@ -60,11 +64,13 @@ const CartProducts: FC = () => {
                   className="p-2 pl-6 pr-6 border-2 border-red shadow-md rounded-md outline-none transition-all duration-1000 ease-in-out hover:bg-red focus:bg-red hover:text-lightGray focus:text-lightGray"
                   onClick={() => remove(product.id)}
                 >
-                  Remove
+                  {t("remove")}
                 </button>
               </div>
             </div>
-            <p>Cost: ${product.price * product.quantity}</p>
+            <p>
+              {t("cost")}: ${product.price * product.quantity}
+            </p>
           </aside>
         );
       })}

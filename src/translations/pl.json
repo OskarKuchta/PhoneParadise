@@ -1,5 +1,22 @@
 {
   "translation": {
-    "desktop-footer": "Twoje źródło najnowszej technologii"
+    "desktop-footer": "Twoje źródło najnowszej technologii",
+    "quantity": "Ilość",
+    "remove": "Usuń",
+    "cost": "Cena",
+    "discount-code": "Kod promocyjny",
+    "your-cart": "Twój koszyk",
+    "total": "Razem",
+    "empty-cart": "Aktualnie w koszyku nie ma żadnych produktów...",
+    "empty-cart-hint": "Dodaj produkt i wróć do koszyka.",
+    "empty-cart-button": "Wróć do zakupów",
+    "discount-question": "Czy posiadasz kod promocyjny",
+    "discount-not-exist": "Niepoprawny kod. Spróbuj innego kodu.",
+    "actual-discount": "Aktualnie użyty kod",
+    "discount-percent": "taniej",
+    "add-discount-button": "Użyj kodu",
+    "save": "oszczędzasz",
+    "go-to-payments": "Przejdź do płatności",
+    "remove-cart": "Wyczyść koszyk"
   }
 }

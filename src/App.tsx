@@ -1,4 +1,4 @@
-import { ErrorBoundary } from "react-error-boundary";
+import ErrorBoundary from "./ErrorBoundary.tsx";
 import React, { Dispatch, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation, Location } from "react-router-dom";
 import Navbar from "./components/Navbar.tsx";
@@ -44,9 +44,7 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <ErrorBoundary
-        fallback={<main className="without-data">{Error.toString()}</main>}
-      >
+      <ErrorBoundary>
         <Suspense
           fallback={
             <>

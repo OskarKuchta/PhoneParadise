@@ -1,9 +1,9 @@
 {
   "translation": {
     "desktop-footer": "Your Source for the Latest Technology",
-    "quantity": "quantity",
-    "remove": "remove",
-    "cost": "cost",
+    "quantity": "Quantity",
+    "remove": "Remove",
+    "cost": "Cost",
     "discount-code": "Discount code",
     "your-cart": "Your cart",
     "total": "Total",
@@ -17,6 +17,18 @@
     "add-discount-button": "Use code",
     "save": "save",
     "go-to-payments": "Go to payments",
-    "remove-cart": "Remove cart"
+    "remove-cart": "Remove cart",
+    "about-header": "Why Choose Phone Paradise?",
+    "about-text": "Phone Paradise is where your dreams of the perfect phone come to life. For years, our company has been delivering the best telecommunications solutions, making us an industry leader. Here's why you should choose our store:",
+    "about-ul-first": "Wide selection of the latest phone models from top manufacturers.",
+    "about-ul-second": "Guaranteed quality and authenticity of every product – we never compromise on quality.",
+    "about-ul-third": "Express delivery so you can enjoy your new phone quickly and without delays.",
+    "our": "Our",
+    "customer-support": "customer support",
+    "customer-available": "is available 24/7 – you can always count on us.",
+    "about-ul-fifth": " We care for every customer, providing comprehensive support and satisfaction.",
+    "satisfied customers": "satisfied customers",
+    "orders realized": "orders realized",
+    "times page visited": "times page visited"
   }
 }

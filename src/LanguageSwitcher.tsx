@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
-  const [currentLanguage, setCurrentLanguage] = useState("pl");
+  const [currentLanguage, setCurrentLanguage] = useState("en");
 
   const changeLanguage = () => {
     const newLanguage = currentLanguage === "pl" ? "en" : "pl";

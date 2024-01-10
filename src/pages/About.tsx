@@ -6,6 +6,7 @@ import { AnimationObject, UseInViewWithRefReturnType } from "../Types/Types";
 import CountUp from "react-countup";
 import { CartIcon, EyeIcon, Smileicon } from "../assets/icons";
 import { usePhoneContext } from "../context/PhoneProvider";
+import { useTranslation } from "react-i18next";
 const About: FC = () => {
   const location: Location = useLocation();
   useEffect(() => {
@@ -13,6 +14,7 @@ const About: FC = () => {
       window.scrollTo(0, 0);
     }
   }, [location.pathname]);
+  const { t } = useTranslation();
   const useInViewWithRef: () => UseInViewWithRefReturnType = () => {
     const ref: React.MutableRefObject<HTMLDivElement> = useRef(null);
     const inView: boolean = useInView(ref, {
@@ -36,7 +38,7 @@ const About: FC = () => {
 
   return (
     <>
-      <main className="m-8 flex flex-col items-center md:flex-row md:items-start">
+      <main className="m-8 flex flex-col items-center md:flex-row md:items-start mb-12 md:mb-32 lg:mb-0">
         <div className="w-full md:w-1/2">
           <motion.h2
             variants={fadeLeftAnimation}
@@ -45,7 +47,7 @@ const About: FC = () => {
             transition={{ duration: 1 }}
             className="text-purple my-8 text-center md:text-start"
           >
-            Why Choose Phone Paradise?
+            {t("about-header")}
           </motion.h2>
           <motion.p
             variants={fadeLeftAnimation}
@@ -53,10 +55,7 @@ const About: FC = () => {
             animate="visible"
             transition={{ duration: 0.7, delay: 1.2 }}
           >
-            Phone Paradise is where your dreams of the perfect phone come to
-            life. For years, our company has been delivering the best
-            telecommunications solutions, making us an industry leader. Here's
-            why you should choose our store:
+            {t("about-text")}
           </motion.p>
           <motion.ul
             variants={fadeLeftAnimation}
@@ -67,34 +66,31 @@ const About: FC = () => {
           >
             <li className="my-6">
               <i className="fa fa-check-circle first-line mr-4"></i>
-              Wide selection of the latest phone models from top manufacturers.
+              {t("about-ul-first")}
             </li>
             <li className="my-6">
               <i className="fa fa-check-circle mr-4"></i>
-              Guaranteed quality and authenticity of every product – we never
-              compromise on quality.
+              {t("about-ul-second")}
             </li>
             <li className="my-6">
               <i className="fa fa-check-circle mr-4"></i>
-              Express delivery so you can enjoy your new phone quickly and
-              without delays.
+              {t("about-ul-third")}
             </li>
             <li className="my-6">
               <i className="fa fa-check-circle mr-4"></i>
-              Our{" "}
+              {t("our")}{" "}
               <Link
                 to="/contact"
                 aria-label="Contact with us"
                 className="text-blue-500"
               >
-                customer support
+                {t("customer-support")}
               </Link>{" "}
-              is available 24/7 – you can always count on us.
+              {t("customer-available")}
             </li>
             <li className="my-6">
               <i className="fa fa-check-circle mr-4"></i>
-              We care for every customer, providing comprehensive support and
-              satisfaction.
+              {t("about-ul-fifth")}
             </li>
           </motion.ul>
         </div>
@@ -121,7 +117,7 @@ const About: FC = () => {
                 delay={!isPhone.isPhone ? 2.5 : 1}
               />
             )}
-            <p className="text-center">satisfied customers</p>
+            <p className="text-center">{t("satisfied customers")}</p>
           </motion.div>
           <motion.div
             className="relative w-48 h-48 border-2 border-purple rounded flex flex-col items-center p-6"
@@ -144,7 +140,7 @@ const About: FC = () => {
                 delay={!isPhone.isPhone ? 3 : 1}
               />
             )}
-            <p className="text-center">orders realized</p>
+            <p className="text-center">{t("orders realized")}</p>
           </motion.div>
           <motion.div
             className="relative w-48 h-48 border-2 border-purple rounded flex flex-col items-center p-6"
@@ -168,7 +164,7 @@ const About: FC = () => {
                 delay={!isPhone.isPhone ? 3.5 : 2}
               />
             )}
-            <p className="text-center">times page visited</p>
+            <p className="text-center">{t("times page visited")}</p>
           </motion.div>
         </div>
       </main>

@@ -16,6 +16,7 @@ import {
 import { db } from "../assets/FirebaseConfig";
 import { v4 as uuidv4 } from "uuid";
 import { CheckPassword } from "../assets/icons";
+import { useTranslation } from "react-i18next";
 const Register: FC = () => {
   const navigate: NavigateFunction = useNavigate();
 
@@ -40,7 +41,7 @@ const Register: FC = () => {
       password: false,
       confirmPassword: false,
     });
-
+  const { t } = useTranslation();
   const togglePasswordVisibility = (type: "password" | "confirmPassword") => {
     setPasswordVisible((prev) => ({
       ...prev,
@@ -93,7 +94,7 @@ const Register: FC = () => {
       if (
         nameInDoc &&
         typeof nameInDoc === "string" &&
-        nameInDoc.includes(userData.name)
+        nameInDoc === userData.name
       ) {
         validationErrors.push("Name is already taken");
 
@@ -106,7 +107,7 @@ const Register: FC = () => {
       if (
         emailInDoc &&
         typeof emailInDoc === "string" &&
-        emailInDoc.includes(userData.email)
+        emailInDoc === userData.email
       ) {
         validationErrors.push("Email is already taken");
         setUserDataError((prevErrors) => ({
@@ -191,7 +192,7 @@ const Register: FC = () => {
         <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 mb-28">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h2 className="text-xl font-bold leading-tight tracking-tight text-purple md:text-2xl">
-              Sign up your account
+              {t("sign-up-header")}
             </h2>
             <form
               className="space-y-4 md:space-y-6"
@@ -203,7 +204,7 @@ const Register: FC = () => {
                   htmlFor="name"
                   className="block mb-2 text-sm font-medium text-purple"
                 >
-                  Name
+                  {t("name")}
                 </label>
                 <input
                   type="name"
@@ -217,17 +218,17 @@ const Register: FC = () => {
                 />
                 {userData.name.length <= 4 && userDataError.name ? (
                   <p className="text-[0.75rem] text-purple mt-1">
-                    Name must be longer than 4 characters.
+                    {t("name-length")}
                   </p>
                 ) : null}
                 {!nameRegex?.test(userData.name) && userDataError.name ? (
                   <p className="text-[0.75rem] text-purple mt-1">
-                    Invalid characters.
+                    {t("invalid-characters")}
                   </p>
                 ) : null}
                 {userDataError.nameTaken ? (
                   <p className="text-[0.75rem] text-purple mt-1">
-                    Name is already taken.
+                    {t("name-taken")}
                   </p>
                 ) : null}
               </div>
@@ -236,7 +237,7 @@ const Register: FC = () => {
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-purple"
                 >
-                  Your email
+                  {t("your-email")}
                 </label>
                 <input
                   type="email"
@@ -250,12 +251,12 @@ const Register: FC = () => {
                 />
                 {!emailRegex.test(userData.email) && userDataError.email ? (
                   <p className="text-[0.75rem] text-purple mt-1">
-                    Invalid email format.
+                    {t("invalid-email")}
                   </p>
                 ) : null}
                 {userDataError.emailTaken ? (
                   <p className="text-[0.75rem] text-purple mt-1">
-                    Email is already taken.
+                    {t("email-taken")}
                   </p>
                 ) : null}
               </div>
@@ -264,7 +265,7 @@ const Register: FC = () => {
                   htmlFor="password"
                   className="block mb-2 text-sm font-medium text-purple"
                 >
-                  Password
+                  {t("password")}
                 </label>
                 <div className="relative">
                   <input
@@ -282,21 +283,24 @@ const Register: FC = () => {
                     required
                     autoComplete="off"
                   />
-                  <CheckPassword
-                    className={`absolute right-3 bottom-2`}
-                    togglePassword={() => togglePasswordVisibility("password")}
-                  />
+                  {userData.password.length >= 1 ? (
+                    <CheckPassword
+                      className={`absolute right-3 bottom-2`}
+                      togglePassword={() =>
+                        togglePasswordVisibility("password")
+                      }
+                    />
+                  ) : null}
                 </div>
                 {!passwordRegex.test(userData.password) &&
                 userDataError.password ? (
                   <p className="text-[0.75rem] text-purple mt-1">
-                    Password must contain at least one uppercase letter and one
-                    digit.
+                    {t("password-regex")}
                   </p>
                 ) : null}
                 {userData.password.length < 5 && userDataError.password ? (
                   <p className="text-[0.75rem] text-purple mt-1">
-                    Password is so short.
+                    {t("password-length")}
                   </p>
                 ) : null}
               </div>
@@ -305,7 +309,7 @@ const Register: FC = () => {
                   htmlFor="confirm-password"
                   className="block mb-2 text-sm font-medium text-purple"
                 >
-                  Confirm password
+                  {t("confirm-password")}
                 </label>
                 <div className="relative">
                   <input
@@ -322,17 +326,19 @@ const Register: FC = () => {
                     className="bg-gray-50 border border-gray-300 text-purple sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                     required
                   />
-                  <CheckPassword
-                    className="absolute right-3 bottom-2"
-                    togglePassword={() =>
-                      togglePasswordVisibility("confirmPassword")
-                    }
-                  />
+                  {userData.confirmPassword.length >= 1 ? (
+                    <CheckPassword
+                      className="absolute right-3 bottom-2"
+                      togglePassword={() =>
+                        togglePasswordVisibility("confirmPassword")
+                      }
+                    />
+                  ) : null}
                 </div>
                 {userData.password !== userData.confirmPassword
                   ? userDataError.confirmPassword && (
                       <p className="text-[0.75rem] text-purple mt-1">
-                        Both password are different.
+                        {t("password-different")}
                       </p>
                     )
                   : null}
@@ -341,15 +347,15 @@ const Register: FC = () => {
                 type="submit"
                 className="w-full text-purple bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
-                Sign up
+                {t("sign-up")}
               </button>
               <p className="text-sm font-light text-gray-500 ">
-                Already you have account?{" "}
+                {t("account-exist")}{" "}
                 <Link
                   to="/login"
                   className="font-medium text-primary-600 hover:underline"
                 >
-                  Sign in
+                  {t("sign-in")}
                 </Link>
               </p>
             </form>

@@ -15,10 +15,12 @@ import { AnyAction } from "redux";
 import { login } from "../features/AccountSlice";
 import { RootState } from "../store";
 import { CheckPassword } from "../assets/icons";
+import { useTranslation } from "react-i18next";
 
 const Login: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate: NavigateFunction = useNavigate();
+  const { t } = useTranslation();
   const isLoggedIn = useSelector(
     (state: RootState) => state.account.isLoggedIn
   );
@@ -91,7 +93,7 @@ const Login: FC = () => {
         <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h2 className="text-xl font-bold leading-tight tracking-tight text-purple md:text-2xl">
-              Sign in to your account
+              {t("sign-to-account")}
             </h2>
             <form
               className="space-y-4 md:space-y-6"
@@ -103,7 +105,7 @@ const Login: FC = () => {
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-purple"
                 >
-                  Your email
+                  {t("your-email")}
                 </label>
                 <input
                   type="email"
@@ -122,7 +124,7 @@ const Login: FC = () => {
                 />
                 {userDataCheck.isEmailExist === false ? (
                   <p className="text-[0.75rem] text-purple mt-1">
-                    Email not exist in database.
+                    {t("email-not-exist")}
                   </p>
                 ) : null}
               </div>
@@ -131,7 +133,7 @@ const Login: FC = () => {
                   htmlFor="password"
                   className="block mb-2 text-sm font-medium text-purple"
                 >
-                  Password
+                  {t("password")}
                 </label>
                 <div className="relative">
                   <input
@@ -149,10 +151,12 @@ const Login: FC = () => {
                       }))
                     }
                   />
-                  <CheckPassword
-                    className="absolute right-3 bottom-2"
-                    togglePassword={togglePasswordVisibility}
-                  />
+                  {userData.password.length >= 1 ? (
+                    <CheckPassword
+                      className="absolute right-3 bottom-2"
+                      togglePassword={togglePasswordVisibility}
+                    />
+                  ) : null}
                 </div>
                 {userDataCheck.isPasswordCorrect === false ? (
                   <p className="text-[0.75rem] text-purple mt-1">
@@ -165,15 +169,15 @@ const Login: FC = () => {
                 type="submit"
                 className="w-full text-purple bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
-                Sign in
+                {t("sign-in")}
               </button>
               <p className="text-sm font-light text-gray-500 ">
-                Don’t have an account yet?{" "}
+                {t("account-not-created")}{" "}
                 <Link
                   to="/register"
-                  className="font-medium text-primary-600 hover:underline"
+                  className="font-medium text-primary-600 hover:underline ml-1"
                 >
-                  Sign up
+                  {t("sign-up")}
                 </Link>
               </p>
             </form>

@@ -5,6 +5,7 @@ import DesktopFooter from "../components/Footer/DesktopFooter.tsx";
 import React, { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import { useTranslation } from "react-i18next";
 
 const MainPage = () => {
   const { isLoading, error } = useSelector(
@@ -17,6 +18,7 @@ const MainPage = () => {
   const handleRangeChange = (newRange: [number, number]) => {
     setRange(newRange);
   };
+  const { t } = useTranslation();
   const firstValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue: number = parseInt(event.target.value, 10);
     if (isNaN(newValue) || newValue < 1) {
@@ -53,7 +55,7 @@ const MainPage = () => {
           <div></div>
           <div></div>
         </div>
-        Loading...
+        {t("loading")}...
       </main>
     );
   } else if (error) {

@@ -4,9 +4,11 @@ import { FC } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import LanguageSwitcher from "../LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 const Navbar: FC = () => {
   const location: Location = useLocation();
+  const { t } = useTranslation();
   const isLoggedIn = useSelector(
     (state: RootState) => state.account.isLoggedIn
   );
@@ -40,7 +42,7 @@ const Navbar: FC = () => {
                 className="focus:outline-none list-none hover:bg-hoverPurple focus:bg-hoverPurple text-lightGray px-[1.2rem] 
               transition-colors duration-500 h-16 flex items-center"
               >
-                Why us?
+                {t("why-us")}
               </Link>
             </li>
             <li
@@ -54,7 +56,7 @@ const Navbar: FC = () => {
                 className="focus:outline-none list-none hover:bg-hoverPurple focus:bg-hoverPurple text-lightGray px-[1.2rem] 
               transition-colors duration-500 h-16 flex items-center"
               >
-                Contact
+                {t("contact")}
               </Link>
             </li>
             <li
@@ -99,7 +101,7 @@ const Navbar: FC = () => {
                   className="focus:outline-none text-lightGray  px-[0.5rem] rounded-full 
               transition-colors duration-500  flex items-center hover:bg-hoverPurple focus:bg-hoverPurple"
                 >
-                  Login
+                  {t("login")}
                 </Link>
               )}
             </li>

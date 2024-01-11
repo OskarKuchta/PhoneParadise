@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { openPayment } from "../features/PaymentSlice";
 import { AnyAction, Dispatch } from "redux";
+import { useTranslation } from "react-i18next";
 
 const Payments: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const { isOpen } = useSelector((store: RootState) => store.payment);
+  const { t } = useTranslation();
   const [count, setCount]: [
     number,
     React.Dispatch<React.SetStateAction<number>>
@@ -32,8 +34,7 @@ const Payments: FC = () => {
       <PaymentTop />
       <div className="mb-8">
         <h3 className="mx-auto mb-8 w-3/4">
-          You will be redirected to your bank's website shortly. To proceed,
-          click the button below or wait a few seconds{" "}
+          {t("payment-redirect")}{" "}
           <span className="dots">
             <span>.</span>
             <span>.</span>
@@ -44,7 +45,7 @@ const Payments: FC = () => {
           className="button-withArrow py-[0.7rem] px-12 mb-8 md:mb-0"
           onClick={() => dispatch(openPayment())}
         >
-          To payment
+          {t("to-payment")}
         </button>
       </div>
     </main>

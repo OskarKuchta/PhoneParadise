@@ -117,7 +117,7 @@ const About: FC = () => {
                 delay={!isPhone.isPhone ? 2.5 : 1}
               />
             )}
-            <p className="text-center">{t("satisfied customers")}</p>
+            <p className="text-center">{t("satisfied-customers")}</p>
           </motion.div>
           <motion.div
             className="relative w-48 h-48 border-2 border-purple rounded flex flex-col items-center p-6"
@@ -140,7 +140,7 @@ const About: FC = () => {
                 delay={!isPhone.isPhone ? 3 : 1}
               />
             )}
-            <p className="text-center">{t("orders realized")}</p>
+            <p className="text-center">{t("orders-realized")}</p>
           </motion.div>
           <motion.div
             className="relative w-48 h-48 border-2 border-purple rounded flex flex-col items-center p-6"
@@ -164,7 +164,7 @@ const About: FC = () => {
                 delay={!isPhone.isPhone ? 3.5 : 2}
               />
             )}
-            <p className="text-center">{t("times page visited")}</p>
+            <p className="text-center">{t("times-page-visited")}</p>
           </motion.div>
         </div>
       </main>

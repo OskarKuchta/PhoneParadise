@@ -27,6 +27,7 @@ import {
 } from "firebase/firestore";
 import { addShopHistory } from "../../features/AccountSlice";
 import { CartItems } from "../../Types/Types";
+import { useTranslation } from "react-i18next";
 const PaymentConfirm: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const navigate: NavigateFunction = useNavigate();
@@ -34,6 +35,7 @@ const PaymentConfirm: FC = () => {
     dispatch(removeAllProducts());
     dispatch(addShopHistory({ cart: cart }));
   };
+  const { t } = useTranslation();
   const formatDateTime = (date: Date) => {
     const day: string = String(date.getDate()).padStart(2, "0");
     const month: string = String(date.getMonth() + 1).padStart(2, "0");
@@ -142,7 +144,7 @@ const PaymentConfirm: FC = () => {
   return (
     <section className="modal-container">
       <aside className="modal">
-        <h3>If payment process is done click YES. Otherwise click NO.</h3>
+        <h3>{t("payment-confirm")}</h3>
         <div className="btn-container">
           <button
             className="btn-confirm"
@@ -151,7 +153,7 @@ const PaymentConfirm: FC = () => {
               navigate("/payment-submit");
             }}
           >
-            YES
+            {t("yes")}
           </button>
           <button
             className="btn-cancel"
@@ -160,7 +162,7 @@ const PaymentConfirm: FC = () => {
               submitPayment(false);
             }}
           >
-            NO
+            {t("no")}
           </button>
         </div>
       </aside>

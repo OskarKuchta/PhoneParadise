@@ -4,6 +4,7 @@ import { Link, Location, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MutableRefObject, useEffect, useRef } from "react";
 import { AnimationObject } from "../Types/Types";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
   const location: Location = useLocation();
@@ -12,7 +13,7 @@ const Contact = () => {
       window.scrollTo(0, 0);
     }
   }, [location.pathname]);
-
+  const { t } = useTranslation();
   const createAnimationObject = (y: number): AnimationObject => {
     return {
       hidden: { opacity: 0, y: y },
@@ -25,7 +26,7 @@ const Contact = () => {
   const subject: string = "Ocena i uwagi na temat projektu";
   return (
     <section ref={ref} className="flex flex-col items-center my-[5vh]">
-      <h2 className="mb-12 text-3xl">Contact us:</h2>
+      <h2 className="mb-12 text-3xl">{t("contact-us")}</h2>
       <aside className="w-4/5 flex justify-between flex-col md:flex-row">
         <motion.div
           variants={fadeInAnimation}
@@ -44,7 +45,7 @@ const Contact = () => {
             <PhoneContact />
           </Link>
           <h4 className="mt-6 leading-7 text-center md:mx-4 text-xl">
-            You can contact with our consultants at number {""}
+            {t("phone-contact")}{" "}
             <Link
               to="tel:+48123456789"
               className="outline-none focus:outline-none transition-all duration-200  hover:text-contactHover  focus:text-contactHover hover:fill-contactHover focus:fill-contactHover"
@@ -71,7 +72,7 @@ const Contact = () => {
             <MailIcon />
           </Link>
           <h4 className="mt-6 leading-7 text-center md:mx-4 text-xl">
-            Another way to contact us is email adress. Mail:{" "}
+            {t("mail-contact")}{" "}
             <Link
               to={`mailto:${emailAddress}?subject=${encodeURIComponent(
                 subject
@@ -100,13 +101,13 @@ const Contact = () => {
             <FacebookIcon />
           </Link>
           <h4 className="mt-6 leading-7 text-center md:mx-4 text-xl">
-            When you have loose questions about project or someone else{" "}
+            {t("fb-contact")}{" "}
             <Link
               target="blank"
               to="https://www.facebook.com/oskar.kuchta.39/"
               className="outline-none focus:outline-none transition-all duration-200 hover:text-contactHover focus:text-contactHover hover:fill-contactHover focus:fill-contactHover"
             >
-              click here
+              {t("click-here")}
             </Link>
           </h4>
         </motion.div>

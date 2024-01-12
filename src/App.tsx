@@ -11,6 +11,7 @@ import { RootState } from "./store";
 import { resetPaymentState } from "./features/PaymentSlice.tsx";
 import { AnyAction } from "redux";
 import { isPhone } from "./Types/Types.ts";
+import { useTranslation } from "react-i18next";
 
 const About = React.lazy(() => import("./pages/About.tsx"));
 const Contact = React.lazy(() => import("./pages/Contact.tsx"));
@@ -32,6 +33,7 @@ const App = () => {
   const { cartItems, isDiscount, total, discount } = useSelector(
     (store: RootState) => store.cart
   );
+  const { t } = useTranslation();
   const isPhone: isPhone = usePhoneContext();
   useEffect(() => {
     if (location.pathname !== "/payment-submit") {
@@ -59,7 +61,7 @@ const App = () => {
                   <div></div>
                   <div></div>
                 </div>
-                Loading...
+                {t("loading")}...
               </main>
             </>
           }

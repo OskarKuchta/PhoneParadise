@@ -8,9 +8,7 @@ import "rc-slider/assets/index.css";
 import { useTranslation } from "react-i18next";
 
 const MainPage = () => {
-  const { isLoading, error } = useSelector(
-    (state: RootState) => state.products
-  );
+  const { isLoading } = useSelector((state: RootState) => state.products);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [value, setValue] = useState<string>("Default");
   const [range, setRange] = useState<[number, number]>([1, 1200]);
@@ -58,19 +56,18 @@ const MainPage = () => {
         {t("loading")}...
       </main>
     );
-  } else if (error) {
-    return <main className="without-data">{error.toString()}</main>;
   } else {
     return (
       <main className="m-8">
         <h1 className="text-purple text-center font-trocchi text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-10 mb-8">
-          Welcome to Phone Paradise – Your Ultimate Destination for the Phones.
-          Explore a World of Innovation and Style. Shop Now!
+          {t("main-header")}
         </h1>
         <section className="flex flex-col md:flex-row justify-center mb-16">
           <aside className="flex flex-col items-center md:mr-12">
             <form onSubmit={(e) => e.preventDefault()}>
-              <label htmlFor="sortOrder">Sort by:</label>
+              <label htmlFor="sortOrder" className="mr-1">
+                {t("sort-by")}
+              </label>
               <select
                 id="sortOrder"
                 className="w-40 mt-2 mb-10"
@@ -80,12 +77,12 @@ const MainPage = () => {
                 }}
                 style={{ outlineColor: "rgb(46, 3, 87)" }}
               >
-                <option>Default</option>
-                <option>Price ascending</option>
-                <option>Price descending</option>
-                <option>Date release</option>
-                <option>Screen size</option>
-                <option>Actual available</option>
+                <option>{t("default")}</option>
+                <option>{t("price-ascending")}</option>
+                <option>{t("price-descending")}</option>
+                <option>{t("date-release")}</option>
+                <option>{t("screen-size")}</option>
+                <option>{t("actual-available")}</option>
               </select>
             </form>
           </aside>
@@ -103,8 +100,8 @@ const MainPage = () => {
               ariaLabelledByForHandle="Price range slider"
             />
             <div className=" mb-[0.7rem] my-[0.2rem] flex">
-              <label className="first-price-filter" htmlFor="first-range">
-                Price up:{" "}
+              <label className="first-price-filter mr-2" htmlFor="first-range">
+                {t("price-up")}{" "}
               </label>
               <input
                 id="first-range"
@@ -118,7 +115,9 @@ const MainPage = () => {
               <span>$</span>
             </div>
             <div className="mb-[0.7rem] my-[0.2rem] flex">
-              <label htmlFor="second-range">Price to: </label>
+              <label htmlFor="second-range" className="mr-2">
+                {t("price-to")}{" "}
+              </label>
               <input
                 id="second-range"
                 className="filter-input"
@@ -132,7 +131,7 @@ const MainPage = () => {
             </div>
           </aside>
           <aside className="choose-pagination flex flex-col items-center md:ml-8">
-            <label htmlFor="page-pagination">Products on page:</label>
+            <label htmlFor="page-pagination">{t("products-on-page")}</label>
             <select
               id="page-pagination"
               onChange={changePagination}

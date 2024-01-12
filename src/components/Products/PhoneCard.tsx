@@ -5,6 +5,7 @@ import { addItem } from "../../features/CartSlice";
 import { Dispatch, FC, useEffect, useState } from "react";
 import { usePhoneContext } from "../../context/PhoneProvider";
 import { AnyAction } from "redux";
+import { useTranslation } from "react-i18next";
 const PhoneCard: FC<PhoneCard> = ({
   value,
   range,
@@ -21,6 +22,7 @@ const PhoneCard: FC<PhoneCard> = ({
     }
     window.scrollTo(0, isPhone ? 400 : 220);
   }, [currentPage]);
+  const { t } = useTranslation();
   const dispatch: Dispatch<AnyAction> = useDispatch();
   const addToCart = (product: Products) => {
     dispatch(addItem(product));
@@ -104,7 +106,9 @@ const PhoneCard: FC<PhoneCard> = ({
                   className="my-[0.3rem]"
                 />
                 <div className="my-[0.3rem]">
-                  <p className="my-[0.3rem]">{product.desc}</p>
+                  <p className="my-[0.3rem]">
+                    {product.desc} {t("screen")}
+                  </p>
                   <p className="my-[0.3rem]">${product.price}</p>
                 </div>
                 <button
@@ -116,12 +120,12 @@ const PhoneCard: FC<PhoneCard> = ({
                   onClick={() => addToCart(product)}
                   disabled={!product.inStock}
                 >
-                  Add to cart
+                  {t("add-to-cart")}
                 </button>
 
                 {!product.inStock ? (
                   <>
-                    <p className="my-[0.3rem]">Off sale</p>
+                    <p className="my-[0.3rem]">{t("off-sale")}</p>
                     <img
                       src="/out-of-stock.png"
                       alt=""
@@ -129,7 +133,10 @@ const PhoneCard: FC<PhoneCard> = ({
                     />
                   </>
                 ) : (
-                  <p className="my-[0.3rem]">{product.inStock} pieces</p>
+                  <p className="my-[0.3rem]">
+                    {t("pieces")}
+                    {product.inStock}
+                  </p>
                 )}
               </aside>
             ))}

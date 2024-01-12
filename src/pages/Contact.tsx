@@ -23,7 +23,7 @@ const Contact = () => {
   const ref: MutableRefObject<any> = useRef(null);
   const fadeInAnimation = createAnimationObject(-40);
   const emailAddress: string = "oskarkuchta5@gmail.com";
-  const subject: string = "Ocena i uwagi na temat projektu";
+  const subject: { emailTopic: string } = { emailTopic: t("email-topic") };
   return (
     <section ref={ref} className="flex flex-col items-center my-[5vh]">
       <h2 className="mb-12 text-3xl">{t("contact-us")}</h2>
@@ -66,7 +66,9 @@ const Contact = () => {
           className="flex flex-col w-full items-center my-8"
         >
           <Link
-            to={`mailto:${emailAddress}?subject=${encodeURIComponent(subject)}`}
+            to={`mailto:${emailAddress}?subject=${encodeURIComponent(
+              subject.emailTopic
+            )}`}
             className="outline-none focus:outline-none transition-all duration-200 hover:text-contactHover  focus:text-contactHover hover:fill-contactHover focus:fill-contactHover"
           >
             <MailIcon />
@@ -75,7 +77,7 @@ const Contact = () => {
             {t("mail-contact")}{" "}
             <Link
               to={`mailto:${emailAddress}?subject=${encodeURIComponent(
-                subject
+                subject.emailTopic
               )}`}
               className="outline-none focus:outline-none transition-all duration-200 hover:text-contactHover focus:text-contactHover hover:fill-contactHover focus:fill-contactHover"
             >

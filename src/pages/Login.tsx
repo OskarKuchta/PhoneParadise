@@ -160,7 +160,7 @@ const Login: FC = () => {
                 </div>
                 {userDataCheck.isPasswordCorrect === false ? (
                   <p className="text-[0.75rem] text-purple mt-1">
-                    Password is incorrect.
+                    {t("password-incorrect")}
                   </p>
                 ) : null}
               </div>

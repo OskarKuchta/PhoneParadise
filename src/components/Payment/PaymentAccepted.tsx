@@ -16,6 +16,7 @@ import {
 import { db } from "../../assets/FirebaseConfig";
 import { RatingData } from "../../Types/Types";
 import { Unsubscribe } from "redux";
+import { useTranslation } from "react-i18next";
 
 const PaymentAccepted: FC = () => {
   const navigate: NavigateFunction = useNavigate();
@@ -24,6 +25,7 @@ const PaymentAccepted: FC = () => {
   const [rating, setRating] = useState<number>(0);
   const [showText, setShowText] = useState<boolean>(false);
   const [rateLength, setRateLength] = useState<number>(0);
+  const { t } = useTranslation();
   const ratingsCollection: CollectionReference<DocumentData, DocumentData> =
     collection(db, "ratings");
   const getRating = async () => {
@@ -88,10 +90,8 @@ const PaymentAccepted: FC = () => {
 
   return (
     <main className="mt-12 flex flex-col text-center items-center max-w-[90vw] mx-auto">
-      <h2 className="text-xl">Thank you for trust.</h2>
-      <h3 className="my-8">
-        We'll be glad if you can leave a rating for shopping experience.
-      </h3>
+      <h2 className="text-xl">{t("thanks-after-payment")}</h2>
+      <h3 className="my-8">{t("rate-ask")}</h3>
       <Rating
         style={{ maxWidth: 250 }}
         value={rating}
@@ -103,27 +103,26 @@ const PaymentAccepted: FC = () => {
           disabled={showText ? true : false}
           className="mt-12 py-2 px-8 border-2 rounded border-purple transition-colors duration-500 focus:bg-purple focus:text-white focus:outline-none hover:bg-purple hover:text-white"
         >
-          Send rating
+          {t("send-rating")}
         </button>
         <button
           style={{ marginLeft: "0.5rem" }}
           className="mt-12 py-2 px-8 border-2 rounded border-purple transition-colors duration-500 focus:bg-purple focus:text-white focus:outline-none hover:bg-purple hover:text-white"
           onClick={() => navigate("/")}
         >
-          Back to main page
+          {t("back-to-main")}
         </button>
       </div>
       {showText ? (
         <aside className="mt-4 text-center">
           <i>
-            Thank you for rating, have a good day. You will redirected to main
-            page for {counter} seconds
+            {t("thanks-text")} {counter} {t("seconds")}
           </i>
           <br />
         </aside>
       ) : null}
       <i style={{ marginTop: "2rem" }}>
-        Average rating: {average} / 5{" "}
+        {t("average-rating")}: {average} / 5{" "}
         <span
           style={{
             fontSize: "12px",

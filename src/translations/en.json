@@ -32,7 +32,7 @@
     "times-page-visited": "times page visited",
     "bad-url": "Your url adress is incorrect, back to main site or you will be redirected for",
     "seconds": "seconds",
-    "back-to-main": "Back to main site",
+    "back-to-main": "Back to main page",
     "contact-us": "Contact us:",
     "phone-contact": "You can contact with our consultants at number",
     "mail-contact": "Another way to contact us is email adress. Mail:",
@@ -88,6 +88,15 @@
     "screen": "screen",
     "add-to-cart": "Add to cart",
     "off-sale": "Off sale",
-    "pieces": "On stock: "
+    "pieces": "On stock: ",
+    "thanks-after-payment": "Thank you for trust.",
+    "rate-ask": "We'll be glad if you can leave a rating for shopping experience.",
+    "send-rating": "Send rating",
+    "thanks-text": "Thank you for rating, have a good day. You will redirected to main page for",
+    "average-rating": "Average rating",
+    "expired": "Your link is expired. Back to main and try again.",
+    "remove-question": "Remove all items from your shopping cart?",
+    "confirm": "CONFIRM",
+    "cancel": "CANCEL"
   }
 }

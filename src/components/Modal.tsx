@@ -3,6 +3,7 @@ import { close } from "../features/ModalSlice";
 import { removeAllProducts } from "../features/CartSlice";
 import { FC } from "react";
 import { Dispatch, AnyAction } from "redux";
+import { useTranslation } from "react-i18next";
 
 const Modal: FC = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();
@@ -13,16 +14,17 @@ const Modal: FC = () => {
   const closeModal = () => {
     dispatch(close());
   };
+  const { t } = useTranslation();
   return (
     <section className="modal-container">
       <aside className="modal">
-        <h3>Remove all items from your shopping cart?</h3>
+        <h3>{t("remove-question")}</h3>
         <div className="btn-container">
           <button className="btn-confirm" onClick={removeAllCart}>
-            CONFIRM
+            {t("confirm")}
           </button>
           <button className="btn-cancel" onClick={closeModal}>
-            CANCEL
+            {t("cancel")}
           </button>
         </div>
       </aside>

@@ -88,6 +88,15 @@
     "screen": "wyświetlacz",
     "add-to-cart": "Dodaj do koszyka",
     "off-sale": "Wyprzedane",
-    "pieces": "Na stanie: "
+    "pieces": "Na stanie: ",
+    "thanks-after-payment": "Dziękujemy za zaufanie.",
+    "rate-ask": "Będzie nam miło, jeśli zostawisz ocenę dotyczącą wrażeń z zakupów.",
+    "send-rating": "Wyślij ocenę",
+    "thanks-text": "Dziękuję za ocenę, życzymy miłego dnia. Zostaniesz przekierowany na stronę główną dla",
+    "average-rating": "Średnia ocena",
+    "expired": "Twój link wygasł. Wróć do strony głównej i spróbuj ponownie.",
+    "remove-question": "Usunąć wszystkie produkty z koszyka?",
+    "confirm": "POTWIERDŹ",
+    "cancel": "ANULUJ"
   }
 }

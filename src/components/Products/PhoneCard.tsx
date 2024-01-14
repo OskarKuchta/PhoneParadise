@@ -28,6 +28,11 @@ const PhoneCard: FC<PhoneCard> = ({
     dispatch(addItem(product));
   };
   const { items } = useSelector((store: RootState) => store.products);
+  const priceAscending = t("price-ascending");
+  const priceDescending = t("price-descending");
+  const dateRelease = t("date-release");
+  const screenSize = t("screen-size");
+  const actualAvailable = t("actual-available");
   const itemsArray = (items as Products[]).filter(
     (item) =>
       (item.price >= range[0] && item.price <= range[1]) ||
@@ -45,30 +50,30 @@ const PhoneCard: FC<PhoneCard> = ({
       let result = 0;
 
       switch (value) {
-        case "Price ascending":
+        case priceAscending:
           const priceA: number = a.price;
           const priceB: number = b.price;
           result =
             itemsAscending.indexOf(priceA) - itemsAscending.indexOf(priceB);
           break;
-        case "Price descending":
+        case priceDescending:
           const priceA_desc: number = a.price;
           const priceB_desc: number = b.price;
           result =
             itemsDescending.indexOf(priceA_desc) -
             itemsDescending.indexOf(priceB_desc);
           break;
-        case "Date release":
+        case dateRelease:
           const dateA: number = new Date(a.date).getTime();
           const dateB: number = new Date(b.date).getTime();
           result = dateB - dateA;
           break;
-        case "Screen size":
+        case screenSize:
           const sizeA: number = parseFloat(a.desc.match(/\d+\.\d+/)[0]);
           const sizeB: number = parseFloat(b.desc.match(/\d+\.\d+/)[0]);
           result = sizeB - sizeA;
           break;
-        case "Actual available":
+        case actualAvailable:
           const inStockA = a.inStock > 0 ? 1 : 0;
           const inStockB = b.inStock > 0 ? 1 : 0;
           result = inStockB - inStockA;
@@ -78,7 +83,7 @@ const PhoneCard: FC<PhoneCard> = ({
       return result;
     })
     .filter((product) =>
-      value === "Actual available" ? product.inStock > 0 : true
+      value === actualAvailable ? product.inStock > 0 : true
     );
 
   const hasProducts: boolean = sortedItemsArray.length > 0;

@@ -188,7 +188,7 @@ const PhoneCard: FC<PhoneCard> = ({
         </>
       ) : (
         <h3 className="text-purple mt-12 mb-[23rem] w-full text-center">
-          There are no products for the given filters. Take different filters.
+          {t("empty-phone-list")}
         </h3>
       )}
     </>

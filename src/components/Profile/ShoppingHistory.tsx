@@ -12,13 +12,14 @@ import { db } from "../../assets/FirebaseConfig";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { CartItems } from "../../Types/Types";
+import { useTranslation } from "react-i18next";
 
 const ShoppingHistory: FC = () => {
   const [shopHistoryList, setShopHistoryList] = useState<any>([]);
   const username = useSelector(
     (state: RootState) => state.account.userData.name
   );
-
+  const { t } = useTranslation();
   useEffect(() => {
     const fetchData = async () => {
       const accountsQuery: Query<DocumentData> = query(
@@ -40,7 +41,7 @@ const ShoppingHistory: FC = () => {
   return (
     <div>
       <h2 className="font-bold text-2xl border-black border-b-[1px]">
-        Shopping history
+        {t("shopping-history")}
       </h2>
       {shopHistoryList.every((item) => item?.length > 0) ? (
         <>
@@ -57,11 +58,15 @@ const ShoppingHistory: FC = () => {
                   )
                 )}
                 <p>
-                  Total: $
+                  {t("total")}: $
                   {item.cart.isDiscount ? (
                     <span
                       dangerouslySetInnerHTML={{
-                        __html: `${item.cart.withDiscount} <span class="ml-1 text-[0.8rem]">($${item.cart.discount} saved)</span>`,
+                        __html: `${
+                          item.cart.withDiscount
+                        } <span class="ml-1 text-[0.8rem]">($${
+                          item.cart.discount
+                        } ${t("discount-percent")})</span>`,
                       }}
                     />
                   ) : (
@@ -72,7 +77,7 @@ const ShoppingHistory: FC = () => {
             ))}
         </>
       ) : (
-        <p className="mt-6 text-center text-xl">List is empty yet.</p>
+        <p className="mt-6 text-center text-xl">{t("empty-list")}</p>
       )}
     </div>
   );

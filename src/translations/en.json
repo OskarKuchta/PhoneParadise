@@ -97,6 +97,15 @@
     "expired": "Your link is expired. Back to main and try again.",
     "remove-question": "Remove all items from your shopping cart?",
     "confirm": "CONFIRM",
-    "cancel": "CANCEL"
+    "cancel": "CANCEL",
+    "type-name": "Type name",
+    "save-button": "save",
+    "hey": "Hey",
+    "change-name": "Change name",
+    "change-color": "Change color",
+    "logout": "Logout",
+    "shopping-history": "Shopping history",
+    "empty-list": "List is empty yet.",
+    "empty-phone-list": "There are no products for the given filters. Take different filters."
   }
 }

@@ -20,6 +20,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../assets/FirebaseConfig";
 import ShoppingHistory from "../components/Profile/ShoppingHistory";
+import { useTranslation } from "react-i18next";
 
 const Profile: FC = () => {
   const isLoggedIn = useSelector(
@@ -56,7 +57,7 @@ const Profile: FC = () => {
     dispatch(logout());
     navigate("/login");
   };
-
+  const { t } = useTranslation();
   const saveName = async () => {
     try {
       const accountsQuery: Query<DocumentData> = query(
@@ -79,7 +80,7 @@ const Profile: FC = () => {
             nameIsInvalid: false,
           });
           return true;
-        } else if (changedName.length < 4) {
+        } else if (changedName.length <= 4) {
           setNameError({
             nameIsTaken: false,
             nameIsShort: true,
@@ -174,24 +175,10 @@ const Profile: FC = () => {
               <div className="flex flex-col">
                 <div className="flex">
                   {isButtonName ? (
-                    <div className="flex flex-col md:flex-row items-start relative pb-2">
-                      {nameError.nameIsTaken ? (
-                        <span className="absolute bottom-12 md:bottom-2 left-28 text-[12px] text-purple">
-                          Name is taken
-                        </span>
-                      ) : nameError.nameIsShort ? (
-                        <span className="absolute bottom-12 md:bottom-2 left-28 text-[12px] text-purple">
-                          Name is too short
-                        </span>
-                      ) : nameError.nameIsInvalid ? (
-                        <span className="absolute bottom-12 md:bottom-2 left-28 text-[12px] text-purple">
-                          Name is invalid
-                        </span>
-                      ) : null}
-
-                      <div className="mb-6">
+                    <div className="flex flex-col items-start pb-2">
+                      <div className="">
                         <label htmlFor="change-name" className="mr-2 text-sm">
-                          Type name
+                          {t("type-name")}
                         </label>
                         <input
                           id="change-name"
@@ -200,25 +187,38 @@ const Profile: FC = () => {
                           onChange={(e) => setChangedName(e.target.value)}
                         />
                       </div>
-                      <div className="flex mt-2 md:mt-0 mb-2">
+                      {nameError.nameIsTaken ? (
+                        <p className="text-[12px] text-purple mt-1 mb-4">
+                          {t("name-taken")}
+                        </p>
+                      ) : nameError.nameIsShort ? (
+                        <p className=" text-[12px] text-purple mt-1 mb-4">
+                          {t("name-length")}
+                        </p>
+                      ) : nameError.nameIsInvalid ? (
+                        <p className="text-[12px] text-purple mt-1 mb-4">
+                          {t("invalid-characters")}
+                        </p>
+                      ) : null}
+                      <div className="flex mt-2 mb-2">
                         <button
                           className="text-xs ml-4  py-[0.3rem] px-[0.8rem] rounded focus:bg-red focus:text-lightGray hover:bg-red hover:text-lightGray focus:outline-none"
                           onClick={() => revertName()}
                         >
-                          Back
+                          {t("cancel").toLowerCase()}
                         </button>
                         <button
                           className="text-xs ml-2  py-[0.3rem] px-[0.8rem] rounded focus:bg-green-500 focus:text-lightGray hover:bg-green-500 hover:text-lightGray focus:outline-none"
                           onClick={saveName}
                         >
-                          Save
+                          {t("save-button").toLowerCase()}
                         </button>
                       </div>
                     </div>
                   ) : (
                     <>
                       <span className="text-xl font-bold leading-tight tracking-tight text-purple md:text-2xl inline-flex">
-                        Hey,&nbsp;<span>{userName}</span>.
+                        {t("hey")},&nbsp;<span>{userName}</span>.
                       </span>
                       <button
                         className="text-xs ml-4 p-[0.3rem] rounded focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray"
@@ -227,7 +227,7 @@ const Profile: FC = () => {
                           setIsColorsPallete(false);
                         }}
                       >
-                        Change name
+                        {t("change-name")}
                       </button>
                     </>
                   )}
@@ -246,7 +246,7 @@ const Profile: FC = () => {
                       setIsColorsPallete(true);
                     }}
                   >
-                    Change color
+                    {t("change-color")}
                   </button>
                 </div>
               </div>
@@ -283,13 +283,13 @@ const Profile: FC = () => {
                       className="ml-4 mb-2 border-black p-[0.3rem] rounded focus:bg-red focus:text-lightGray hover:bg-red hover:text-lightGray focus:outline-none"
                       onClick={() => revertColor()}
                     >
-                      Back
+                      {t("cancel").toLowerCase()}
                     </button>
                     <button
                       className="ml-4 border-black p-[0.3rem] rounded focus:bg-green-500 focus:text-lightGray hover:bg-green-500 hover:text-lightGray focus:outline-none"
                       onClick={() => saveColor()}
                     >
-                      Save
+                      {t("save-button").toLowerCase()}
                     </button>
                   </div>
                 </div>
@@ -301,7 +301,7 @@ const Profile: FC = () => {
                 onClick={logoutAccount}
                 className="ml-auto p-[0.3rem] rounded focus:outline-none focus:bg-purple focus:text-lightGray hover:bg-purple hover:text-lightGray text-sm mt-16"
               >
-                Logout
+                {t("logout")}
               </button>
             </div>
           </div>

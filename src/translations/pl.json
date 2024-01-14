@@ -97,6 +97,15 @@
     "expired": "Twój link wygasł. Wróć do strony głównej i spróbuj ponownie.",
     "remove-question": "Usunąć wszystkie produkty z koszyka?",
     "confirm": "POTWIERDŹ",
-    "cancel": "ANULUJ"
+    "cancel": "ANULUJ",
+    "type-name": "Wpisz nazwę",
+    "save-button": "ZAPISZ",
+    "hey": "Cześć",
+    "change-name": "Zmień nazwę",
+    "change-color": "Zmień kolor",
+    "logout": "Wyloguj",
+    "shopping-history": "Historia zakupów",
+    "empty-list": "Lista jest narazie pusta.",
+    "empty-phone-list": "Brak produktów dla podanych filtrów. Wybierz inne filtry."
   }
 }

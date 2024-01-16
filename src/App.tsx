@@ -1,5 +1,5 @@
 import ErrorBoundary from "./ErrorBoundary.tsx";
-import React, { Dispatch, Suspense, useEffect } from "react";
+import { Dispatch, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation, Location } from "react-router-dom";
 import Navbar from "./components/Navbar.tsx";
 import { usePhoneContext } from "./context/PhoneProvider.tsx";
@@ -12,20 +12,17 @@ import { resetPaymentState } from "./features/PaymentSlice.tsx";
 import { AnyAction } from "redux";
 import { isPhone } from "./Types/Types.ts";
 import { useTranslation } from "react-i18next";
-
-const About = React.lazy(() => import("./pages/About.tsx"));
-const Contact = React.lazy(() => import("./pages/Contact.tsx"));
-const BadURL = React.lazy(() => import("./pages/BadURL.tsx"));
-const Cart = React.lazy(() => import("./pages/Cart.tsx"));
-const MainPage = React.lazy(() => import("./pages/MainPage.tsx"));
-const Payments = React.lazy(() => import("./pages/Payments.tsx"));
-const PaymentsEnd = React.lazy(() => import("./pages/PaymentsEnd.tsx"));
-const Login = React.lazy(() => import("./pages/Login.tsx"));
-const Register = React.lazy(() => import("./pages/Register.tsx"));
-const CompleteRegistration = React.lazy(
-  () => import("./pages/CompleteRegistration.tsx")
-);
-const Profile = React.lazy(() => import("./pages/Profile.tsx"));
+import About from "./pages/About.tsx";
+import Contact from "./pages/Contact.tsx";
+import BadURL from "./pages/BadURL.tsx";
+import Cart from "./pages/Cart.tsx";
+import MainPage from "./pages/MainPage.tsx";
+import Payments from "./pages/Payments.tsx";
+import PaymentsEnd from "./pages/PaymentsEnd.tsx";
+import Login from "./pages/Login.tsx";
+import Register from "./pages/Register.tsx";
+import CompleteRegistration from "./pages/CompleteRegistration.tsx";
+import Profile from "./pages/Profile.tsx";
 
 const App = () => {
   const dispatch: Dispatch<AnyAction> = useDispatch();

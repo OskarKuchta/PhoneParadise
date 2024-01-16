@@ -27,7 +27,7 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <button className="mr-12 w-4" onClick={changeLanguage}>
+    <button className="mr-12 p-2" onClick={changeLanguage}>
       {initialFlag}
     </button>
   );

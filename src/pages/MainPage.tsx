@@ -88,7 +88,8 @@ const MainPage = () => {
           </aside>
           <aside className="flex flex-col items-center mb-8">
             <Slider
-              className="mb-8 md:mb-[0.4rem] w-40"
+              className="mb-8 md:mb-[0.4rem]"
+              style={{ maxWidth: "160px" }}
               range
               min={1}
               max={1200}

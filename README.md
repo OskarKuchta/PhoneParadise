@@ -1,4 +1,4 @@
-# Dobry Klan Clash Of Clans
+# Phone Paradise
 
 ## Live site
 
@@ -18,24 +18,42 @@ Online store has been meticulously crafted using the latest technologies, includ
 
 ## Some result photos
 
-#1 Main page
+#1 Main page in Polish
 <img src="./public/result1.jfif" />
 <br /> <br />
-#2 Main page mobile
+#2 Main page in English
 <br />
 <img src="./public/result2.jfif" />
 <br /> <br />
-#3 Empty cart
+#3 Main page on mobile device
 <br />
 <img src="./public/result3.jfif" />
 <br /> <br />
 #4 Cart with products
 <img src="./public/result4.jfif" />
 <br /> <br />
-#5 Contact section
+#5 Why us section
 <img src="./public/result5.jfif" />
-#6 Rate after shopping
+<br /> <br />
+#6 Contact section
 <img src="./public/result6.jfif" />
+<br /> <br />
+#7 Add discount
+<img src="./public/result7.jfif" />
+<br /> <br />
+#8 Rating after shopping
+<img src="./public/result8.jfif" />
+<br /> <br />
+#9 Profile layout
+<img src="./public/result9.jfif" />
+<br /> <br />
+#10 Login section
+<img src="./public/result10.jfif" />
+<br /> <br />
+#11 Register section
+<img src="./public/result11.jfif" />
+<br /> <br />
+
 
 ## Available scripts
 

@@ -1,12 +1,11 @@
 export interface Products {
-
     id: number;
     name: string;
     desc: string;
     price: number;
     image: string;
     inStock: number;
-    date: Date;
+    date: Date | { seconds: number };
 }
 export interface SetProductsPayload {
     items: { id: string }[];

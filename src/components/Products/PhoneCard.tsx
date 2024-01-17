@@ -64,8 +64,8 @@ const PhoneCard: FC<PhoneCard> = ({
             itemsDescending.indexOf(priceB_desc);
           break;
         case dateRelease:
-          const dateA: number = new Date(a.date).getTime();
-          const dateB: number = new Date(b.date).getTime();
+          const dateA = "seconds" in a.date ? a.date.seconds : a.date.getTime();
+          const dateB = "seconds" in b.date ? b.date.seconds : b.date.getTime();
           result = dateB - dateA;
           break;
         case screenSize:

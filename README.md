@@ -19,39 +19,39 @@ Online store has been meticulously crafted using the latest technologies, includ
 ## Some result photos
 
 #1 Main page in Polish
-<img src="./public/result1.jfif" />
+<img src="./public/result1.webp" />
 <br /> <br />
 #2 Main page in English
 <br />
-<img src="./public/result2.jfif" />
+<img src="./public/result2.webp" />
 <br /> <br />
 #3 Main page on mobile device
 <br />
-<img src="./public/result3.jfif" />
+<img src="./public/result3.webp" />
 <br /> <br />
 #4 Cart with products
-<img src="./public/result4.jfif" />
+<img src="./public/result4.webp" />
 <br /> <br />
 #5 Why us section
-<img src="./public/result5.jfif" />
+<img src="./public/result5.webp" />
 <br /> <br />
 #6 Contact section
-<img src="./public/result6.jfif" />
+<img src="./public/result6.webp" />
 <br /> <br />
 #7 Add discount
-<img src="./public/result7.jfif" />
+<img src="./public/result7.webp" />
 <br /> <br />
 #8 Rating after shopping
-<img src="./public/result8.jfif" />
+<img src="./public/result8.webp" />
 <br /> <br />
 #9 Profile layout
-<img src="./public/result9.jfif" />
+<img src="./public/result9.webp" />
 <br /> <br />
 #10 Login section
-<img src="./public/result10.jfif" />
+<img src="./public/result10.webp" />
 <br /> <br />
 #11 Register section
-<img src="./public/result11.jfif" />
+<img src="./public/result11.webp" />
 <br /> <br />
 
 

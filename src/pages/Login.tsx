@@ -181,7 +181,7 @@ const Login: FC = () => {
                 </Link>
               </p>
               <p className="text-sm font-light text-black">
-                Konto testowe:{"  "}
+                {t("test-account")}:{"  "}
               </p>
               <p className="text-sm font-light text-gray-500">
                 Login:{"  "}

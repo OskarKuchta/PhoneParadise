@@ -62,6 +62,7 @@
     "sign-up-header": "Sign up your account",
     "name": "Name",
     "name-length": "Name must be longer than 4 characters.",
+    "name-maxlength": "Name is so long.",
     "invalid-characters": "Invalid characters.",
     "name-taken": "Name is already taken.",
     "invalid-email": "Invalid email format.",

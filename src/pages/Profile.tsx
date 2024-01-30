@@ -43,10 +43,11 @@ const Profile: FC = () => {
     nameIsTaken: false,
     nameIsShort: false,
     nameIsInvalid: false,
+    nameIsLong: false,
   });
   const [changedName, setChangedName] = useState<string>("");
   const dispatch: Dispatch<AnyAction> = useDispatch();
-  const nameRegex: RegExp = /^[A-Za-z][A-Za-z0-9]*$/;
+  const nameRegex: RegExp = /^[A-Za-z][A-Za-z0-9 ]*$/;
   const navigate: NavigateFunction = useNavigate();
   useEffect(() => {
     if (!isLoggedIn) {
@@ -78,6 +79,7 @@ const Profile: FC = () => {
             nameIsTaken: true,
             nameIsShort: false,
             nameIsInvalid: false,
+            nameIsLong: false,
           });
           return true;
         } else if (changedName.length <= 4) {
@@ -85,6 +87,15 @@ const Profile: FC = () => {
             nameIsTaken: false,
             nameIsShort: true,
             nameIsInvalid: false,
+            nameIsLong: false,
+          });
+          return true;
+        } else if (changedName.length >= 20) {
+          setNameError({
+            nameIsTaken: false,
+            nameIsShort: false,
+            nameIsInvalid: false,
+            nameIsLong: true,
           });
           return true;
         } else if (!nameRegex.test(changedName)) {
@@ -92,6 +103,7 @@ const Profile: FC = () => {
             nameIsTaken: false,
             nameIsShort: false,
             nameIsInvalid: true,
+            nameIsLong: false,
           });
           return true;
         }
@@ -113,6 +125,7 @@ const Profile: FC = () => {
           nameIsTaken: false,
           nameIsShort: false,
           nameIsInvalid: false,
+          nameIsLong: false,
         });
         setIsButtonName(false);
       }
@@ -156,6 +169,7 @@ const Profile: FC = () => {
       nameIsTaken: false,
       nameIsShort: false,
       nameIsInvalid: false,
+      nameIsLong: false,
     });
   };
   const revertColor = () => {
@@ -198,6 +212,10 @@ const Profile: FC = () => {
                       ) : nameError.nameIsInvalid ? (
                         <p className="text-[12px] text-purple mt-1 mb-4">
                           {t("invalid-characters")}
+                        </p>
+                      ) : nameError.nameIsLong ? (
+                        <p className=" text-[12px] text-purple mt-1 mb-4">
+                          {t("name-maxlength")}
                         </p>
                       ) : null}
                       <div className="flex mt-2 mb-2">

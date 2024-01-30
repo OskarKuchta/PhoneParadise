@@ -52,7 +52,7 @@ const Register: FC = () => {
   const accountCollection: CollectionReference<DocumentData, DocumentData> =
     collection(db, "accounts");
 
-  const nameRegex: RegExp = /^(?=.*[A-Za-z])[A-Za-z0-9]+$/;
+  const nameRegex: RegExp = /^(?=.*[A-Za-z])[A-Za-z0-9 ]+$/;
   const passwordRegex: RegExp = /^(?=.*[A-Z])(?=.*\d)/;
   const emailRegex: RegExp =
     /^[A-Za-z0-9]+([._-][A-Za-z0-9]+)*[A-Za-z][A-Za-z0-9]*@[A-Za-z0-9._-]+\.[A-Za-z]{2,}$/;

@@ -89,7 +89,7 @@ const Login: FC = () => {
 
   return (
     <main>
-      <div className="flex flex-col items-center mt-[10vh] px-6 mx-auto lg:py-0">
+      <div className="flex flex-col items-center mt-[10vh] px-6 mx-auto lg:py-0 mb-[20vh]">
         <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h2 className="text-xl font-bold leading-tight tracking-tight text-purple md:text-2xl">
@@ -171,7 +171,7 @@ const Login: FC = () => {
               >
                 {t("sign-in")}
               </button>
-              <p className="text-sm font-light text-gray-500 ">
+              <p className="text-sm font-light text-gray-500">
                 {t("account-not-created")}{" "}
                 <Link
                   to="/register"
@@ -179,6 +179,17 @@ const Login: FC = () => {
                 >
                   {t("sign-up")}
                 </Link>
+              </p>
+              <p className="text-sm font-light text-black">
+                Konto testowe:{"  "}
+              </p>
+              <p className="text-sm font-light text-gray-500">
+                Login:{"  "}
+                <span className="text-black">&nbsp; test@gmail.com</span>
+              </p>
+              <p className="text-sm font-light text-gray-500">
+                {t("password")}:{"  "}
+                <span className="text-black">&nbsp; Testtest1</span>
               </p>
             </form>
           </div>

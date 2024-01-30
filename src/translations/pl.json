@@ -62,6 +62,7 @@
     "sign-up-header": "Zarejestruj konto",
     "name": "Nazwa",
     "name-length": "Nazwa musi być dłuższa niż 4 znaki.",
+    "name-maxlength": "Nazwa jest zbyt długa.",
     "invalid-characters": "Nieprawidłowe znaki.",
     "name-taken": "Nazwa jest zajęta.",
     "invalid-email": "Nieprawidłowy email.",
